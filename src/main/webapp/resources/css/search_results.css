@@ -1,0 +1,136 @@
+/* 
+    Created on : 11-Feb-2018, 1:43:41 PM
+    Author     : Alessandro Ciotola, Kevin Bui
+*/
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/backgrounds/mainbg.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.search-header {
+    font-family: Raleway;
+    font-size: 2em;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.card {
+    width: 75%;
+}
+
+.book-image {
+    height: 100%;
+    width: 100%;
+    opacity: 0.95;
+    -webkit-filter: grayscale(0) blur(0);
+    filter: grayscale(0) blur(0);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.book-image:hover {
+    -webkit-filter: grayscale(100%) blur(3px);
+    filter: grayscale(100%) blur(3px);
+}
+
+.book-data h4 {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 15px;
+    color: #43C6DB;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 5px;
+}
+
+.no-margin {
+    margin-top: 0 !important;
+}
+
+.book-data hr {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.book-data span {
+    font-family: Raleway;
+    font-size: 13px;
+    color: black;
+}
+
+.book-data-date {
+    font-family: Raleway;
+    font-size: 14px;
+    color: black;
+}
+
+hr.search-bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+}
+
+.slashed-price {
+    position: relative;
+}
+
+.slashed-price:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 1px solid red;
+    border-color: inherit;
+
+    -webkit-transform:rotate(-5deg);
+    -moz-transform:rotate(-5deg);
+    -ms-transform:rotate(-5deg);
+    -o-transform:rotate(-5deg);
+    transform:rotate(-5deg);
+}
+
+.special-price {
+    font-family: Raleway;
+    font-weight: bold;
+    color: red !important;
+}
+
+.book-reviews.ratings {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    width: 66%;
+    text-align: center;
+    color: #43C6DB;
+}

@@ -1,0 +1,242 @@
+/* 
+    Created on : Feb 5, 2018, 8:36:29 PM
+    Author     : Kevin
+*/
+
+.already-registered {
+    color: #4863A0;
+    font-family: Orbitron;
+    font-size: 1em;
+}
+
+.btn-login{
+    transition: background 0.3s;
+    margin-right: 35px;
+}
+
+.btn-clear{
+    transition: background 0.3s;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.btn-outlined {
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: #000000;
+    border-color: #000000;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/oldschool.png']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.text-center {
+    color: black; 
+}
+
+.control-label {
+    color: black;
+    padding-right: 0;
+    font-family: Raleway;
+}
+
+.card-registration {
+    width: 100%;
+    background-color: white;
+    opacity: 0.9;
+    height: 890px;
+    margin-bottom: 20px;
+}
+
+.col-sm-8 {
+    padding-right: 0;
+}
+
+.col-sm-4 {
+    padding-left: 0;
+    float: left;
+    margin-bottom: 5%;
+}
+
+.already-reg {
+    padding-left: 0;
+    margin-right: 5%;
+    padding-right: 10px;
+    width: 90%;
+    height: 890px;
+    background-image: url("#{resource['images/banners/oldbooks2.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.sign-in-text {
+    font-family: Raleway;
+    font-size: 14px;
+    color: white;
+}
+
+.with-us {
+    padding-top: 400px;
+    text-align: center;
+    display: block;
+    color: white;
+}
+
+.form-control {
+    background-color: transparent;
+    border-color: black;
+    color: black;
+    font-family: Raleway;
+}
+
+.error {
+    color: black;
+    font-family: Raleway;
+}
+
+#province {
+    color: black;
+}
+
+#log-link:hover {
+    color: #43C6DB;
+}
+
+.signup-button {
+    font-family: Circular, Raleway;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.menu-search {
+    background-color: white;
+}
+
+.a-header {
+    font-family: Raleway;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.btn-outlined.btn-primary.login-button2 {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    font-family: Raleway;
+}
+
+.btn-outlined.btn-primary.login-button2:hover,
+.btn-outlined.btn-primary.login-button2:active {
+    color: #FFF;
+    background: white;
+    border-color: white;
+}
+
+#log-link {
+    color: white;
+    margin-bottom: 30px;
+    margin-left: 10%;
+} 
+
+#log-link:hover {
+    color: black;
+}
+
+.with-us-text {
+    width: 150px;
+    text-align: center;
+    margin-left: 30%;
+}
+
+@media only screen and (max-width: 768px) {
+    .card-registration {
+        width: 90%;
+        margin-left: 0;
+        float: left;
+        min-height: 1325px;
+        margin-left: 15px;
+    }
+
+    .already-reg {
+        display: none;
+    }
+
+    .a-header {
+        font-size: 18px;
+    }
+
+    .with-us-text {
+        text-align: left;
+        margin: 5px;
+        width: 125px;
+    }
+
+    .container {
+        padding: 0;
+        margin: 0;
+    }
+
+    .padding-m {
+        min-height: 1325px ;
+        background-color: white;
+    }
+    
+    body {
+        max-width: 305px;
+    }
+}

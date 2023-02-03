@@ -1,0 +1,46 @@
+<!-- @author: Denis -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <h:form id="newSurvey">
+        
+        <p:wizard id="createSurveyWiz" backLabel="#{msgs.back}" nextLabel="#{msgs.next}">
+
+            <p:tab id="totalAns" title="#{msgs.survey_q}">
+                <p:panel header="#{msgs.step1}">
+                    <p:messages autoUpdate="true"/>
+
+                    <h:outputText value="#{msgs.survey_qfield}"/>
+                    <p:inputText value="#{createSurvey.survey.question}" requiredMessage="#{msgs.required_surveyQ}" maxlength="150" required="true"/>
+
+                    <h:outputText value="Choose how many answer there is:"/>
+                    <p:spinner id="amount" value="#{createSurvey.totalQ}" min="2" max="#{createSurvey.maxResponse}" />
+
+                </p:panel>
+
+            </p:tab>
+
+            <p:tab id="allAns" title="#{msgs.survey_wp}">
+                <p:panel header="#{msgs.step2}">
+                    <p:messages autoUpdate="true" />
+
+                    <h:outputLabel value="#{msgs.survey_afield} "/>
+
+                    <ui:repeat var="req" value="#{createSurvey.responses}" size="#{createSurvey.totalQ}" varStatus="ui">
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <p:inputText value="#{req.answer}"  requiredMessage="#{msgs.required_answer}" maxlength="60" required="true"/>
+                    </ui:repeat>
+                    
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+                    <p:commandButton value="#{msgs.submit}" actionListener="#{createSurvey.createSurvey}"/>
+                    
+                </p:panel>
+            </p:tab>
+
+        </p:wizard>
+
+    </h:form>
+</ui:composition>

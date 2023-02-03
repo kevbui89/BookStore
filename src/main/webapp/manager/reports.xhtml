@@ -1,0 +1,70 @@
+<ui:composition
+    template="/WEB-INF/templates/managerTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="manager.css" />.
+        <h:outputStylesheet library="css" name="sidebar.css" />
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:insert name="sidebar">
+            <ui:include src="/manager/sections/sidebar.xhtml" />
+        </ui:insert> 
+
+
+        <div class="container" id="main">
+
+            <div class="col-xs-12 col-sm-9 col-sm-push-0  card">
+                <h1 class="text-capitalize">#{msgs.reports}</h1>
+                <hr/>
+                <p:tabView scrollable="true" binding="#{tabEvent.messagesTab}"> 
+                    <p:ajax event="tabChange" listener="#{tabEvent.onTabChange}" />
+                    <p:tab title="#{msgs.stock_report}">
+                        <ui:insert name="Stock_Report">
+                            <ui:include src="/manager/reports/stock_report.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                    <p:tab title="#{msgs.top_sellers}">                     
+                        <ui:insert name="Top_sellers">
+                            <ui:include src="/manager/reports/top_seller_book.xhtml" />
+                        </ui:insert>                           
+                    </p:tab>
+                    <p:tab title="#{msgs.sales_by_author}">
+                        <ui:insert name="Sales_Author">
+                            <ui:include src="/manager/reports/sale_by_author.xhtml" />
+                        </ui:insert>   
+                    </p:tab>
+                    <p:tab title="#{msgs.zero_sales}">
+                        <ui:insert name="Zero">
+                            <ui:include src="/manager/reports/zero_sale.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                    <p:tab title="#{msgs.sales_by_client}">
+                        <ui:insert name="Top_sellers">
+                            <ui:include src="/manager/reports/sale_by_client.xhtml" />
+                        </ui:insert> 
+                    </p:tab> 
+                    <p:tab title="#{msgs.sales_by_publisher}">
+                        <ui:insert name="Top_sellers">
+                            <ui:include src="/manager/reports/sale_by_publisher.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                    <p:tab title="#{msgs.top_client}">
+                        <ui:insert name="Top_Client">
+                            <ui:include src="/manager/reports/top_buyer_client.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                </p:tabView>
+
+            </div><!-- /card -->
+
+        </div>
+    </ui:define> 
+
+</ui:composition>

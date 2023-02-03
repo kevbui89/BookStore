@@ -1,0 +1,82 @@
+<!-- @author: //////debus -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="adsU">
+        <p:messages autoUpdate="true" />
+
+        <p:dataTable id="adTableU" var="a" value="#{updateAd.ads}"  editable="true"
+                     emptyMessage="#{msgs.no_record}" rows="10" paginator="true" rowKey="#{a.title}"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+
+            <f:facet name="header">#{msgs.update_ad}</f:facet>
+
+            <p:ajax event="rowEdit" listener="#{updateAd.onRowEdit}" />
+            <p:ajax event="rowEditCancel" listener="#{updateAd.onRowCancel}" />
+
+            <p:column headerText="#{msgs.ad_title}" filterBy="#{a.title}" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{a.title}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="updatingTitle" value="#{a.title}" required="true"
+                                     requiredMessage="#{msgs.required_ad_title}"
+                                     validatorMessage="#{msgs.validate_title}">
+                            <f:validateLength maximum="80" />
+                            <f:validateBean disabled="true"/>
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+
+            <p:column headerText="#{msgs.ad_link}" filterBy="#{a.adLink}" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{a.adLink}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="updatingLink" value="#{a.adLink}" required="true"
+                                     requiredMessage="#{msgs.required_link}"
+                                     validator="#{urlValidator.validateUrl}">
+                            <f:validateBean disabled="true"/>
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="#{msgs.ad_image}">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <p:fileUpload id="uploadDisableU" disabled="true"
+                                       mode="advanced" dragDropSupport="true"
+                                      uploadLabel="#{msgs.upload_img}" 
+                                      label="#{msgs.choose_img}" 
+                                      cancelLabel="#{msgs.cancel_img}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:fileUpload id="uploadU" 
+                                      fileUploadListener="#{updateAd.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                                      allowTypes="/(\.|\/)(png|jpg)$/" required="true" 
+                                      requiredMessage="#{msgs.required_upload}"
+                                      uploadLabel="#{msgs.upload_img}" 
+                                      label="#{msgs.choose_img}" 
+                                      cancelLabel="#{msgs.cancel_img}"/>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column style="width:32px">
+                <p:rowEditor />
+            </p:column>
+
+        </p:dataTable>
+
+    </h:form>
+</ui:composition>

@@ -1,0 +1,105 @@
+<!-- @author Kevin Bui -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="library.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.myorders}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <ui:fragment rendered="#{DownloadBacking.getPurchasedBooks(loginBean.client).size() > 0}">
+            <div id="cart-form" class="container margin-top-xl library-container">
+                <h:message  class="error text-center" for="cart-form" id="bookMessage" />
+                <div class="row padding-m">
+                    <h1 class="a-header library-header">#{msgs.mylibrary}</h1>
+                    <hr class="bar"/>
+                    <div class="headers">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-6">
+                            <span class="lib-headers">#{msgs.mybooks}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="lib-headers">#{msgs.download}</span>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <ui:repeat value="#{DownloadBacking.getPurchasedBooks(loginBean.client)}" var="item">
+                        <div class="col-md-2 item-id-container">
+                        </div>
+                        <div class="col-md-2 book-image-container">
+                            <div class="book-image">
+                                <h:link outcome="/client/book.xhtml">
+                                    <f:param name="bookid" value="#{item.bookId}"/>
+                                    <h:graphicImage class="book-image-list" style="width: 100%; height: 100%; opacity: 0.9;" name="images/smallcovers/#{item.image}" />
+                                </h:link>
+                            </div>
+                        </div>
+                        <div class="col-md-4 book-info">
+                            <span class="book-info-label">#{msgs.book_title}: </span>
+                            <span class="information">#{item.title}</span>
+                            <br/>
+                            <span class="book-info-label">#{msgs.book_author}: </span>
+                            <ui:repeat value="#{item.authorList}" var="author">
+                                <span class="information">#{author.name}</span>
+                            </ui:repeat>
+                            <br/>
+                            <span class="book-info-label">#{msgs.book_genre}: </span>
+                            <ui:repeat value="#{item.genreList}" var="genre">
+                                <span class="information">#{genre.genre}</span>
+                            </ui:repeat>
+                            <br/>
+                            <span class="book-info-label">#{msgs.isbn}: </span>
+                            <span class="information">#{item.isbn}</span>
+                            <br/>
+                            <span class="book-info-label">#{msgs.format}: </span>
+                            <span class="information">#{item.formatId.bookFormat}</span>
+                        </div>
+                        <div class="col-md-4 download-btn">
+                            <br/><br/>
+                            <h:form>
+                                <h:commandLink value=""><i class="menu-icon fa fa-cloud-download downloadlink"></i>
+                                    <p:fileDownload value="#{DownloadBacking.downloadEbook}" />
+                                </h:commandLink>   
+                            </h:form>
+                        </div>  
+                    </ui:repeat>
+                </div>
+            </div>
+        </ui:fragment>
+        <ui:fragment rendered="#{DownloadBacking.getPurchasedBooks(loginBean.client).size() == 0}">
+            <div class="no-orders-container">
+                <div class="row padding-m">
+                    <span class="empty-orders-header">#{msgs.nolibrary}</span>
+                    <br/><br/>
+                    <hr class="bar"/>
+                    <div class="col-md-6">
+                        <span class="empty-orders-text">#{msgs.mistake} </span>
+                        <h:link outcome="/client/faq.xhtml">
+                            <span class="faq-link">#{msgs.mistake2}</span>
+                        </h:link>
+                        <span class="empty-orders-text">#{msgs.mistake3} mankabookstore@gmail.com</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="empty-orders-text">#{msgs.clickSearchBooks}</span><br/><br/>
+                        <h:link value="#{msgs.searchBooks}" class="btn btn-outlined btn-primary search-btn" outcome="/client/browse_genre.xhtml"/> 
+                    </div>
+                </div>
+            </div>
+        </ui:fragment>
+    </ui:define> 
+
+</ui:composition>

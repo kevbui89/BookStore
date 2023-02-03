@@ -1,0 +1,390 @@
+/* 
+    Created on : Mar 9, 2018, 3:55:10 PM
+    Author     : Kevin, Alessandro
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.orders-container {
+    background-color: white;
+    padding-top: 0;
+    margin-bottom: 30px;
+    height: 100%;
+}
+
+.form-container, .shipping-container {
+    background-color: white;
+    padding-top: 0;
+    height: 100%;
+}
+
+.book-container, .total-container {
+    background-color: white;
+    padding-top: 0;
+    height: 100%;
+    width: 100%;
+    margin-left: 0 !important;
+    max-width: 100%;
+}
+
+.shipping-container {
+    max-width: 100%;
+}
+
+.form-container {
+    max-width: 100%;
+}
+
+.total-container {
+    margin-top: 30px;
+}
+
+.background {
+    min-height: 68%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -80px;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/readbook.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+hr.bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF); 
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.background {
+    min-height: 60%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px;
+}
+
+.bg-black {
+    margin-top: 50px;
+}
+
+.information {
+    font-family: Raleway;
+    font-size: 12px;
+    color: #43C6DB;
+}
+
+.information-title {
+    font-family: Raleway;
+    font-size: 12px;
+    color: #43C6DB;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.book-info-label {
+    font-family: Raleway;
+    font-size: 12px;
+}
+
+.item-id-label {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.item-id {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 26px;
+    color: #43C6DB;
+}
+
+.item-id-container {
+    padding-right: 0;
+}
+
+.totals {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.total-container {
+    padding-right: 7%;
+    background-color: white;
+}
+
+.thetotal-container {
+    text-align: right;
+}
+
+.thetotal {
+    text-align: right;
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 16px;
+    color: #43C6DB;
+}
+
+.btn-outlined.btn-primary.signup-button2 {
+    background: none;
+    border: 1px solid black;
+    color: black;
+    font-family: Raleway;
+    font-size: 20px;
+}
+
+.btn-outlined.btn-primary.signup-button2:hover,
+.btn-outlined.btn-primary.signup-button2:active {
+    color: white !important;
+    background: black;
+    border-color: black;
+}
+
+.submit-btn {
+    float: right;
+    margin-top: 20px;
+}
+
+.displayClientInfo{
+    font-size: 12px;
+}
+
+#log-link {
+    color: black;
+    margin-bottom: 30px;
+    margin-left: 90%;
+    margin-top: 30px;
+} 
+
+#log-link:hover {
+    color: black;
+}
+
+.error, .form-control {
+    color: black;
+    font-family: Raleway;
+}
+
+.radioButtonSpace table tbody td {
+    padding-right:35px;
+    padding-left: 20px;
+}
+
+.fa-cc-amex, .fa-cc-mastercard, .fa-cc-visa {
+    font-size: 2.5em;
+    padding-right: 20px;
+}
+
+.shipping-address-header {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.shipping-address-label {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+
+.shipping-address-text {
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+span.black {
+    background: black;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+    margin-left: 5%;
+    font-family: Raleway;
+    font-size: 16px;
+}
+
+.user-input-box {
+    border-color: black;
+    font-family: Raleway;
+    font-size: 14px;
+}
+
+.security-input-box {
+    width: 45px;
+    border-color: black;
+    font-family: Raleway;
+    font-size: 14px;
+}
+
+.red-star {
+    font-family: Raleway;
+    color: red;
+    font-size: 20px;
+}
+
+.card-label {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+
+.card-dropdown-menu {
+    border-color: black;
+    font-family: Raleway;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.first-dropdown {
+    margin-right: 10px;
+}
+
+select[multiple], select[size] {
+    height: 30px;
+}
+
+.what-is-this {
+    font-family: Raleway;
+    font-size: 12px;
+    color: #43C6DB;
+}
+
+.what-is-this:hover {
+    color: #00FFFF;
+}
+
+.book-container, .total-container {
+    padding-bottom: 15px;
+    margin-left: 0 !important;
+}
+
+.price {
+    margin-top: 0;
+    font-family: Raleway;
+    font-size: 12px;
+    color: #43C6DB;
+    font-weight: bold;
+}
+
+.slashed-price {
+    margin-top: 0;
+    font-family: Raleway;
+    font-size: 12px;
+    color: #43C6DB;
+    position: relative;
+}
+
+.sale-price {
+    margin-top: 0;
+    font-family: Raleway;
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    position: relative;
+    margin-right: 10px;
+}
+
+.slashed-price:before {
+    margin-top: 0;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 1px solid red;
+    border-color: inherit;
+    -webkit-transform:rotate(-5deg);
+    -moz-transform:rotate(-5deg);
+    -ms-transform:rotate(-5deg);
+    -o-transform:rotate(-5deg);
+    transform:rotate(-5deg);
+}
+
+.book-image-list:hover {
+    transform: scale(1.03);
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+.checkout-top-header {
+    font-family: Fjalla One;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-left: 25px;
+}
+
+.checkout-top-header2 {
+    font-family: Fjalla One;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-right: 25px;
+    float: right;
+}
+
+.checkout-top {
+    margin-top: 65px !important;
+    height: 0px;
+    margin-bottom: 25px;
+}
+.card-spacing {
+    margin-right: 12px;
+}
+
+.edit-link {
+    float: right;
+}

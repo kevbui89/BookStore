@@ -1,0 +1,134 @@
+<!-- @author: Kevin, Alessandro -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="shopping_cart.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.shoppingcart}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener='#{loginBean.setPreviousPage("/client/shopping_cart.xhtml")}' />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+
+        <div class="container margin-top-xl orders-container">
+            <div class="row padding-m">
+                <ui:fragment rendered="#{empty cartBean.bookList}">
+                    <div class="col-md-12 book-image-container">
+                        <span class="emptyCart-header">#{msgs.noitemcart}</span>
+                        <br/><br/>
+                        <hr class="bar"/>
+                        <div class="col-md-6">
+                            <span class="emptyCart">#{msgs.emptyCart}</span><br/><br/>
+                            <span class="emptyCart-text">#{msgs.mistake} </span>
+                            <h:link outcome="/client/faq.xhtml">
+                                <span class="faq-link">#{msgs.mistake2}</span>
+                            </h:link>
+                            <span class="emptyCart-text">#{msgs.mistake3} mankabookstore@gmail.com</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="emptyCartClickText">#{msgs.clickSearchBooks}</span><br/><br/>
+                            <h:link id="searchGenre" value="#{msgs.searchBooks}" class="btn btn-outlined btn-primary search-btn" outcome="/client/browse_genre.xhtml"/> 
+                        </div>
+                    </div>
+                </ui:fragment>
+                <ui:fragment rendered="#{not empty cartBean.bookList}">
+                    <span class="shopping-cart-header">#{msgs.shoppingcart}</span>
+                    <hr class="bar"/>
+                    <ui:repeat id="repeatCartBook" value="#{cartBean.bookList}" var="item">
+                        <div class="col-md-1 book-image-container">
+                            <div class="book-image">
+                                <a href="book.xhtml?bookid=#{item.bookId}">
+                                    <h:graphicImage class="book-image-list" style="width: 100%; height: 100%; opacity: 0.9;" name="images/smallcovers/#{item.image}" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 book-info">
+                            <span class="book-info-label">#{msgs.book_title}: </span>
+                            <span class="information">#{item.title}</span>
+                            <br/>
+                            <span class="book-info-label">#{msgs.book_author}: </span>
+                            <ui:repeat value="#{item.authorList}" var="author">
+                                <span class="information">#{author.name}</span>
+                            </ui:repeat>
+                            <br/>
+                            <span class="book-info-label">#{msgs.book_genre}: </span>
+                            <ui:repeat value="#{item.genreList}" var="genre">
+                                <span class="information">#{genre.genre}</span>
+                            </ui:repeat>
+                            <br/>
+                            <span class="book-info-label">#{msgs.isbn}: </span>
+                            <span class="information">#{item.isbn}</span>
+                            <br/>
+                            <span class="book-info-label">#{msgs.format}: </span>
+                            <span class="information">#{item.formatId.bookFormat}</span>
+                            <br/>
+                        </div>
+                        <div class="col-md-5 book-prices">
+                            <ui:fragment rendered="#{item.salePrice.intValue() > 0}">
+                                <ul>
+                                    <li>
+                                        <span class="book-info-label">#{msgs.book_price}: </span>
+                                        <span class="slashed-price">#{item.listPrice}$</span>
+                                    </li>
+                                    <li>
+                                        <span class="book-info-label">#{msgs.book_sale}: </span>
+                                        <span class="special-price">#{item.salePrice}$</span>
+                                    </li>
+                                </ul>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{item.salePrice.intValue() == 0}">
+                                <ul>
+                                    <li>
+                                        <span class="book-info-label">#{msgs.book_price}: </span>
+                                        <span class="information">#{item.listPrice}$</span>
+                                    </li>
+                                </ul>
+                            </ui:fragment>
+                        </div>
+                        <!--REMOVE BOOK FROM CART-->
+                        <div class="col-md-2 book-prices">    
+                            <br/>
+                            <h:form id="removeForm">
+                                <h:commandLink id="removeBookBtn" class="btn btn-outlined btn-primary remove-button" action="#{cartBean.removeBookFromCart(item)}">
+                                    <i class="menu-icon fa fa-trash"></i>
+                                    <span>#{msgs.remove}</span>
+                                </h:commandLink> 
+                            </h:form>
+                        </div>
+                    </ui:repeat>        
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4 total-container">
+                        <hr class="bar"/>
+                        <span class="totals">#{msgs.subtotal}: </span>
+                        <span class="thetotal">$#{cartBean.formatDouble(cartBean.getPrice())}</span>
+                    </div>
+                    <div class="row back-btn">
+                        <div class="back-btn-container">
+                            <ui:fragment rendered="#{not empty loginBean.email}">
+                                <h:link id="proceedBtn" value="#{msgs.proceedBtn}" class="btn btn-outlined btn-primary proceed-to-checkout" 
+                                        onclick="#{checkoutBean.setBookList(cartBean.bookList)}" outcome="/client/checkout.xhtml"/>   
+                            </ui:fragment>
+                            <ui:fragment rendered="#{empty loginBean.email}">
+                                <h:link value="#{msgs.proceedBtn}" class="btn btn-outlined btn-primary proceed-to-checkout" 
+                                        outcome="/client/login.xhtml"/>   
+                            </ui:fragment>
+                        </div>
+                    </div>
+                </ui:fragment>
+            </div>
+        </div>
+    </ui:define> 
+
+</ui:composition>

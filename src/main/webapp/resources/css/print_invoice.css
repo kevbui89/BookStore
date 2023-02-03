@@ -1,0 +1,161 @@
+/* 
+    Created on : Mar 10, 2018, 1:01:32 AM
+    Author     : Kevin
+*/
+
+::selection {
+    background: #43C6DB;
+    color:#fff;
+}
+
+::-moz-selection {
+    background: #43C6DB;
+    color:#fff;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav > li > form > a:hover, .navbar-more .navbar-nav > li > a{
+    color:#43C6DB;
+}
+
+.padding-m {
+    width: 70%;
+    display: table;
+    margin: 0 auto;
+}
+
+.book-info {
+    width: 100%;
+}
+
+.book-prices {
+    height: 120px;
+    margin-bottom: 20px;
+    padding-right: 7%;
+}
+
+.book-image-container {
+    margin-bottom: 20px;
+}
+
+.information {
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+.book-info-label {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.item-id-label {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.item-id {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 26px;
+    color: #43C6DB;
+}
+
+.item-id-container {
+    padding-right: 0;
+}
+
+.totals {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.total-values {
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+.total-container {
+
+}
+
+.thetotal {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 20px;
+    color: #43C6DB;
+}
+
+.date-header {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-outlined.btn-primary.signup-button2 {
+    background: none;
+    border: 1px solid black;
+    color: black;
+    font-family: Raleway;
+    font-size: 20px;
+}
+
+.btn-outlined.btn-primary.signup-button2:hover,
+.btn-outlined.btn-primary.signup-button2:active {
+    color: white !important;
+    background: black;
+    border-color: black;
+}
+
+#log-link {
+    color: black;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    float: right;
+    margin-right: 4px;
+} 
+
+#log-link2 {
+    color: black;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    float: right;
+    margin-right: 4px;
+} 
+
+#log-link:hover, #log-link2:hover {
+    color: black;
+}
+
+.email {
+    display:inline;
+    float: right;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-right: 7%;
+    box-shadow: none;
+}
+
+.email:after {
+    box-shadow: none;
+}
+
+.signup-button2:after {
+    box-shadow: none;
+}

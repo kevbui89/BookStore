@@ -1,0 +1,74 @@
+<ui:composition
+    template="/WEB-INF/templates/managerTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="manager.css" />.
+        <h:outputStylesheet library="css" name="sidebar.css" />
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:insert name="sidebar">
+            <ui:include src="/manager/sections/sidebar.xhtml" />
+        </ui:insert> 
+
+
+        <div class="container" id="main">
+
+            <div class="col-xs-12 col-sm-9 col-sm-push-0  card">
+                <div class="">
+                    <h1 class="text-capitalize">Reports and Stuff</h1>
+                    <p>This is how the site is going so far my guy.</p>
+                </div>
+                <hr/>
+
+                <p:tabView scrollable="true" binding="#{tabEvent.messagesTab}">
+                    <p:ajax event="tabChange" listener="#{tabEvent.onTabChange}" />
+                    <p:tab title="Rss">
+                            <ui:insert name="Rss">
+                                <ui:include src="/manager/inventory/add_rss.xhtml"/>
+                            </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Ads">
+                            <ui:insert name="Ads">
+                                <ui:include src="/manager/inventory/add_ads.xhtml" />
+                            </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Author">
+                            <ui:insert name="Author">
+                                <ui:include src="/manager/inventory/add_author.xhtml" />
+                            </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Book">
+                            <ui:insert name="Book">
+                                <ui:include src="/manager/inventory/add_book.xhtml" />
+                            </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Genre">
+                            <ui:insert name="Genre">
+                                <ui:include src="/manager/inventory/add_genre.xhtml" />
+                            </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Publisher">
+                            <ui:insert name="Publisher">
+                                <ui:include src="/manager/inventory/add_publisher.xhtml" />
+                            </ui:insert> 
+                    </p:tab> 
+                    <p:tab title="Survey">
+                            <ui:insert name="Survey">
+                                <ui:include src="/manager/inventory/add_survey.xhtml" />
+                            </ui:insert> 
+                    </p:tab>
+                </p:tabView>
+
+            </div><!-- /card -->
+
+        </div>
+    </ui:define> 
+
+</ui:composition>

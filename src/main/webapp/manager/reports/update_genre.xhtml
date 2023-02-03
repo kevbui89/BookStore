@@ -1,0 +1,41 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="genreU">
+        <p:messages autoUpdate="true"/>
+
+        <p:dataTable id="genreTableU" var="g" value="#{updateGenre.genres}" editable="true"
+                     emptyMessage="#{msgs.no_record}" rows="10" paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+            <f:facet name="header">#{msgs.updateG_m}</f:facet>
+
+            <p:ajax event="rowEdit" listener="#{updateGenre.onRowEdit}" />
+
+            <p:column headerText="#{msgs.genres}" filterBy="#{g.genre}" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{g.genre}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="updatingG" value="#{g.genre}" required="true"
+                                     requiredMessage="#{msgs.required_S_genre}"
+                                     validator="#{uniqueValidator.validateGenreNameAndRange}">
+                            <f:validateBean disabled="true"/>
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column style="width:32px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
+
+    </h:form>
+
+</ui:composition>

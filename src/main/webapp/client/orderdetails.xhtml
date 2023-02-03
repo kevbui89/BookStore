@@ -1,0 +1,110 @@
+<!-- @author: Kevin Bui -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="orderdetails.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.myorders}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn()}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <ui:fragment rendered="#{not empty loginBean.client.email}">
+            <div class="container margin-top-xl card">
+                <div class="row padding-m">
+                    <h1 class="text-center">Invoice ID##{MyOrdersBean.masterInvoiceId}</h1>
+                    <hr class="bar"/>
+                    <ui:repeat value="#{MyOrdersBean.masterInvoice}" var="item">
+
+                        <ui:repeat value="#{MyOrdersBean.getDetailInvoiceForMasterInvoice(item.invoiceId)}" var="details">
+                            <!-- Details invoice for the current master invoice -->
+                            <div class="row">
+                                <div class="col-md-5 col-sm-5 col-xs-5 book-image-container">
+                                    <div class="">
+                                        <a href="book.xhtml?bookid=#{details.bookId.bookId}">
+                                            <h:graphicImage class="img img-responsive image" style="margin:0 auto; width: 15%; height: 15%; opacity: 0.9;" name="images/smallcovers/#{details.bookId.image}" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4 book-info">
+                                    <p class="book-info-label">#{msgs.book_title}: 
+                                        <span class="information">#{details.bookId.title}</span></p>
+                                    <p class="book-info-label">#{msgs.book_author}:
+                                        <ui:repeat value="#{details.bookId.authorList}" var="author">
+                                            <span class="information">#{author.name}</span>
+                                        </ui:repeat> </p>
+                                    <p class="book-info-label">#{msgs.book_genre}:
+                                        <ui:repeat value="#{details.bookId.genreList}" var="genre">
+                                            <span class="information">#{genre.genre}</span>
+                                        </ui:repeat> 
+                                    </p>
+                                    <p class="book-info-label">#{msgs.isbn}: 
+                                        <span class="information">#{details.bookId.isbn}</span></p>
+
+                                    <p class="book-info-label">
+                                        #{msgs.format}: 
+                                        <span class="information">
+                                            #{details.bookId.formatId.bookFormat}
+                                        </span></p>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col-xs-1 book-prices">
+                                    <span class="total-values hidden-price">$#{details.bookPrice}</span>
+                                </div>
+                            </div>
+                        </ui:repeat>
+
+
+                        <div class="row">
+                            <br/><br/><br/><br/><br/>
+                            <!-- Gross and net value of each master invoices -->
+                            <div class="col-md-3 col-sm-12 col-xs-12"></div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <hr class="bar"/>
+                                <span class="totals">#{msgs.netvalue}: </span>
+                                <span class="total-values">$#{item.netValue}</span>
+                                <br/>
+                                <span class="totals">#{msgs.gst}: </span>
+                                <span class="total-values">%<h:outputText value="#{item.detailInvoiceList.get(0).gst}"></h:outputText></span>
+                                <br/>
+                                <span class="totals">#{msgs.pst}: </span>
+                                <span class="total-values">%<h:outputText value="#{item.detailInvoiceList.get(0).pst}"></h:outputText></span>
+                                <br/>
+                                <span class="totals">#{msgs.hst}: </span>
+                                <span class="total-values">%<h:outputText value="#{item.detailInvoiceList.get(0).hst}"></h:outputText></span>
+                                <br/>
+                                <span class="totals">#{msgs.total}: </span>
+                                <span class="thetotal">$#{item.grossValue}</span>
+                            </div>
+                        </div>
+
+                    </ui:repeat>
+
+                    <div class="row">
+                        <div class="back-btn-container">
+                            <h:form class="email">
+                                <h:commandButton id="sendEmailBtn" value="#{msgs.sendemail}" action="#{MyOrdersBean.sendEmail()}" 
+                                                 class="btn btn-outlined btn-primary signup-button2 email-btn"></h:commandButton>  
+                                <h:commandButton value="#{msgs.print}" action="#{printBackingBean.createPDF()}" 
+                                                 class="btn btn-outlined btn-primary signup-button2" onclick="this.form.target = '_blank'"></h:commandButton>    
+                            </h:form> 
+                            <h:link id="log-link" value="#{msgs.back}" class="btn btn-outlined btn-primary signup-button2" outcome="/client/myorders.xhtml"/>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:fragment>
+    </ui:define> 
+
+</ui:composition>

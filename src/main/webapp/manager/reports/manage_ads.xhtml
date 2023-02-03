@@ -1,0 +1,61 @@
+<!-- @author: Werner, Denis -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form id="updateAds">     
+        <p:panelGrid  style="margin-top:20px">
+            <f:facet name="header">
+                <p:row>
+                    <p:column colspan="2">
+                        #{msgs.selected_ads}
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="1">
+                        #{msgs.title_ad}
+                    </p:column>
+                    <p:column colspan="1">
+                        #{msgs.link_ad}
+                    </p:column>
+                </p:row>
+            </f:facet>
+            <ui:repeat var="ad" value="#{theAd.chosenAd}">
+                <p:row>           
+                    <p:column rowspan="1">#{ad.title}</p:column>
+                    <p:column rowspan="1">#{ad.adLink}</p:column>
+                </p:row>
+            </ui:repeat>
+
+        </p:panelGrid>
+
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+
+        <p:messages id="errorMsg" autoUpdate="true"/>
+
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+
+        <p:dataTable id="multiAdSelect" var="a" value="#{theAd.ads}" 
+                     selection="#{manageAds.selectedAd}" rowKey="#{a.title}" style="margin-bottom:0" 
+                     rows="10" paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+            <f:facet name="header">#{msgs.select_two_ad}</f:facet>
+            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>      
+
+            <p:column headerText="#{msgs.title_ad}" filterBy="#{a.title}" sortBy="#{a.title}" filterMatchMode="contains">
+                <h:outputText value="#{a.title}"/>
+            </p:column>
+
+            <p:column headerText="#{msgs.link_ad}" filterBy="#{a.adLink}" sortBy="#{a.adLink}" filterMatchMode="contains">
+                <h:outputText value="#{a.adLink}"/>
+            </p:column>          
+
+        </p:dataTable>
+
+        <p:commandButton value="#{msgs.submit}" action="#{manageAds.updateAd}"/>
+    </h:form>
+
+</ui:composition>

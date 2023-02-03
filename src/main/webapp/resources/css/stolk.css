@@ -1,0 +1,42 @@
+
+
+
+
+.ui-widget-header {
+
+    border: 1px solid #d5d5d5;
+    background: #ccc;
+    color: #222;
+    font-weight: bold;
+
+}
+.ui-widget-content {
+
+    color: #222;
+
+}
+.ui-widget {
+
+    font-family: "latoregular","Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 1em;
+    font-size: 1em;
+
+}
+.logoBlueText {
+
+    color: #25aae1;
+
+}
+.defaultText {
+
+    font-size: 16px;
+    color: #5C666A;
+
+}
+.TextShadow {
+
+    text-shadow: 0 1px 0 #ffffff;
+
+}
+
+

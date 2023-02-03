@@ -1,0 +1,278 @@
+<!-- @author: Denis -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+
+    <h:form id="newBook">
+
+        <p:wizard id="createBookWiz" backLabel="#{msgs.back}" nextLabel="#{msgs.next}" flowListener="#{createBook.onFlowProcess}">
+
+            <p:tab id="regularInfo" title="#{msgs.general_title}">
+                <p:panel header="#{msgs.step1}">                 
+                    <p:messages autoUpdate="true"/>
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="isbn" value="#{msgs.book_isbn}: *"/>
+                    <h:inputText id="isbn" 
+                                 required="true"
+                                 value="#{createBook.book.isbn}" 
+                                 requiredMessage="#{msgs.required_isbn}"
+                                 validator="#{uniqueValidator.validateBookIsbnNameAndRange}">
+                    </h:inputText>  
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="title" value="#{msgs.book_title}: *"/>
+                    <h:inputText id="title" 
+                                 required="true"
+                                 value="#{createBook.book.title}"
+                                 requiredMessage="#{msgs.required_title}"
+                                 validatorMessage="#{msgs.validation_title}">
+                        <f:validateLength minimum="1" maximum="150" />
+                    </h:inputText>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="wholePrice" value="#{msgs.whole_p}: *"/>
+                    <h:inputText id="wholePrice"
+                                 value="#{createBook.book.wholesalePrice}"
+                                 required="true"
+                                 converterMessage="#{msgs.number_validation}"
+                                 requiredMessage="#{msgs.required_whole}"
+                                 validatorMessage="#{msgs.validation_whole}">
+
+                        <f:validateLongRange minimum="1" />
+
+                        <f:convertNumber type="number"
+                                         maxIntegerDigits="5"
+                                         maxFractionDigits="2"
+                                         groupingUsed="false"/>
+
+
+                    </h:inputText>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <p:outputLabel for="puddate" value="#{msgs.pubdate}"/>
+                    <p:calendar id="puddate" requiredMessage="#{msgs.required_pubdate}" required="true" 
+                                value="#{createBook.book.pubDate}" showOn="button"/>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="page" value="#{msgs.book_page}: *"/>
+                    <h:inputText id="page"
+                                 value="#{createBook.book.page}"
+                                 required="true"
+                                 converterMessage="#{msgs.number_validation}"
+                                 requiredMessage="#{msgs.required_page}"
+                                 validatorMessage="#{msgs.validation_page}">
+                        <f:validateLongRange minimum="1"/>
+
+                        <f:convertNumber type="number"
+                                         maxFractionDigits="0"/>
+                    </h:inputText>
+
+                </p:panel>
+            </p:tab>
+
+
+            <p:tab id="descInfo" title="#{msgs.desc_title}">
+                <p:panel header="#{msgs.step2}">
+                    <p:messages/>
+
+                    <h:outputLabel for="description" value="#{msgs.book_desc}"/>
+                    <h:inputTextarea id="description" 
+                                     required="true"
+                                     value="#{createBook.book.description}"
+                                     requiredMessage="#{msgs.required_desc}"
+                                     validatorMessage="#{msgs.validation_desc}">
+                        <f:validateLength maximum="1000" />               
+                    </h:inputTextarea>
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="priceInfo" title="#{msgs.price_title}">
+                <p:panel header="#{msgs.step3}">
+                    <p:messages/>
+
+                    <h:outputLabel value="#{msgs.current_whole} #{createBook.book.wholesalePrice}"/>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="price" value="#{msgs.book_price}"/>
+                    <h:inputText id="price"
+                                 value="#{createBook.book.listPrice}"
+                                 required="true"
+                                 converterMessage="#{msgs.number_validation}"
+                                 requiredMessage="#{msgs.required_price}"
+                                 validatorMessage="#{msgs.validation_price}">
+                        <f:validateLongRange minimum="#{createBook.book.wholesalePrice}" />
+                        <f:convertNumber type="number"
+                                         maxIntegerDigits="5"
+                                         maxFractionDigits="2"
+                                         groupingUsed="false"/>
+
+                    </h:inputText>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="sale" value="#{msgs.book_sale}"/>
+                    <h:inputText id="sale"
+                                 value="#{createBook.book.salePrice}"
+                                 converterMessage="#{msgs.number_validation}">
+
+                        <f:validateLongRange minimum="1" />
+
+                        <f:convertNumber type="number"
+                                         maxIntegerDigits="5"
+                                         maxFractionDigits="2"
+                                         groupingUsed="false"/>
+
+                    </h:inputText>
+
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="publisherInfo" title="#{msgs.choose_publisherTitle}">
+                <p:panel header="#{msgs.step4}">
+                    <p:messages/>
+
+                    <p:outputLabel for="publisherList" value="#{msgs.choose_publisher}" />
+                    <p:selectOneListbox id="publisherList" value="#{createBook.publisher}" converter="publisherConverter"
+                                        filter="true" filterMatchMode="contains" required="true" converterMessage="#{msgs.converter_msg}"
+                                        requiredMessage="#{msgs.empty_selector}">
+                        <f:selectItems value="#{thePublisher.publishers}" var="pub" itemLabel="#{pub.publisher}" itemValue="#{pub}" />
+
+                    </p:selectOneListbox>
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="ebookInfo" title="#{msgs.choose_ebbokTitle}">
+                <p:panel header="#{msgs.step5}">
+                    <p:messages/>
+
+                    <p:outputLabel for="ebookList" value="#{msgs.choose_ebook}" />
+                    <p:selectOneListbox id="ebookList" value="#{createBook.ebookFormat}" converter="ebookFormatConverter"
+                                        filter="true" filterMatchMode="contains" required="true" converterMessage="#{msgs.converter_msg}"
+                                        requiredMessage="#{msgs.empty_selector}">
+                        <f:selectItems value="#{theEbookFormat.ebookFormats}" var="ebok" itemLabel="#{ebok.bookFormat}" itemValue="#{ebok}" />
+
+                    </p:selectOneListbox>
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="genreInfo" title="#{msgs.choose_genreTitle}">
+                <p:panel header="#{msgs.step6}">
+                    <p:messages/>
+
+                    <p:dataTable id="multiGenreSelect" var="g" value="#{theGenre.genres}" 
+                                 selection="#{createBook.selectedGenre}" rowKey="#{g.genre}" style="margin-bottom:0"
+                                 emptyMessage="#{msgs.no_record}" rows="10" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">#{msgs.choose_genre}</f:facet>
+                        <p:column  selectionMode="multiple" style="width:16px;text-align:center"/>
+
+                        <p:column headerText="Genre" filterBy="#{g.genre}" sortBy="#{g.genre}" filterMatchMode="contains">
+                            <h:outputText value="#{g.genre}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="authorInfo" title="#{msgs.choose_authTitle}">
+                <p:panel header="#{msgs.step8}">
+                    <p:messages/>
+
+                    <p:dataTable id="multiAuthorSelect" var="a" value="#{theAuthor.authors}" 
+                                 selection="#{createBook.selectedAuthor}" rowKey="#{a.name}" style="margin-bottom:0" 
+                                 emptyMessage="#{msgs.no_record}" rows="10" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">#{msgs.choose_author}</f:facet>
+                        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+
+                        <p:column headerText="#{msgs.search_author}" filterBy="#{a.name}" sortBy="#{a.name}" filterMatchMode="contains">
+                            <h:outputText value="#{a.name}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="uploadImg" title="#{msgs.upload_title}">
+                <p:panel header="#{msgs.step7}">
+                    <p:messages/>
+                    
+                    <h:outputLabel value="#{msgs.upload_careful}" />
+                    <p:fileUpload fileUploadListener="#{createBook.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                                  allowTypes="/(\.|\/)(png|jpg)$/" required="true" 
+                                  requiredMessage="#{msgs.required_upload}"
+                                  uploadLabel="#{msgs.upload_img}" 
+                                  label="#{msgs.choose_img}" 
+                                  cancelLabel="#{msgs.cancel_img}"/>
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="finalInfo" title="#{msgs.sumbission}">
+                <p:panel header="#{msgs.step9}">
+                    <p:messages/>
+
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <h:outputText value="#{msgs.book_information}:"/>
+                        </f:facet>
+
+                        <h:outputText value="#{msgs.book_isbn}" />
+                        <h:outputText value="#{createBook.book.isbn}" />
+
+                        <h:outputText value="#{msgs.book_title}" />
+                        <h:outputText value="#{createBook.book.title}" />
+
+                        <h:outputText value="#{msgs.book_pubdate}" />
+                        <h:outputText value="#{createBook.book.pubDate}" />
+
+                        <h:outputText value="#{msgs.book_wholeP}" />
+                        <h:outputText value="#{createBook.book.wholesalePrice}" />
+
+                        <h:outputText value="#{msgs.book_listp}" />
+                        <h:outputText value="#{createBook.book.listPrice}" />
+
+                        <h:outputText value="#{msgs.book_publisher}" />
+                        <h:outputText value="#{createBook.publisher.publisher}" />
+
+                        <h:outputText value="#{msgs.format}" />
+                        <h:outputText value="#{createBook.ebookFormat.bookFormat}" />
+
+                        <h:outputText value="#{msgs.book_author}" />
+                        <ui:repeat var="a" value="#{createBook.selectedAuthor}" varStatus="ui">
+                            #{a.name}#{ui.last?'':', '}
+                        </ui:repeat>
+
+                        <h:outputText value="#{msgs.book_genre}" />
+                        <ui:repeat var="g" value="#{createBook.selectedGenre}" varStatus="ui">
+                            #{g.genre}#{ui.last?'':', '}
+                        </ui:repeat>
+
+                    </p:panelGrid>
+
+                    <p:commandButton value="#{msgs.submit}" action="#{createBook.createBook}"/>
+
+                </p:panel>
+            </p:tab>
+
+        </p:wizard>
+
+    </h:form>
+</ui:composition>

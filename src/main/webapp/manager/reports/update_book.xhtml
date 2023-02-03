@@ -1,0 +1,306 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="updateBook">
+
+        <p:wizard id="updateBookWiz" backLabel="#{msgs.back}" nextLabel="#{msgs.next}" flowListener="#{updateBook.onFlowProcess}">
+            <p:tab id="singleBook" title="#{msgs.choose_book}">
+                <p:panel header="#{msgs.step1}">                 
+                    <p:messages/>
+
+                    <p:dataTable id="bookTable" var="b" value="#{theBook.books}" selection="#{updateBook.book}"
+                                 emptyMessage="#{msgs.no_record}" rows="10" paginator="true" rowKey="#{b.title}"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">#{msgs.book_select}</f:facet>
+
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+
+                        <p:column headerText="#{msgs.book_isbn}" filterBy="#{b.isbn}" sortBy="#{b.isbn}" filterMatchMode="contains">
+                            <h:outputText value="#{b.isbn}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgs.book_title}" filterBy="#{b.title}" sortBy="#{b.title}" filterMatchMode="contains">
+                            <h:outputText value="#{b.title}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </p:panel>
+            </p:tab>
+
+
+            <p:tab id="simpleDetailU" title="#{msgs.general_title}">
+                <p:panel header="#{msgs.step2}">                 
+                    <p:messages/>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="isbn" value="#{msgs.book_isbn}: *"/>
+                    <h:inputText id="isbn" 
+                                 required="true"
+                                 value="#{updateBook.book.isbn}" 
+                                 requiredMessage="#{msgs.required_isbn}"
+                                 validatorMessage="#{msgs.validation_isnb}">
+                        <f:validateLength  minimum="10" maximum="10" />
+                        <f:validateRegex pattern = "^[aA-zZ0-9]+$" />
+                    </h:inputText>  
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="title" value="#{msgs.book_title}: *"/>
+                    <h:inputText id="title" 
+                                 required="true"
+                                 value="#{updateBook.book.title}"
+                                 requiredMessage="#{msgs.required_title}"
+                                 validatorMessage="#{msgs.validation_title}">
+                        <f:validateLength minimum="1" maximum="150" />
+                    </h:inputText>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="wholePrice" value="#{msgs.whole_p}: *"/>
+                    <h:inputText id="wholePrice"
+                                 value="#{updateBook.book.wholesalePrice}"
+                                 required="true"
+                                 converterMessage="#{msgs.number_validation}"
+                                 requiredMessage="#{msgs.required_whole}"
+                                 validatorMessage="#{msgs.validation_whole}">
+
+                        <f:validateLongRange minimum="1" />
+
+                        <f:convertNumber type="number"
+                                         maxIntegerDigits="5"
+                                         maxFractionDigits="2"
+                                         groupingUsed="false"/>
+
+
+                    </h:inputText>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <p:outputLabel for="puddate" value="#{msgs.pubdate}"/>
+                    <p:calendar id="puddate" requiredMessage="#{msgs.required_pubdate}" required="true" 
+                                value="#{updateBook.book.pubDate}" showOn="button"/>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="page" value="#{msgs.book_page}: *"/>
+                    <h:inputText id="page"
+                                 value="#{updateBook.book.page}"
+                                 required="true"
+                                 converterMessage="#{msgs.number_validation}"
+                                 requiredMessage="#{msgs.required_page}"
+                                 validatorMessage="#{msgs.validation_page}">
+                        <f:validateLongRange minimum="1"/>
+
+                        <f:convertNumber type="number"
+                                         maxFractionDigits="0"/>
+                    </h:inputText>
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="descInfoU" title="#{msgs.desc_title}">
+                <p:panel header="#{msgs.step3}">                 
+                    <p:messages/>
+
+
+                    <h:outputLabel for="description" value="#{msgs.book_desc}"/>
+                    <h:inputTextarea id="description" 
+                                     required="true"
+                                     value="#{updateBook.book.description}"
+                                     requiredMessage="#{msgs.required_desc}"
+                                     validatorMessage="#{msgs.validation_desc}">
+                        <f:validateLength maximum="1000" />               
+                    </h:inputTextarea>
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="priceInfoU" title="#{msgs.price_title}">
+                <p:panel header="#{msgs.step4}">
+                    <p:messages/>
+
+                    <h:outputLabel value="#{msgs.current_whole} #{updateBook.book.wholesalePrice}"/>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="price" value="#{msgs.book_price}"/>
+                    <h:inputText id="price"
+                                 value="#{updateBook.book.listPrice}"
+                                 required="true"
+                                 converterMessage="#{msgs.number_validation}"
+                                 requiredMessage="#{msgs.required_price}"
+                                 validatorMessage="#{msgs.validation_price}">
+                        <f:validateLongRange minimum="#{updateBook.book.wholesalePrice}" />
+                        <f:convertNumber type="number"
+                                         maxIntegerDigits="5"
+                                         maxFractionDigits="2"
+                                         groupingUsed="false"/>
+
+                    </h:inputText>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <h:outputLabel for="sale" value="#{msgs.book_sale}"/>
+                    <h:inputText id="sale"
+                                 value="#{updateBook.book.salePrice}"
+                                 converterMessage="#{msgs.number_validation}">
+
+                        <f:validateLongRange minimum="0" />
+
+                        <f:convertNumber type="number"
+                                         maxIntegerDigits="5"
+                                         maxFractionDigits="2"
+                                         groupingUsed="false"/>
+
+                    </h:inputText>
+
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="publisherInfoU" title="#{msgs.choose_publisherTitle}">
+                <p:panel header="#{msgs.step5}">
+                    <p:messages/>
+
+                    <p:outputLabel for="publisherList" value="#{msgs.choose_publisher}" />
+                    <p:selectOneListbox id="publisherList" value="#{updateBook.book.publisherId}" converter="publisherConverter"
+                                        filter="true" filterMatchMode="contains" required="true" converterMessage="#{msgs.converter_msg}"
+                                        requiredMessage="#{msgs.empty_selector}">
+                        <f:selectItems value="#{thePublisher.publishers}" var="pub" itemLabel="#{pub.publisher}" itemValue="#{pub}" />
+
+                    </p:selectOneListbox>
+
+                </p:panel>
+            </p:tab>
+
+
+            <p:tab id="ebookInfoU" title="#{msgs.choose_ebbokTitle}">
+                <p:panel header="#{msgs.step6}">
+                    <p:messages/>
+
+                    <p:outputLabel for="ebookList" value="#{msgs.choose_ebook}" />
+                    <p:selectOneListbox id="ebookList" value="#{updateBook.book.formatId}" converter="ebookFormatConverter"
+                                        filter="true" filterMatchMode="contains" required="true" converterMessage="#{msgs.converter_msg}"
+                                        requiredMessage="#{msgs.empty_selector}">
+                        <f:selectItems value="#{theEbookFormat.ebookFormats}" var="ebok" itemLabel="#{ebok.bookFormat}" itemValue="#{ebok}" />
+
+                    </p:selectOneListbox>
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="genreInfoU" title="#{msgs.choose_genreTitle}">
+                <p:panel header="#{msgs.step7}">
+                    <p:messages/>
+
+                    <p:dataTable id="multiGenreSelect" var="g" value="#{theGenre.genres}" 
+                                 selection="#{updateBook.book.genreList}" rowKey="#{g.genre}" style="margin-bottom:0"
+                                 emptyMessage="#{msgs.no_record}" rows="10" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">#{msgs.choose_genre}</f:facet>
+                        <p:column  selectionMode="multiple" style="width:16px;text-align:center"/>
+
+                        <p:column headerText="#{msgs.choose_genre}" filterBy="#{g.genre}" sortBy="#{g.genre}" filterMatchMode="contains">
+                            <h:outputText value="#{g.genre}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </p:panel>
+            </p:tab>
+            
+            <p:tab id="authorInfoU" title="#{msgs.choose_authTitle}">
+                <p:panel header="#{msgs.step8}">
+                    <p:messages/>
+
+                    <p:dataTable id="multiAuthorSelect" var="a" value="#{theAuthor.authors}" 
+                                 selection="#{updateBook.book.authorList}" rowKey="#{a.name}" style="margin-bottom:0" 
+                                 emptyMessage="#{msgs.no_record}" rows="10" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">#{msgs.choose_author}</f:facet>
+                        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+
+                        <p:column headerText="#{msgs.search_author}" filterBy="#{a.name}" sortBy="#{a.name}" filterMatchMode="contains">
+                            <h:outputText value="#{a.name}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+            </p:tab>
+            
+            <p:tab id="uploadImgU" title="#{msgs.upload_title}">
+                <p:panel header="#{msgs.step9}">
+                    <p:messages/>
+                    
+                    <h:outputLabel value="#{msgs.upload_careful}" />
+                    <p:fileUpload fileUploadListener="#{updateBook.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                                  allowTypes="/(\.|\/)(png|jpg)$/" 
+                                  uploadLabel="#{msgs.upload_img}" 
+                                  label="#{msgs.choose_img}" 
+                                  cancelLabel="#{msgs.cancel_img}"/>
+
+                </p:panel>
+            </p:tab>
+            
+            <p:tab id="finalInfo" title="#{msgs.sumbission}">
+                <p:panel header="#{msgs.step10}">
+                    <p:messages/>
+
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <h:outputText value="#{msgs.book_information}:"/>
+                        </f:facet>
+
+                        <h:outputText value="#{msgs.book_isbn}" />
+                        <h:outputText value="#{updateBook.book.isbn}" />
+
+                        <h:outputText value="#{msgs.book_title}" />
+                        <h:outputText value="#{updateBook.book.title}" />
+
+                        <h:outputText value="#{msgs.book_pubdate}" />
+                        <h:outputText value="#{updateBook.book.pubDate}" />
+
+                        <h:outputText value="#{msgs.book_wholeP}" />
+                        <h:outputText value="#{updateBook.book.wholesalePrice}" />
+
+                        <h:outputText value="#{msgs.book_listp}" />
+                        <h:outputText value="#{updateBook.book.listPrice}" />
+                        
+                        <h:outputText value="#{msgs.book_publisher}" />
+                        <h:outputText value="#{updateBook.book.publisherId.publisher}" />
+                        
+                        <h:outputText value="#{msgs.format}" />
+                        <h:outputText value="#{updateBook.book.formatId.bookFormat}" />
+                        
+                        <h:outputText value="#{msgs.book_author}" />
+                        <ui:repeat var="a" value="#{updateBook.book.authorList}" varStatus="ui">
+                            #{a.name}#{ui.last?'':', '}
+                        </ui:repeat>
+                        
+                        <h:outputText value="#{msgs.book_genre}" />
+                        <ui:repeat var="g" value="#{updateBook.book.genreList}" varStatus="ui">
+                            #{g.genre}#{ui.last?'':', '}
+                        </ui:repeat>
+
+                    </p:panelGrid>
+
+                    <p:commandButton value="#{msgs.submit}" action="#{updateBook.updateBook}"/>
+
+                </p:panel>
+            </p:tab>
+            
+        </p:wizard>
+
+    </h:form>
+
+
+</ui:composition>

@@ -1,0 +1,224 @@
+/* 
+    Created on : Feb 6, 2018, 1:36:34 AM
+    Author     : knock
+*/
+
+.new-user {
+    color: #4863A0;
+    font-family: Orbitron;
+    font-size: 1em;
+}
+
+.panel-body{
+    height:250px;
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.btn-outlined {
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: #000000;
+    border-color: #000000;
+}
+
+.text-center {
+    text-align: center;
+    display: block;
+    color: black;
+}
+
+.a-header {
+    font-family: Raleway;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+body {
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/oldschool.png']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login-card {
+    width: 100%;
+    background-color: white;
+    opacity: 0.9;
+    height: 400px;   
+    margin-left: 5%;
+    padding-right: 0;
+    padding-bottom: 25px;
+    width: 65%;
+    float: right;
+}
+
+.col-sm-4 {
+    padding-left: 0;
+    float: left;
+    margin-bottom: 5%;
+}
+
+.col-sm-8 {
+    padding-right: 0;
+    padding-left: 0;
+    width: 60%;
+}
+
+.already-reg {
+    padding-left: 0;
+    margin-right: 5%;
+    padding-right: 10px;
+    padding-bottom: 25px;
+    width: 70%;
+    height: 400px;
+    background-image: url("#{resource['images/banners/oldbooks2.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container {
+    margin-top: 25px;
+}
+
+.login-container {
+    height: 100%;
+    margin-top: 25px;
+    width: 100%;
+}
+
+#log-link {
+    color: white;
+    margin-bottom: 30px;
+    margin-left: 10%;
+} 
+
+#log-link:hover {
+    color: black;
+}
+
+.signup-button {
+    font-family: Raleway;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.signup-button:hover,
+.signup-button:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.input-text {
+    color: black;
+    font-family: Raleway;
+    padding-right: 0;
+}
+
+#username {
+    background-color: transparent;
+}
+
+.error, .form-control {
+    color: black;
+    font-family: Raleway;
+}
+
+.user-input-box {
+    background-color: transparent;
+    border-color: black;
+}
+
+.with-us {
+    padding-top: 50%;
+    text-align: center;
+    display: block;
+    color: white;
+}
+
+.sign-up-text {
+    font-family: Raleway;
+    font-size: 14px;
+    color: white;
+}
+
+.with-us-text {
+    margin-left: 30%;
+    width: 150px;
+    text-align: center;
+}
+
+.btn-outlined.btn-primary.signup-button2 {
+    background: none;
+    border: 1px solid white;
+    color: white;
+}
+
+.btn-outlined.btn-primary.signup-button2:hover,
+.btn-outlined.btn-primary.signup-button2:active {
+    color: #FFF;
+    background: white;
+    border-color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .login-card {
+        min-width: 290px;
+        margin-left: 0;
+        float: left;
+        min-height: 250px;
+        max-height: 300px;
+        margin-left: 15px;
+        margin-bottom: 20px;
+    }
+
+    .already-reg {
+        display: none;
+    }
+
+    .a-header {
+        font-size: 18px;
+    }
+    
+    .container {
+        padding: 0;
+        margin: 0;
+    }
+}

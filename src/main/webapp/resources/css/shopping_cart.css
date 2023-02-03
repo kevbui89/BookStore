@@ -1,0 +1,266 @@
+/* 
+    Created on : Mar 4, 2018, 7:55:10 PM
+    Author     : Kevin
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.orders-container {
+    background-color: white;
+    padding-top: 0;
+    margin-bottom: 30px;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/readbook.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+}
+
+.background {
+    min-height: 70%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -80px;
+}
+
+hr.bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF); 
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.background {
+    min-height: 60%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px;
+}
+
+.book-image {
+    width:79px; 
+    height:120px;
+}
+
+.book-image:hover {
+    transform: scale(1.03);
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+.bg-black {
+    margin-top: 50px;
+}
+
+.book-info {
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.book-prices {
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.book-image-container {
+    margin-bottom: 20px;
+}
+
+.information {
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+.book-info-label {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.item-id-label {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.item-id {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 26px;
+    color: #43C6DB;
+}
+
+.item-id-container {
+    padding-right: 0;
+}
+
+.totals {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.total-values {
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+.total-container {
+    text-align: right;
+}
+
+.thetotal {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 20px;
+    color: #43C6DB;
+}
+
+.btn-outlined.btn-primary.search-btn {
+    background: none;
+    border: 1px solid black;
+    color: black;
+    font-family: Raleway;
+    font-size: 16px;
+}
+
+.btn-outlined.btn-primary.search-btn:hover,
+.btn-outlined.btn-primary.search-btn:active {
+    color: white !important;
+    background: black;
+    border-color: black;
+}
+
+.emptyCart-header{
+    font-size: 26px;
+    float : left;
+    font-family: Raleway;
+    font-weight: bold;
+}
+
+.emptyCart{
+    font-size: 16px;
+    float : left;
+    font-family: Raleway;
+    font-weight: bold;
+}
+
+.emptyCart-text{
+    font-size: 13px;
+    float : left;
+    font-family: Raleway;   
+}
+
+.emptyCartClickText{
+    font-size: 16px;
+    float: left;
+    font-family: Raleway;
+    font-weight: bold;
+}
+
+.faq-link {
+    font-family: Raleway;
+    font-size: 13px;
+    font-weight: bold;
+    color: #43C6DB;
+    padding-left: 5px;
+}
+
+.faq-link:hover {
+    color: #00FFFF;
+}
+
+.shopping-cart-header {
+    font-family: Raleway;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.slashed-price {
+    position: relative;
+    color: #43C6DB;
+    font-family: Raleway;
+}
+
+.slashed-price:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 1px solid red;
+    border-color: inherit;
+
+    -webkit-transform:rotate(-5deg);
+    -moz-transform:rotate(-5deg);
+    -ms-transform:rotate(-5deg);
+    -o-transform:rotate(-5deg);
+    transform:rotate(-5deg);
+}
+
+.special-price {
+    font-family: Raleway;
+    font-weight: bold;
+    color: red !important;
+}
+
+.remove-button {
+    float: right;
+}
+
+.proceed-to-checkout {
+    float: right;
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+.error {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+}

@@ -1,0 +1,155 @@
+/* 
+    Created on : Mar 6, 2018, 4:22:27 PM
+    Author     : Kevin
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.review-container {
+    background-color: white;
+    margin-bottom: 30px;
+    height: auto;
+}
+
+.review-header {
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 40px;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/oldschool.png']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.book-image-list {
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+    float: right;
+}
+
+.information {
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+.book-info-label {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.book-container {
+    margin-bottom: 50px;
+    height: 200px;
+}
+
+.review-bar {
+    border: 0; 
+    height: 0.5px; 
+    background-image: -webkit-linear-gradient(left, #000000, #000000, #000000);
+    background-image: -moz-linear-gradient(left, #000000, #000000, #000000);
+    background-image: -ms-linear-gradient(left, #000000, #000000, #000000);
+    background-image: -o-linear-gradient(left, #000000, #000000, #000000); 
+}
+
+.book-information {
+    padding-left: 50px;
+}
+
+.review-explanation {
+    font-family: Raleway;
+    font-size: 14px;
+}
+
+.btn-outlined {
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: #000000;
+    border-color: #000000;
+}
+
+.review-text-area {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.rating-title {
+    margin-left: 5px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.rating-stars-container{
+    display: inline-block;
+    font-size: 1.5em;
+    transition:color 0.5s;
+    cursor: pointer;
+}
+
+.rating-stars-container-selected{
+    color:#43C6DB;
+    font-weight: bold;
+}
+.vertical {
+    border-left: 1px solid black;
+    height: 300px;
+}
+
+.review-block {
+    height: auto;
+}
+
+.rules-header {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rules {
+    padding-top: 5px;
+    font-family: Raleway;
+    font-size: 14px;
+}
+

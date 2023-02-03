@@ -1,0 +1,125 @@
+/* 
+    Created on : Mar 4, 2018, 1:16:07 PM
+    Author     : Kevin
+*/
+
+.background {
+    min-height: 85%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -80px;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.btn-outlined.btn-primary.signup-button2 {
+    background: none;
+    border: 1px solid black;
+    color: black;
+    font-family: Raleway;
+    font-size: 20px;
+}
+
+.btn-outlined.btn-primary.signup-button2:hover,
+.btn-outlined.btn-primary.signup-button2:active {
+    color: white !important;
+    background: black;
+    border-color: black;
+}
+
+#log-link {
+    color: black;
+    margin-bottom: 30px;
+    margin-left: 50%;
+    margin-right: 50%;
+    margin-top: 25px;
+} 
+
+#log-link:hover {
+    color: black;
+}
+
+.text-center {
+    text-align: center;
+    display: block;
+    margin-top: 25px;
+    color: black;
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/oldschool.png']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.info-container {
+    width: 100%;
+}
+
+.card-settings {
+    width: 60%;
+    background-color: white;
+    opacity: 0.9;
+    height: 525px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.padding-m, .panel-body {
+    height: 100%;
+}
+
+.info-label {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.information {
+    margin-top: 4px;
+    float: right;
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+.info-container {
+    text-align: left;
+}
+
+.edit-btn-container {
+    width: 100%;
+}
+
+hr.settings-bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+}
+
+.first-column, .second-column {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+
+

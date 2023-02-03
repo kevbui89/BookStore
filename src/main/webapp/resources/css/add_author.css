@@ -1,0 +1,18 @@
+/* 
+    Created on : Mar 6, 2018, 3:31:43 PM
+    Author     : Werner
+*/
+
+
+.font-xl {
+    font-size: 23px; 
+}
+.input-style {
+    font-size: 23px;    
+}
+.custom-button {
+    font-family: Circular, Raleway;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}

@@ -1,0 +1,109 @@
+<!-- @author: Kevin Bui -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="myorders.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.myorders}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <ui:fragment rendered="#{MyOrdersBean.getAllMasterInvoiceOfClient(loginBean.client).size() > 0}">
+            <div class="container margin-top-xl orders-container">
+                <div class="row padding-m">
+                    <h1 class="a-header orders-header">#{msgs.myorders}</h1>
+                    <hr class="bar"/>
+                    <table class="order-table">
+                        <tr>
+                            <th class="order-table-header">#{msgs.invoiceid}</th>
+                            <th class="order-table-header">#{msgs.purchasedate}</th>
+                            <th class="order-table-header">#{msgs.numitemspurchased}</th>
+                            <th class="order-table-header">#{msgs.netvalue}</th>
+                            <th class="order-table-header">#{msgs.total}</th>
+                            <th class="order-table-header">#{msgs.details}</th>
+                        </tr>
+                        <tbody>
+                            <ui:repeat var="item" value="#{MyOrdersBean.getAllMasterInvoiceOfClient(loginBean.client)}" varStatus="status">
+                                <h:panelGroup rendered="#{status.even}" style="display:block; text-align:center">
+                                    <tr>
+                                        <td class="order-table-even-row"><span class="order-text">#{item.invoiceId}</span></td>
+                                        <td class="order-table-even-row">
+                                            <h:outputFormat value="{0, date, yyyy-MM-dd}" class="order-text">
+                                                <span class="order-text"><f:param value="#{item.saleDate}" /></span>
+                                            </h:outputFormat>
+                                        </td>
+                                        <td class="order-table-even-row"><span class="order-text">#{MyOrdersBean.getNumberOfItemsPerMasterInvoice(item.invoiceId)}</span></td>
+                                        <td class="order-table-even-row"><span class="order-text">$#{item.netValue}</span></td>
+                                        <td class="order-table-even-row"><span class="order-text">$#{item.grossValue}</span></td>
+                                        <td class="order-table-even-row">
+                                            <h:form>
+                                                <h:commandLink value="" action="#{MyOrdersBean.details(item.invoiceId)}"><i class="menu-icon fa fa-folder-open folderlink"></i>
+                                                </h:commandLink>   
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{status.odd}">
+                                    <tr>
+                                        <tr>
+                                            <td class="order-table-odd-row"><span class="order-text">#{item.invoiceId}</span></td>
+                                            <td class="order-table-odd-row">
+                                                <h:outputFormat value="{0, date, yyyy-MM-dd}" class="order-text">
+                                                    <span class="order-text"><f:param value="#{item.saleDate}" /></span>
+                                                </h:outputFormat>
+                                            </td>
+                                            <td class="order-table-odd-row"><span class="order-text">#{MyOrdersBean.getNumberOfItemsPerMasterInvoice(item.invoiceId)}</span></td>
+                                            <td class="order-table-odd-row"><span class="order-text">$#{item.netValue}</span></td>
+                                            <td class="order-table-odd-row"><span class="order-text">$#{item.grossValue}</span></td>
+                                            <td class="order-table-odd-row">
+                                                <h:form id="orderDetailButton">
+                                                    <h:commandLink id="orderDetailBtn" value="" action="#{MyOrdersBean.details(item.invoiceId)}"><i class="menu-icon fa fa-folder-open folderlink"></i>
+                                                    </h:commandLink>   
+                                                </h:form>
+                                            </td>
+                                        </tr>
+                                    </tr>
+                                </h:panelGroup>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </ui:fragment>
+        <ui:fragment rendered="#{MyOrdersBean.getAllMasterInvoiceOfClient(loginBean.client).size() == 0}">
+            <div class="no-orders-container">
+                <div class="row padding-m">
+                    <span class="empty-orders-header">#{msgs.nohistory}</span>
+                    <br/><br/>
+                    <hr class="bar"/>
+                    <div class="col-md-6">
+                        <span class="empty-orders-text">#{msgs.mistake} </span>
+                        <h:link outcome="/client/faq.xhtml">
+                            <span class="faq-link">#{msgs.mistake2}</span>
+                        </h:link>
+                        <span class="empty-orders-text">#{msgs.mistake3} mankabookstore@gmail.com</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="empty-orders-text">#{msgs.clickSearchBooks}</span><br/><br/>
+                        <h:link value="#{msgs.searchBooks}" class="btn btn-outlined btn-primary search-btn" outcome="/client/browse_genre.xhtml"/> 
+                    </div>
+                </div>
+            </div>
+        </ui:fragment>
+
+    </ui:define> 
+
+</ui:composition>

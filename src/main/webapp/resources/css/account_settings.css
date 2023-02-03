@@ -1,0 +1,110 @@
+/* 
+    Author     : Kevin, Alessandro
+*/
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.ui-menu-itemtext {
+    font-size: 18px;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.btn-outlined {
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: #000000;
+    border-color: #000000;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/oldschool.png']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.text-center {
+    color: black; 
+}
+
+.control-label {
+    color: black;
+    padding-right: 0;
+    font-family: Raleway;
+}
+
+.card-settings {
+    width: 80%;
+    background-color: white;
+    opacity: 0.9;
+    height: 890px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.form-control {
+    background-color: transparent;
+    border-color: black;
+    color: black;
+    font-family: Raleway;
+}
+
+.error {
+    color: black;
+    font-family: Raleway;
+}
+
+.signup-button {
+    font-family: Circular, Raleway;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.menu-search {
+    background-color: white;
+}
+
+.a-header {
+    font-family: Raleway;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.cancel-button {
+    font-family: Circular, Raleway;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 5px;
+}

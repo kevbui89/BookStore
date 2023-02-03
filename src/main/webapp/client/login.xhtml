@@ -1,0 +1,75 @@
+<!-- @author: Kevin Werner -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="login.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.login}
+    </ui:define>
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{preRenderViewBean.checkCookies}" />
+        <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+    </f:metadata>
+
+    <ui:define name="content">
+        <div class="container login-container">
+            <div class="col-sm-8">
+                <div class="margin-top-xl login-card">
+                    <div class="row padding-m">
+                        <h1 class="text-center a-header">#{msgs.login}</h1>
+                        <div class="panel-body">
+                            <h:message id="loginFormMessage" for="loginForm" class="error text-center space"/>
+                            <h:form id="loginForm" class="form-horizontal">
+                                <div class="form-group">
+                                    <h:outputLabel  for="username" value="#{msgs.email}:" class="input-text control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText  id="username"  value="#{loginBean.client.email}" requiredMessage="#{msgs.empty_field}"
+                                                      required="true" class="user-input-box form-control input-sm">
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="usernameMessage" for="username" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="password" value="#{msgs.password}:" class="input-text control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputSecret id="password" value="#{loginBean.client.password}" required="true" 
+                                                       requiredMessage="#{msgs.empty_field}" class="user-input-box form-control input-sm">
+                                        </h:inputSecret>
+                                    </div>
+                                    <h:message id="passwordMessage" for="password" class="error"/>
+                                </div>
+
+                                <div class="text-center">
+                                    <h:commandButton id="login" action="#{loginBean.login()}" value="#{msgs.login}" class="btn btn-outlined btn-primary signup-button"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="margin-top-xl already-reg">
+                    <h1 class="text-center a-header with-us">#{msgs.newhere}</h1>
+                    <div class="with-us-text">
+                        <p class="sign-up-text">#{msgs.signuptext}</p>
+                    </div>
+                    <div class="text-center">
+                        <h:link id="log-link" value="#{msgs.signup}" outcome="registration" class="btn btn-outlined btn-primary signup-button2"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define> 
+
+</ui:composition>

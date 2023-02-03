@@ -1,0 +1,151 @@
+<ui:composition
+    template="/WEB-INF/templates/managerTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="manager.css" />.
+        <h:outputStylesheet library="css" name="sidebar.css" />
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:insert name="sidebar">
+            <ui:include src="/manager/sections/sidebar.xhtml" />
+        </ui:insert> 
+        <div class="container" id="main">
+            <div class="card">
+                <div class="text-center">
+                    <h1 class="text-capitalize">#{msgs.welcome_back}</h1>
+                    <h3><h:outputText value="#{loginBean.client.email}" /></h3>
+                    <p>#{msgs.welcome_back_description}</p>
+                </div>
+                <hr/>
+                <div class="row ">
+                    <div class="col-md-6 col-sm-12 margin-auto text-center">
+                        <h2>Survey</h2>
+                        <span>Current survey results</span>
+                        <hr/>
+                        <!-- Survey -->
+                        <div class="parallax para4 ">
+                            <div class="survey-section margin-auto text-center">
+                                <p:chart id="updateItem" type="bar" model="#{chartBean.horizontalBarModel}" 
+                                         style="margin: auto; height:250px; width: 300px;"/>
+                            </div>
+                        </div><br/>
+                        <p><a class="btn btn-default" href="#" role="button">View details </a></p>
+                    </div><!--/.col-xs-6.col-lg-4-->
+                    <div class="col-md-6 col-sm-12 margin-auto text-center inner-container">
+                        <h2 class="sub-header">#{msgs.review}</h2>
+                        <span>#{msgs.manager_index_review}</span><br/><br/><br/>
+                        <ui:fragment rendered="#{not empty ReviewsManagement.pendingReviews}">
+                            <div class="inner-container">
+                                <h:form id="formReviews">
+                                    <p:dataTable var="review" value="#{ReviewsManagement.pendingReviews}" paginator="true" rows="5"
+                                                 paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+                                                 id="reviewsPendingTable" >
+
+                                        <p:column headerText="Book Title ">
+                                            <h:outputText value="#{review.bookId.title}" />
+                                        </p:column>  
+                                        <p:column headerText="User">
+                                            <h:outputText value="#{review.clientId.username}" />
+                                        </p:column> 
+                                        <p:column headerText="Rating">
+                                            <h:outputText value="#{review.rating}"/>
+                                        </p:column>
+
+                                    </p:dataTable>
+                                </h:form>
+                            </div>
+
+                        </ui:fragment><br/>
+                        <ui:fragment rendered="#{empty ReviewsManagement.pendingReviews}">
+                            <h3 class="text-center">#{msgs.no_outstanding_reviews}</h3>
+                        </ui:fragment>
+                        <p><a class="btn btn-default" href="review_management.xhtml" role="button">#{msgs.view_all_reviews}</a></p>
+                    </div><!--/.col-xs-6.col-lg-4-->
+
+
+
+
+                </div><!--/row-->
+
+                <div class="row">
+
+
+                    <div class="col-md-6 col-sm-12  margin-auto text-center">
+                        <h2>#{msgs.news}</h2>
+                        <hr/>
+
+                        <p><a class="btn btn-default" href="news_feed.xhtml" role="button">#{msgs.latest_news}</a></p>
+                        <div style="height:350px;width:auto;overflow:auto;color:white;font-family:sans-serif;padding:10px;">
+                            <br/>
+                            <h3 class="news-header-index fadeIn animation-element slide-bottom text-uppercase">#{msgs.news}</h3>
+                            <div class="rss-container">
+                                <ui:repeat value="#{RssNewsBackingBean.rssFeedMessages}" var="item">
+                                    <div class="row image-wrapper">
+                                        <div class="col-sm-4">
+                                            <h:graphicImage style="width: 55%; height: 30%;" value="#{item.imageLinkFromFeed}" class="news-images" />
+                                        </div>
+                                        <div class ="col-sm-8">
+                                            <span><a href="#{item.link}" class="news-styling">#{item.title}</a></span>
+                                            <h:outputText value="&lt;br/&gt;" escape="false" />
+                                            <h:outputText value="&lt;br/&gt;" escape="false" />
+                                            <span class="news-description">#{item.descriptionFromFeed}</span>
+                                            <h:outputText value="&lt;br/&gt;" escape="false" />
+                                            <h:outputText value="&lt;br/&gt;" escape="false" />
+                                            <span class="news-author">By: #{item.author}</span>
+                                            <h:outputText value="&lt;br/&gt;" escape="false" />
+                                        </div>
+                                    </div>
+                                    <hr class="news-bar"/>
+                                </ui:repeat>
+                            </div>
+                        </div>
+                    </div><!--/.col-xs-6.col-lg-4-->
+
+                    <div class="col-md-6 col-sm-12 margin-auto text-center">
+                        <h2>#{msgs.latest_purchases}</h2>
+                        <hr/>
+                        <div class="padding-bot-xl">
+                            <p><a class="btn btn-default" href="order_management.xhtml" role="button">#{msgs.view_all_purchasses}</a></p>
+
+                            <ui:fragment rendered="#{not empty OrderManagement.invoices}">
+                                <div class="inner-container">
+                                    <h:form id="formInvoice">         
+                                        <p:dataTable var="invoice" value="#{OrderManagement.invoices}" rows="5"                                                 
+                                                     id="invoiceTable" >
+                                            <p:column headerText="#{msgs.username}">
+                                                <h:outputText value="#{invoice.clientId.username}" />
+                                            </p:column>                          
+                                            <p:column headerText="#{msgs.purchasedate}">
+                                                <h:outputText value="#{invoice.saleDate}"/>
+                                            </p:column>  
+                                            <p:column headerText="#{msgs.amount_purchased}">
+                                                <h:outputText value="#{invoice.detailInvoiceList.size()}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form> 
+                                </div><br/><br/>
+
+
+                            </ui:fragment>
+                            <ui:fragment rendered="#{empty OrderManagement.invoices}">
+                                <h3 class="text-center">#{msgs.no_purchases}</h3>
+                            </ui:fragment>
+                        </div>
+                    </div><!--/.col-xs-6.col-lg-4-->
+
+                </div>
+
+
+            </div><!--/.col-xs-12.col-sm-9-->
+
+        </div>
+    </ui:define> 
+
+</ui:composition>

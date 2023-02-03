@@ -1,0 +1,80 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:form>
+
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+
+        <p:messages autoUpdate="true"/>
+        <p:wizard id="topBuyerClientWiz" backLabel="#{msgs.back}" nextLabel="#{msgs.next}">
+            <p:tab title="#{msgs.search_req}">
+                <p:panel header="#{msgs.step1}">
+                    <p:messages />
+
+                    <p:outputLabel for="startdate" value="#{msgs.start_date}" />
+                    <p:calendar id="startdate" requiredMessage="#{msgs.required_date}" required="true" value="#{topBuyerClient.startDate}" navigator="true" showOn="button" />
+
+                    <p:outputLabel for="enddate" value="#{msgs.end_date}" />
+                    <p:calendar id="enddate" requiredMessage="#{msgs.required_date}" required="true" value="#{topBuyerClient.endDate}" navigator="true" showOn="button" />
+
+                </p:panel>
+            </p:tab>
+            <p:tab id="display" title="#{msgs.display_info}">
+                <p:panel header="#{msgs.step2}">
+                    <p:messages />
+
+                    <p:dataTable id="data" var="c" value="#{topBuyerClient.data}" style="margin-bottom:40px"
+                                 emptyMessage="#{msgs.no_record}" rows="10" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">
+                            #{msgs.display_data}
+                        </f:facet>
+
+                        <p:column style="width:25px">
+                            <p:rowToggler />
+                        </p:column>
+
+                        <p:column headerText="#{msgs.email}" filterBy="#{c.email}" filterMatchMode="contains">
+                            <h:outputText value="#{c.email}" />
+                        </p:column>
+                        <p:column headerText="#{msgs.username}" filterBy="#{c.username}" filterMatchMode="contains">
+                            <h:outputText value="#{c.username}" />
+                        </p:column>
+
+                        <p:rowExpansion>
+                            <p:panelGrid columns="2" columnClasses="label,value" style="width:300px">
+
+                                <h:outputText value="#{msgs.username}" />
+                                <h:outputText value="#{c.username}" />
+
+                                <h:outputText value="#{msgs.email}" />
+                                <h:outputText value="#{c.email}" />
+
+                                <h:outputText value="#{msgs.title}" />
+                                <h:outputText value="#{c.title}" />
+
+                                <h:outputText value="#{msgs.first_name}" />
+                                <h:outputText value="#{c.firstName}" />
+
+                                <h:outputText value="#{msgs.last_name}" />
+                                <h:outputText value="#{c.lastName}"/>
+
+
+                            </p:panelGrid>
+                        </p:rowExpansion>
+
+                    </p:dataTable>
+
+                </p:panel>
+            </p:tab>
+        </p:wizard>
+
+    </h:form>   
+</ui:composition>
+

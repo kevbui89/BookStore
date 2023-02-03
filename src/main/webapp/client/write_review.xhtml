@@ -1,0 +1,121 @@
+<!-- @author: Kevin -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="write_review.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.writereview}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="reviewforbookid" /> 
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn()}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <ui:fragment rendered="#{not empty loginBean.client.email}">
+            <div class="container margin-top-xl review-container">
+                <div class="row padding-m">
+                    <h1 class="text-center a-header review-header">#{msgs.writereview}</h1>
+                    <div class="book-container">
+                        <div class="col-md-4 review-image">
+                            <h:graphicImage class="book-image-list" style="width: 40%; height: 40%; opacity: 0.9;" name="images/smallcovers/#{ReviewsBean.bookInformationForReviews.image}" />
+                        </div>
+                        <div class="col-md-8 book-information">
+                            <span class="book-info-label">#{msgs.book_title}: </span>
+                            <span class="information">#{ReviewsBean.bookInformationForReviews.title}</span>
+                            <br/>
+                            <span class="book-info-label">#{msgs.book_author}: </span>
+                            <ui:repeat value="#{ReviewsBean.bookInformationForReviews.authorList}" var="author">
+                                <span class="information">#{author.name}</span>
+                            </ui:repeat>
+                            <br/>
+                            <span class="book-info-label">#{msgs.book_genre}: </span>
+                            <ui:repeat value="#{ReviewsBean.bookInformationForReviews.genreList}" var="genre">
+                                <span class="information">#{genre.genre}</span>
+                            </ui:repeat>
+                            <br/>
+                            <span class="book-info-label">#{msgs.isbn}: </span>
+                            <span class="information">#{ReviewsBean.bookInformationForReviews.isbn}</span>
+                            <br/>
+                            <span class="book-info-label">#{msgs.format}: </span>
+                            <span class="information">#{ReviewsBean.bookInformationForReviews.formatId.bookFormat}</span>
+                            <br/><br/><br/>
+                            <span class="book-info-label">#{msgs.book_price}: </span>
+                            <span class="information">$#{ReviewsBean.bookInformationForReviews.listPrice}</span>
+                            <br/>
+                            <span class="book-info-label">#{msgs.book_sale}: </span>
+                            <span class="information">$#{ReviewsBean.bookInformationForReviews.salePrice}</span>
+                        </div>
+                    </div>
+                    <hr class="review-bar"/>
+                    <div class="review-block">
+                        <div class="col-md-6 review-block">
+                            <span class="review-explanation">#{msgs.leave_review}</span><br/><br/>
+                            <h:form id="reviewForm">
+                                <div>
+                                    <span class="rating-title">#{msgs.rating} </span>
+                                    <br/>
+                                    <div class="rating-stars-container" >
+                                        <span class="fa fa-star-o rating-star 1"></span>
+                                        <span class="fa fa-star-o rating-star 2"></span>
+                                        <span class="fa fa-star-o rating-star 3"></span>
+                                        <span class="fa fa-star-o rating-star 4"></span>
+                                        <span class="fa fa-star-o rating-star 5"></span>
+                                    </div>
+                                    <h:inputHidden binding="#{rating}" required="true" id="review-rating">
+                                        <f:validateLongRange minimum="1" maximum="5" />
+                                    </h:inputHidden>
+                                </div>
+                                <br/>
+                                <span class="rating-title">#{msgs.book_title}</span>
+                                <p:inputTextarea id="title-text-area" binding="#{titleText}" rows="1" styleClass="review-text-area" required="true">
+                                    <f:validateLength minimum="1" maximum="150"/>
+                                </p:inputTextarea>
+                                <br/>
+                                <span class="rating-title">#{msgs.review}</span>
+                                <p:inputTextarea id="review-text-area" binding="#{reviewText}" rows="5" styleClass="review-text-area" required="true">
+                                    <f:validateLength minimum="1" maximum="2000"/>
+                                </p:inputTextarea>
+                                <br/>
+                                <h:commandButton value="#{msgs.submit}" style="margin-top:10px;" styleClass="btn btn-outlined btn-primary signup-button"
+                                                 action="#{ReviewsBean.addReview(loginBean.client.clientId, titleText.value ,reviewText.value, rating.value)}" id="review-submit"/> 
+                            </h:form>
+                        </div>
+                        <div class="col-md-6 vertical">
+                            <span class="rules-header">#{msgs.include}</span>
+                            <br/><br/>
+                            <span class="rules">#{msgs.describe}</span>
+                            <br/>
+                            <span class="rules">#{msgs.sharedetails}</span>
+                            <br/><br/>
+                            <span class="rules-header">#{msgs.donotinclude}</span>
+                            <br/><br/>
+                            <span class="rules">#{msgs.rule1}</span>
+                            <br/>
+                            <span class="rules">#{msgs.rule2}</span>
+                            <br/>
+                            <span class="rules">#{msgs.rule3}</span>
+                            <br/>
+                            <span class="rules">#{msgs.rule4}</span>
+                            <br/>
+                            <span class="rules">#{msgs.rule5}</span>
+                            <br/>
+                            <span class="rules">#{msgs.rule6}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:fragment>
+    </ui:define> 
+
+</ui:composition>

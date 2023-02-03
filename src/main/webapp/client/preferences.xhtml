@@ -1,0 +1,65 @@
+<!-- @author: Kevin, Werner -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="prefs.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.prefs}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn()}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>    
+        <div class="container margin-top-xl prefs-header-container">
+            <div class="row padding-m">
+                <h1 class="a-header prefs-header">#{msgs.prefs}</h1>
+                <span class="choose-prefs">#{msgs.chooseprefs}</span>
+                <hr class="bar"/>
+            </div>
+        </div>
+        <div class="container prefs-container">
+            <div class="row padding-m">
+                <!-- The books will be displayed here -->
+                <h:message id="preferenceMessage" for="prefForm" class="text-center error"/>
+                <h:form id="prefForm" class="form-horizontal">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3 class="selection-header">#{msgs.selection}</h3>
+                        <ui:repeat value="#{Preferences.bookPerGenre}" var="book">
+                            <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom: 20px;">
+                                <div class="">
+                                    <div class="">
+                                        <div class="wrapper">
+                                            <p:commandLink action="#{Preferences.setBook(book)}">
+                                                <h:graphicImage class="pref-image" name="images/smallcovers/#{book.image}" />
+                                            </p:commandLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                    <div class="text-center pref-submit">
+                        <h:commandButton value="#{msgs.submit}" action="#{Preferences.submitPreferences(loginBean.client.clientId)}" class="btn btn-outlined btn-primary submit-button">
+                        </h:commandButton>    
+                    </div>
+                </h:form>
+            </div>
+            <div class="skip">
+                <h:link value="#{msgs.skip}" outcome="/client/index.xhtml" class="btn btn-outlined btn-primary skip-button">
+                </h:link>
+            </div>
+        </div>
+    </ui:define> 
+
+</ui:composition>

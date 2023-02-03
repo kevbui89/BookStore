@@ -1,0 +1,38 @@
+<!-- @author: Kevin -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="head-meta">
+        <meta http-equiv="refresh" content="3;URL=#{request.contextPath}/client/book.xhtml?bookid=#{ReviewsBean.bookInformationForReviews.bookId}" />
+    </ui:define>
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="success.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.reviewpending}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn()}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <div class="margin-top-xl success-container">
+            <div class="row padding-m">
+                <h1 class="a-header success-header">#{msgs.thankyou}</h1>
+                <hr class="bar"/>
+                <span class="redirect-text">#{msgs.meaning}</span><br/><br/>
+                <span class="redirect-text">#{msgs.redirect2}</span><br/><br/>
+            </div>
+        </div>
+    </ui:define> 
+
+</ui:composition>

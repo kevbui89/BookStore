@@ -1,0 +1,142 @@
+<!-- @author: Kevin -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="browse_genre.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.browse}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="genre" /> 
+            <f:event type="preRenderView" listener='#{loginBean.setPreviousPage("/client/browse_genre.xhtml")}' />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <section class="container card  margin-top-xl">
+
+            <div class="col-md-2 col-sm-12 col-xs-12 margin-auto">
+                <div class="nav-side-menu">
+                    <i style="font-size: 25px; color: #3aa0b0; margin-top: 20px;" class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+                    <div class="menu-list">
+                        <ul id="menu-content" class="menu-content collapse">
+                            <ui:repeat value="#{theGenres.genres}" var="item">
+                                <li class="spacing-genre text-uppercase"><a href="?genre=#{item.genreId}" class="genre-styling">#{item.genre}</a></li>
+                            </ui:repeat>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10 col-sm-12 col-xs-12">
+                <div class="">
+                    <p:outputPanel class="container-fluid">
+                        <div class="row content">
+                            <!-- column for the genres -->
+                            <div class="">
+                                <div class="row">
+                                    <!-- The books will be displayed here -->
+                                    <div class="col-md-12">
+                                        <h3 class="genre-chosen">#{BrowseGenres.genre}</h3>
+                                        <hr />
+                                        <!-- Top Sellers -->
+                                        <h3 class=" text-uppercase">#{msgs.topsellers}</h3>
+                                        <hr class=""/>
+                                        <ui:repeat value="#{BrowseGenres.topSellers}" var="book">
+                                            <div class="col-md-3 col-sm-6 col-xs-6">
+                                                <div class="book-row">
+                                                    <div class="card-design card-book">
+                                                        <a href="book.xhtml?bookid=#{book.bookId}">
+                                                            <div class="wrapper">
+                                                                <div class="book-image">
+                                                                    <h:graphicImage class="img img-responsive book-image-list" style="width: auto; height: auto; opacity: 0.8;" name="images/smallcovers/#{book.image}" />
+                                                                </div>
+                                                                <div class="data">
+                                                                    <div class="content">
+                                                                        <ui:fragment rendered="#{book.salePrice > 0}">
+                                                                            <span class="sale-price">$#{book.salePrice}</span>
+                                                                            <span class="slashed-price">$#{book.listPrice}</span>
+                                                                        </ui:fragment>
+                                                                        <ui:fragment rendered="#{book.salePrice.intValue() == 0}">
+                                                                            <span class="price">$#{book.listPrice}</span>
+                                                                        </ui:fragment>
+                                                                        <h1 class="book-title">#{book.title}</h1>
+                                                                        <ui:repeat value="#{book.genreList}" var="item">
+                                                                            <span class="text-genre">#{item.genre}</span>
+                                                                        </ui:repeat>
+                                                                        <ui:repeat value="#{book.authorList}" var="item">
+                                                                            <p class="text-author">#{item.name}</p>
+                                                                        </ui:repeat>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ui:repeat>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-bottom: 50px;">
+
+
+                                    <div class="col-md-12">
+                                        <!-- Other books -->
+                                        
+                                        <br/><br/><br/>
+                                        <h:outputText style="font-size: 25px; " value="#{msgs.featured}" styleClass="text-uppercase" rendered="#{not empty BrowseGenres.otherBooks}"/>
+                                        <br/> 
+                                        <ui:repeat value="#{BrowseGenres.otherBooks}" var="book">
+                                            <div class="col-md-3 col-sm-6 col-xs-6">
+                                                <div class="book-row">
+                                                    <div class="card-design card-book">
+                                                        <a href="book.xhtml?bookid=#{book.bookId}">
+                                                            <div class="wrapper">
+                                                                <div class="book-image">
+                                                                    <h:graphicImage class="img img-responsive book-image-list" style="width: auto; height: auto; opacity: 0.8;" name="images/smallcovers/#{book.image}" />
+                                                                </div>
+                                                                <div class="data">
+                                                                    <div class="content">
+                                                                        <ui:fragment rendered="#{book.salePrice > 0}">
+                                                                            <span class="sale-price">$#{book.salePrice}</span>
+                                                                            <span class="slashed-price">$#{book.listPrice}</span>
+                                                                        </ui:fragment>
+                                                                        <ui:fragment rendered="#{book.salePrice.intValue() == 0}">
+                                                                            <span class="price">$#{book.listPrice}</span>
+                                                                        </ui:fragment>
+                                                                        <h1 class="book-title">#{book.title}</h1>
+                                                                        <ui:repeat value="#{book.genreList}" var="item">
+                                                                            <span class="text-genre">#{item.genre}</span>
+                                                                        </ui:repeat>
+                                                                        <ui:repeat value="#{book.authorList}" var="item">
+                                                                            <p class="text-author">#{item.name}</p>
+                                                                        </ui:repeat>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </ui:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p:outputPanel>
+                </div>
+            </div>
+        </section>
+    </ui:define> 
+</ui:composition>

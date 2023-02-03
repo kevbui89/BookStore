@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="bookstorePU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>java:app/jdbc/bookstore</jta-data-source>
+        <class>com.g3bookstore.entities.Ad</class>
+        <class>com.g3bookstore.entities.Author</class>
+        <class>com.g3bookstore.entities.Book</class>
+        <class>com.g3bookstore.entities.Client</class>
+        <class>com.g3bookstore.entities.Country</class>
+        <class>com.g3bookstore.entities.DetailInvoice</class>
+        <class>com.g3bookstore.entities.EbookFormat</class>
+        <class>com.g3bookstore.entities.Genre</class>
+        <class>com.g3bookstore.entities.MasterInvoice</class>
+        <class>com.g3bookstore.entities.Province</class>
+        <class>com.g3bookstore.entities.Publisher</class>
+        <class>com.g3bookstore.entities.Response</class>
+        <class>com.g3bookstore.entities.Review</class>
+        <class>com.g3bookstore.entities.RssNews</class>
+        <class>com.g3bookstore.entities.Survey</class>
+        <class>com.g3bookstore.entities.Tax</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

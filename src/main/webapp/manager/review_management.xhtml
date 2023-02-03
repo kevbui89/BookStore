@@ -1,0 +1,115 @@
+<ui:composition
+    template="/WEB-INF/templates/managerTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="manager.css" />.
+        <h:outputStylesheet library="css" name="sidebar.css" />
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:insert name="sidebar">
+            <ui:include src="/manager/sections/sidebar.xhtml" />
+        </ui:insert> 
+        <div class="container" id="main">
+            <div class="col-xs-12 col-sm-9 col-sm-push-0 card">
+                <h1 class="text-capitalize">#{msgs.reviews_manager}</h1>
+                <hr/>
+
+                <p:tabView id="reviews" binding="#{tabEvent.messagesTab}">
+                    <p:ajax event="tabChange" listener="#{tabEvent.onTabChange}" />
+
+                    <p:tab title="#{msgs.pending_reviews}">
+                        <h:form id="formPending">
+                            <p:dataTable var="review" value="#{ReviewsManagement.pendingReviews}" paginator="true" rows="10"
+                                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                         rowsPerPageTemplate="5,10,15" id="reviewsPendingTable" >
+                                <p:column style="width:50px;text-align: center;">
+                                    <p:commandButton   oncomplete="PF('reviewDialog').show()" icon="ui-icon-search" title="View">
+                                        <f:setPropertyActionListener value="#{review}" target="#{ReviewsManagement.selectedReview}" />
+                                    </p:commandButton>
+                                </p:column>
+
+                                <p:column filterBy="#{review.bookId.title}" headerText="Book Title " filterMatchMode="contains">
+                                    <h:outputText value="#{review.bookId.title}" />
+                                </p:column>  
+                                <p:column headerText="#{msgs.date}">
+                                    <h:outputText value="#{review.reviewDate}" />
+                                </p:column> 
+                                <p:column headerText="#{msgs.rating}">
+                                    <h:outputText value="#{review.rating}" converter="#{reviewConverter}"/>
+                                </p:column> 
+                                <p:column headerText="#{msgs.approve_deny}">
+                                    <p:commandButton value="#{msgs.reject}" id="rejcet" actionListener="#{ReviewsManagement.RejectReview(review)}" update="reviews" styleClass="ui-priority-primary">
+                                    </p:commandButton>
+                                    <p:commandButton value="#{msgs.approve}" id="aprove" actionListener="#{ReviewsManagement.AproveReview(review)}" update="reviews" styleClass="ui-priority-primary" >
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                            <p:dialog header="#{msgs.display_info}" widgetVar="reviewDialog" showEffect="blind" hideEffect="explode" resizable="false">
+                                <p:outputPanel id="reviewDetail" style="text-align:center;">
+                                    <p:panelGrid  columns="2" rendered="#{not empty ReviewsManagement.selectedReview}" columnClasses="label,value">
+                                        <h:outputText value="#{msgs.username}" />
+                                        <h:outputText value="#{ReviewsManagement.selectedReview.clientId.username}" style="color:#{dataListView.selectedCar.color}"/>
+
+                                        <h:outputText value="#{msgs.review}" />
+                                        <h:outputText value="#{ReviewsManagement.selectedReview.comment}" />
+                                    </p:panelGrid>
+                                </p:outputPanel>
+                            </p:dialog>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="Aproved Reviews">                     
+                        <h:form id="formReviews">
+                            <p:dataTable var="review" value="#{ReviewsManagement.seenReviews}" paginator="true" rows="10"
+                                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                         rowsPerPageTemplate="5,10,15" id="reviewTable" >
+
+                                <p:column style="width:35px">
+                                    <p:commandLink oncomplete="PF('viewedDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
+                                        <f:setPropertyActionListener value="#{review}" target="#{ReviewsManagement.selectedReview}" />
+                                        <h:outputText value="#{review}" />
+                                    </p:commandLink>
+                                </p:column>
+                                <p:column filterBy="#{review.bookId.title}" headerText="Book Title " filterMatchMode="contains">
+                                    <h:outputText value="#{review.bookId.title}" />
+                                </p:column>  
+                                <p:column headerText="#{msgs.date}">
+                                    <h:outputText value="#{review.reviewDate}" />
+                                </p:column> 
+                                <p:column headerText="#{msgs.status}">
+                                    <h:outputText  converter="#{reviewConverter}" value="#{review.valid}" />
+                                </p:column>
+                                <p:column headerText="#{msgs.rating}">
+                                    <h:outputText value="#{review.rating}" converter="#{reviewConverter}"/>
+                                </p:column> 
+                                <p:column headerText="#{msgs.status}">
+                                    <p:commandButton value="Reject" id="rejcet" actionListener="#{ReviewsManagement.RejectReview(review)}" update="reviews" styleClass="ui-priority-primary" />
+                                    <p:commandButton value="Aprove" id="aprove" actionListener="#{ReviewsManagement.AproveReview(review)}" update="reviews" styleClass="ui-priority-primary" />
+                                </p:column>
+                            </p:dataTable>
+                            <p:dialog header="#{msgs.display_info}" widgetVar="viewedDialog" showEffect="blind" hideEffect="explode" resizable="false">
+                                <p:outputPanel id="reviewViewed" style="text-align:center;">
+                                    <p:panelGrid  columns="2" rendered="#{not empty ReviewsManagement.selectedReview}" columnClasses="label,value">
+
+                                        <h:outputText value="#{msgs.username}" />
+                                        <h:outputText value="#{ReviewsManagement.selectedReview.clientId.username}" style="color:#{dataListView.selectedCar.color}"/>
+
+                                        <h:outputText value="#{msgs.review}" />
+                                        <h:outputText value="#{ReviewsManagement.selectedReview.comment}" />
+                                    </p:panelGrid>
+                                </p:outputPanel>
+                            </p:dialog>
+                        </h:form>
+                    </p:tab>                    
+                </p:tabView> 
+
+            </div><!--/.col-xs-12.col-sm-9-->
+        </div>
+    </ui:define>    
+
+</ui:composition>

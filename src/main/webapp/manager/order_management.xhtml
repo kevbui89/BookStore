@@ -1,0 +1,64 @@
+    <ui:composition
+    template="/WEB-INF/templates/managerTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="manager.css" />.
+        <h:outputStylesheet library="css" name="sidebar.css" />
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:insert name="sidebar">
+            <ui:include src="/manager/sections/sidebar.xhtml" />
+        </ui:insert> 
+        <div class="container" id="main">
+            <div class="col-xs-12 col-sm-9 col-sm-push-0 card">
+                <h1 class="text-capitalize">#{msgs.current_orders}</h1>
+                <hr/>
+                <h:form id="form">         
+                    <p:dataTable var="invoice" value="#{OrderManagement.invoices}" paginator="true" rows="10"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 rowsPerPageTemplate="5,10,15" id="invoiceTable" >
+
+                        <p:column style="width:35px">
+                            <p:rowToggler/>
+                        </p:column>
+                        <p:column filterBy="#{invoice.invoiceId}" headerText="#{msgs.invoice_id}" filterMatchMode="contains">
+                            <h:outputText value="#{invoice.invoiceId}" />
+                        </p:column>  
+                        <p:column filterBy="#{invoice.clientId.email}" headerText="#{msgs.email}" filterMatchMode="contains">
+                            <h:outputText value="#{invoice.clientId.email}" />
+                        </p:column>                          
+                        <p:column headerText="#{msgs.purchasedate}">
+                            <h:outputText value="#{invoice.saleDate}"/>
+                        </p:column>  
+                        <p:column headerText="#{msgs.amount_purchased}">
+                            <h:outputText value="#{invoice.detailInvoiceList.size()}"/>
+                        </p:column>
+                        <p:column headerText="#{msgs.status}">
+                            <p:commandButton value="#{msgs.clear}" id="clear" actionListener="#{OrderManagement.clearInvoice(invoice)}" update="invoiceTable" styleClass="ui-priority-primary" />
+                            <p:commandButton value="#{msgs.add}" id="add" actionListener="#{OrderManagement.addInvoice(invoice)}" update="invoiceTable" styleClass="ui-priority-primary" />
+                        </p:column>
+                        <p:rowExpansion>
+                            <p:repeat value="#{OrderManagement.SelectedDetailInvoice(invoice)}" var="di">                                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                    <h:outputText value="#{msgs.title}" />
+                                    <h:outputText value="#{di.bookId.title}" />    
+
+                                    <h:outputText value="#{msgs.status}" />
+                                    <p:inputSwitch value="#{di.status}">
+                                        <p:ajax listener="#{OrderManagement.removeBook(di)}" />
+                                    </p:inputSwitch>
+                                </h:panelGrid>
+                            </p:repeat>
+                        </p:rowExpansion>
+                    </p:dataTable>
+                </h:form>          
+            </div><!--/.col-xs-12.col-sm-9-->
+        </div>
+    </ui:define> 
+
+</ui:composition>

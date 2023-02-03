@@ -1,0 +1,47 @@
+<!-- @author: Kevin -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <ui:insert name="head-meta" />
+
+        <title><ui:insert name="#{msgs.accessdenied}" /></title>
+
+        <h:outputStylesheet library="webjars" name="bootstrap/3.3.7-1/css/bootstrap.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="bootstrap/3.3.7-1/css/bootstrap-theme.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+        <h:outputStylesheet library="css" name="error.css" />
+        <h:outputStylesheet library="css" name="hover-min.css" />
+        <ui:insert name="placeholder-css" />
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
+
+    </h:head>
+    <h:body class="">
+        <div class="center">
+            <h:graphicImage name="images/error/acessdenied.png"/>
+        </div>
+        <div class="link">
+            <h:link outcome="/client/index.xhtml">
+                <span class="btn btn-outlined btn-primary error-btn">
+                    #{msgs.backtoindex}
+                </span>
+            </h:link> 
+        </div>
+    </h:body>
+</html>

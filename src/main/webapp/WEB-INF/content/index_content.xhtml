@@ -1,0 +1,275 @@
+<!-- This is a content page that will be included in the layout page -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <!-- Sales section -->
+    <div class="sales-section">
+        <div class="row image-wrapper">
+            <h3 class="our-sales fadeIn animation-element slide-bottom text-uppercase">#{msgs.todaysales}</h3>
+            <div class="sales-carousel">
+                <div class="scarousel right fadeIn animation-element slide-bottom">
+                    <div class="indicator"></div>
+                    <div class="wrap">
+                        <ul>
+                            <ui:repeat value="#{BookBean.getBooksOnSale(10)}" var="book">
+                                <li>
+                                    <h:link outcome="/client/book.xhtml">
+                                        <f:param name="bookid" value="#{book.bookId}"/>
+                                        <h:graphicImage class="sales-images" name="images/smallcovers/#{book.image}" />
+                                    </h:link>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="parallax para1">
+        <div class="container">
+            <div class="row test">
+                <div class="col-md-6 col-sm-12 col-xs-12" style="margin:0 auto" >
+                    <ui:insert name="Tracking">
+                        <ui:include src="/WEB-INF/sections/tracking/most_recent_books.xhtml" />
+                    </ui:insert>
+                    <ui:fragment rendered="#{not empty loginBean.client.email and ClientTracker.genreSaved and BookBean.getRecommendedBooks(4, loginBean.client.email).size() > 0}">
+                        <h3 style="color: white; text-align: center" class="recommended-header fadeIn animation-element slide-bottom text-uppercase">#{msgs.recommended}</h3>                           
+                        <ui:repeat value="#{BookBean.getRecommendedBooks(4, loginBean.client.email)}" var="book">
+                            <div class="col-md-3 col-sm-6 col-xs-6 margin-auto text-center" style="margin:0 auto;">
+                                <h:graphicImage id="object" class="fadeIn animation-element img img-responsive margin-auto text-center" style="margin:0 auto; width: auto; width: auto; height: auto; opacity: 0.8; border-style: solid; border-width: 1.5px; border-color: white;" name="images/smallcovers/#{book.image}" />
+                                <br/>
+                                <p:button value="#{msgs.details}" styleClass="" style="margin-bottom: 25px; background: none; border: 2px solid #43BFC7; color: #43BFC7;" outcome="/client/book.xhtml">
+                                    <f:param name="bookid" value="#{book.bookId}"/>
+                                </p:button>
+                            </div>
+
+                        </ui:repeat>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{empty loginBean.client.email and ClientTracker.genreSaved and BookBean.getRecommendedBooksNotLogged(4).size() > 0}">
+                        <h3 style="color: white; text-align: center" class="recommended-header fadeIn animation-element slide-bottom text-uppercase">#{msgs.recommended}</h3>                            
+                        <ui:repeat value="#{BookBean.getRecommendedBooksNotLogged(4)}" var="book">
+                            <div class="col-md-3 col-sm-6 col-xs-6 margin-auto text-center" style="margin:0 auto;">
+                                <h:graphicImage id="object" class="img img-responsive fadeIn animation-element slide-bottom list-books margin-auto text-center" style=" margin:0 auto; width: auto; width: auto; height: auto; opacity: 0.8; border-style: solid; border-width: 1.5px; border-color: white;" name="images/smallcovers/#{book.image}" />
+                                <br/>
+                                <p:button value="#{msgs.details}" styleClass="" style="margin-bottom: 25px; background: none; border: 2px solid #43BFC7; color: #43BFC7;" outcome="/client/book.xhtml">
+                                    <f:param name="bookid" value="#{book.bookId}"/>
+                                </p:button>
+                            </div>
+
+                        </ui:repeat>
+                    </ui:fragment>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 why-us-border fadeIn animation-element slide-bottom">
+                    <h3 class="index-headers fadeIn animation-element slide-bottom text-uppercase">#{msgs.whyus}</h3><br/>
+                    <p class="index-small-header animation-element slide-bottom text-uppercase">#{msgs.ebooks}</p>                    
+
+                    <p class="text-black fadeIn animation-element slide-bottom">#{msgs.ebookstext}</p>
+
+
+                    <p class="index-small-header text-black fadeIn animation-element slide-bottom text-uppercase">#{msgs.library}</p>
+
+                    <p class="text-black fadeIn animation-element slide-bottom">#{msgs.librarytext}</p>
+
+
+                    <p class="index-small-header text-black fadeIn animation-element slide-bottom text-uppercase">#{msgs.newlatest}</p>
+
+                    <p class="text-black fadeIn animation-element slide-bottom">#{msgs.newlatesttext}</p>
+
+
+                    <p class="index-small-header text-black fadeIn animation-element slide-bottom text-uppercase">#{msgs.bestprices}</p>
+
+                    <p class="text-black fadeIn animation-element slide-bottom">#{msgs.bestpricestext}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FAQ Redirect -->
+    <div class=" faq-section">
+        <div class="container">
+            <div class="row padding-top-bot-m">
+                <div class="col-md-6 col-sm-12 col-xs-12 margin-auto text-center">
+                    <p class="read-everywhere text-center">#{msgs.readeverywhere}</p>
+                    <span class="devices-text">#{msgs.devices}</span>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h:graphicImage class="img img-responsive fadeIn animation-element slide-bottom"  name="images/icons/all-devices.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Browse by genre -->
+    <div class="parallax-browse para2 padding-top-bot-m">
+        <div class="container book-placeholder" style="margin:0 auto; ">
+            <div class="" >
+                <h3 class="browse-header fadeIn animation-element slide-bottom text-uppercase">#{msgs.browsebygenre}</h3>
+                <ui:repeat value="#{theGenres.genres}" var="item">
+                    <h:link outcome="/client/browse_genre.xhtml">
+                        <f:param name="genre" value="#{item.genreId}"/>
+                        <p class="btn btn-outlined btn-primary banner-buttons fadeIn animation-element slide-bottom spacing-genre signup-button genre-styling">
+                            #{item.genre}
+                        </p>
+                    </h:link>
+                </ui:repeat>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advertisements -->
+
+    <div class="advertisements-section">
+        <ui:repeat value="#{AdBean.chosenAds}" var="item">
+            <div class="col-md-6 col-sm-12 col-xs-12 ads">
+                <div class="book-row">
+                    <div class="card-design card-book">
+                        <a href="#{item.adLink}">
+                            <div class="wrapper">
+                                <div class="book-images ads-container">
+                                    <h:graphicImage class="img img-responsive fadeIn animation-element slide-bottom ads-single" style="width: 75%; margin:0 auto;" name="images/icons/#{item.image}" />
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ui:repeat>
+    </div>
+
+    <!-- Easy information -->
+    <div class="parallax para3">
+        <div class="container">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <h:graphicImage class="img img-responsive fadeIn animation-element slide-bottom" name="images/divbackgrounds/standard-ebooks.png" />
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12  margin-auto easy-border fadeIn animation-element slide-bottom">
+                <h3 class="index-headers fadeIn animation-element slide-bottom text-uppercase">#{msgs.easy}</h3><br/>
+                <p class="index-small-header animation-element slide-bottom text-uppercase">#{msgs.search}</p>
+                <p class="text-black fadeIn animation-element slide-bottom">#{msgs.searchtext}</p>
+                <p class="index-small-header fadeIn animation-element slide-bottom text-uppercase">#{msgs.browse}</p>
+                <p class="text-black fadeIn animation-element slide-bottom">#{msgs.browsetext}</p>                        
+                <p class="index-small-header fadeIn animation-element slide-bottom text-uppercase">#{msgs.discover}</p>
+                <p class="text-black fadeIn animation-element slide-bottom">#{msgs.discovertext}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-section">
+        <div class="container padding-top-bot-m">
+            <h3 class="search-header-index fadeIn animation-element slide-bottom text-uppercase">#{msgs.quicksearch}</h3><br/>
+            <h:form id="searchForm" class="form-horizontal">   
+                <!-- Dropdown selection for the search -->
+                <div class="form-group" id="searchgrid">
+                    <h:outputLabel for="choice" value="#{msgs.user_choice}" class="control-label col-sm-4 search-text fadeIn animation-element slide-bottom"/>     
+                    <div class="col-sm-4">
+                        <h:selectOneMenu id="choice" value="#{searchBackingBean.choice}" required="true" class="form-control custom-select fadeIn animation-element slide-bottom">
+                            <f:selectItem itemLabel="#{msgs.search_author}" itemValue="Author" />
+                            <f:selectItem itemLabel="#{msgs.search_publisher}" itemValue="Publisher" />
+                            <f:selectItem itemLabel="#{msgs.search_title}" itemValue="Title"/>
+                            <f:selectItem itemLabel="#{msgs.search_isbn}" itemValue="ISBN"/>
+                        </h:selectOneMenu>
+                    </div>       
+                    <h:message class="error" for="searchForm" id="searchFormMessage" />  
+                </div>
+                <!-- Textbox for specific keyword search -->
+                <div class="form-group">
+                    <h:outputLabel  for="input" rendered="#{!searchBackingBean.choice}" value="#{msgs.keyword_search}" 
+                                    class="control-label col-sm-4 search-text fadeIn animation-element slide-bottom"/>
+                    <div class="col-sm-4">
+                        <h:inputText  id="input"  rendered="#{!searchBackingBean.choice}" requiredMessage="#{msgs.empty_field}"
+                                      value="#{searchBackingBean.keyword}" required="true" class="form-control"/>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="text-center">
+                    <h:commandButton id="search" action="#{searchBackingBean.search()}" value="#{msgs.search}" class="btn btn-outlined btn-primary fadeIn animation-element slide-bottom"/>
+                </div>
+            </h:form>
+        </div>
+    </div>
+    <!-- Survey -->
+    <div class="parallax para4">
+        <div class="container padding-top-bot-m">
+            <div class="survey-section margin-auto text-center">
+
+                <h3 class="survey-header-index fadeIn animation-element slide-bottom text-uppercase">#{msgs.survey}</h3>
+                <h4 class="index-small-header animation-element slide-bottom text-center">#{surveyBackingBean.question}</h4>
+                <h:form id="survey">    
+                    <p:panel id="questionPanel" class="answer-panel" visible="#{surveyBackingBean.answerPanel}" toggleable="true">
+                        <div >
+                            <ui:repeat value="#{surveyBackingBean.answers}" var="answer">
+                                <h:commandButton id="surveyAnswerBtn" value="#{answer.answer}" action="#{surveyBackingBean.usersChoice(answer.responseId)}" 
+                                                 class="btn btn-outlined btn-primary fadeIn animation-element slide-bottom survey-btn">                         
+                                    <f:ajax render="survey"/>                        
+                                </h:commandButton>
+                            </ui:repeat> 
+                        </div>
+                    </p:panel>                
+                    <p:panel id="surveyPanel" visible="#{surveyBackingBean.chartPanel}" toggleable="true">
+                        <p:poll interval="5" update="updateItem"/>
+                        <p:chart id="updateItem" type="bar" model="#{chartBean.horizontalBarModel}" style="height:250px; width: 300px; margin-left: 25%;"/>
+                    </p:panel>
+                </h:form>
+            </div>
+        </div>
+    </div>
+    <!-- RSS News -->
+    <div class="news-section">
+        <br/>
+        <h3 class="news-header-index fadeIn animation-element slide-bottom text-uppercase">#{msgs.news}</h3>
+        <div class="rss-container">
+            <ui:repeat value="#{RssNewsBackingBean.rssFeedMessages}" var="item">
+                <div class="row image-wrapper">
+                    <div class="col-sm-4">
+                        <h:graphicImage style="width: 55%; height: 30%;" value="#{item.imageLinkFromFeed}" class="news-images" />
+                    </div>
+                    <div class ="col-sm-8">
+                        <span><a href="#{item.link}" class="news-styling">#{item.title}</a></span>
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <span class="news-description">#{item.descriptionFromFeed}</span>
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <span class="news-author">By: #{item.author}</span>
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                    </div>
+                </div>
+                <hr class="news-bar"/>
+            </ui:repeat>
+        </div>
+    </div>
+
+    <!-- The team -->
+    <div class="parallax para5">
+        <div class="container">
+            <div class="team-section">
+                <div class="col-md-4 ol-sm-12 col-xs-12 fadeIn animation-element slide-bottom">
+                    <h3 class="team-header-index">#{msgs.theteam}</h3>
+                    <h3 class="team-header-index2">MankabookS</h3>
+                    <p class="team-header-members">Kevin Bui</p>
+                    <p class="team-header-members">Alessanro Ciotola</p>
+                    <p class="team-header-members">Werner Jose Castanaza Arrecis</p>
+                    <p class="team-header-members">Denis Lebedev</p>
+                </div>
+                <div class="col-md-8 ol-sm-12 col-xs-12 fadeIn animation-element slide-bottom">
+                    <h:link outcome="/client/about.xhtml">
+                        <h:graphicImage class="img img-responsive shadowfilter the-team-image" name="images/banners/group1.png" />
+                    </h:link>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ui:composition>

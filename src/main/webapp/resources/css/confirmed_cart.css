@@ -1,0 +1,225 @@
+/* 
+    Created on : 20-Mar-2018, 2:03:55 PM
+    Author     : Alessandro
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.cart-container {
+    background-color: white;
+    padding-top: 0;
+    margin-bottom: 30px;
+    height: 100%;
+    width: 90%;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.book-container {
+    background-color: white;
+    padding-top: 0;
+    margin-bottom: 30px;
+    height: 100%;
+    width: 90%;
+}
+
+.confirmed-cart-btn {
+    padding-right: 0 !important;
+    margin-right: 0;
+    float: right;
+}
+
+.shipping-container {
+    background-color: white;
+    padding: 0;
+    height: 100%;
+}
+
+.margin-top-book {
+    margin-top: 15px;
+}
+
+.margin-middle {
+    padding-top: 40px;
+    padding-bottom: 35px;
+}
+
+.margin-middle-btn {
+    padding-top: 35px;
+}
+
+.cart-btn {
+    font-family: Raleway;
+    font-size: 14px;
+}
+
+.shipping-container {
+    max-width: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/readbook.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.book-image-list{
+    border-style: solid;
+    border-width: 1px;
+    border-color: green;
+    margin-bottom: 10px;
+}
+
+.book-image-list:hover {
+    transform: scale(1.03);
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+.confirmedAdded-header{
+    font-size: 14px;
+    font-family: Raleway;
+    font-weight: bold;
+    color: green;
+}
+
+.confirmedAlreadyAdded-header{
+    font-size: 14px;
+    font-family: Raleway;
+    font-weight: bold;
+    color: red;
+}
+
+.right-bar {
+    border-right: solid;
+    border-width: 1px;
+    border-color: black;
+    height:100px;
+}
+
+.bottom-bar {
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: black;
+    height: 100px;
+}
+
+.fa-check {
+    font-size: 1.5em;
+    color: green;
+}
+
+.fa-times {
+    font-size: 1.5em;
+    color: red;
+}
+
+.confirmedAdded-subtotal{
+    font-size: 14px;
+    font-family: Raleway;
+    padding-left: 40px;
+}
+
+.subtotal-price {
+    font-size: 14px;
+    font-family: Raleway;
+    color: red;
+    font-weight: bold;
+}
+
+.confirmedAdded-genreHeader{   
+    font-size: 18px;
+    font-family: Raleway;
+    color: black;
+}
+
+.book-row {
+    max-width: 100%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.card-book {
+    float: left;
+    padding: 0 1.7rem;
+    width: 50%;
+    list-style-type: none;
+}
+
+.card-design {
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.similar-genre-books {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: all .2s ease-in-out;
+    text-align: center;
+}
+
+.book-image-list-genres {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #43C6DB;
+}
+
+.book-image-list-genres:hover {
+    transform: scale(1.03);
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+.vl {
+    border-right: 2px solid black;
+    height: 100px;
+    margin-left: 170px;
+}
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 45px;
+    z-index: 1;
+}
+
+.first-row {
+    margin-bottom: 30px;
+}

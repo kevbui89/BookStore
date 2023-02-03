@@ -1,0 +1,255 @@
+/* 
+    Created on : Feb 8, 2018, 12:32:07 PM
+    Author     : Kevin
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.all-border {
+    border-color: #BCC6CC;
+    overflow: hidden;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.faq-general-header {
+    font-size: 1.5em;
+    margin: 20px;
+    color: black;
+    font-family: Raleway;
+    border-bottom:solid 3px #0000A0; 
+    display:inline-block;
+    font-weight: bold;
+}
+
+.general [data-toggle="collapse"]:after {
+    font-family: 'FontAwesome';
+    content: "\f103";
+    float: right;
+    color: #0000A0;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.panel-title {
+    font-weight: bold;
+}
+
+.panel-body{
+    height: auto;
+    overflow-y: hidden;
+}
+
+.faq-browse-header {
+    font-size: 1.5em;
+    margin: 20px;
+    color: black;
+    font-family: Raleway;
+    border-bottom:solid 3px #00FFFF; 
+    display:inline-block;
+    font-weight: bold;
+}
+
+.browsing [data-toggle="collapse"]:after {
+    font-family: 'FontAwesome';
+    content: "\f103";
+    float: right;
+    color: #00FFFF;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.faq-account-header {
+    font-size: 1.5em;
+    margin: 20px;
+    color: black;
+    font-family: Raleway;
+    border-bottom:solid 3px #FF00FF; 
+    display:inline-block;
+    font-weight: bold;
+}
+
+.account [data-toggle="collapse"]:after {
+    font-family: 'FontAwesome';
+    content: "\f103";
+    float: right;
+    color: #FF00FF;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.faq-checkout-header {
+    font-size: 1.5em;
+    margin: 20px;
+    color: black;
+    font-family: Raleway;
+    border-bottom:solid 3px #F87217; 
+    display:inline-block;
+    font-weight: bold;
+}
+
+.checkout [data-toggle="collapse"]:after {
+    font-family: 'FontAwesome';
+    content: "\f103";
+    float: right;
+    color: #F87217;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.faq-refunds-header {
+    font-size: 1.5em;
+    margin: 20px;
+    color: black;
+    font-family: Raleway;
+    border-bottom:solid 3px #98FF98; 
+    display:inline-block;
+    font-weight: bold;
+}
+
+.refunds [data-toggle="collapse"]:after  {
+    font-family: 'FontAwesome';
+    content: "\f103";
+    float: right;
+    color: #98FF98;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+    color: #E5E4E2;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/backgrounds/mainbg.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.faqcontainer .panel-default, .faqcontainer .panel-default > .panel-heading {
+    color: black;
+    background: white;
+    border-color: black;
+    border-radius: 0px;
+    opacity: 0.95;
+    border-bottom: 1px solid #333333;
+    font-size: 1em;
+    font-family: Raleway;
+}
+
+.payment-icons .icon {
+    height: 26px;
+    width: 40px;
+    list-style-type: none;
+}
+
+.payment-list {
+    float: left;
+    margin-right: 25px;
+    list-style-type: none;
+}
+
+.genres, .search-faq {
+    font-family: Raleway;
+    color: black;
+    font-size: 1em; 
+}
+
+.book-logo {
+    list-style-image: url("#{resource['images/icons/book.png']}");
+}
+
+.faq-miscellaneous-header {
+    font-size: 1.5em;
+    margin: 20px;
+    color: black;
+    font-family: Raleway;
+    border-bottom:solid 3px #FDD017; 
+    display:inline-block;
+    font-weight: bold;
+}
+
+.misc [data-toggle="collapse"]:after  {
+    font-family: 'FontAwesome';
+    content: "\f103";
+    float: right;
+    color: #FDD017;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.device-list {
+    float: left;
+    list-style-type: none;
+    margin-right: 25px;
+}
+
+.devices-icon {
+    list-style-type: none;
+    margin-left: 25px;
+}
+
+.device-icon-size {
+    height: 60px;
+    width: 40p;
+}
+
+.card {
+    width: 60%;
+    margin-top: 20px;
+}
+
+.faq-header-container {
+    height: 375px;
+    padding-top: 175px;
+    background-image: url("#{resource['images/banners/faq.jpg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.faq-header {
+    font-family: Raleway;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+a:after {
+    text-decoration: none !important;
+}
+
+a:before {
+    text-decoration: none !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .card {
+        width: 80%;
+    }
+}

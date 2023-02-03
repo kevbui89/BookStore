@@ -1,0 +1,344 @@
+/* 
+    Created on : Feb 8, 2018, 12:32:17 PM
+    Author     : Kevin
+*/
+
+p {
+    box-sizing: border-box;
+    font-family: Raleway;
+    color: white;
+}
+
+.job {
+    font-family: Raleway;
+    color: black;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.name {
+    color: black;
+}
+
+body {
+    background-image: url("#{resource['images/backgrounds/mainbg.jpg']}");
+    background-size: cover;
+}
+
+#container-about {
+    text-align: center;
+}
+
+.panel-heading {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 65px;
+    width: 70%;
+}
+
+#wrapper h1 {
+    color: #ECF6CE;
+}
+
+#wrapper > hr {
+    border: none;
+    border: 1px solid #fff;
+    width: 80%;
+}
+
+#background {
+    position: fixed;
+    background-color: black;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+}
+#background-img #background-image {
+    height: calc(100% + 100px);
+    width: calc(100% + 60px);
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    -webkit-filter: blur(3px);
+    background-image: url("#{resource['images/banners/about-bg.jpg']}");
+    background-size: cover;
+}
+
+@keyframes arrowWiggle {
+    0% {
+        right: 50px;
+    }
+    50% {
+        right: 35px;
+    }
+    100% {
+        right: 50px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    transition: .5s ease-in-out;
+}
+
+.social-links:hover {
+    background-color: transparent;
+}
+
+.member-desc {
+    color: black;
+}
+
+.display-members {
+    width: 100%;
+}
+
+html h1, body h1 {
+    font-size: 16px;
+    font-weight: 200;
+    color: white;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+#wrapper {
+    opacity: 0;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#wrapper.loaded {
+    opacity: 1;
+}
+
+#wrapper #content {
+    display: inline-block;
+}
+
+
+/* Cards */
+/* Card Kevin */
+
+#card, #card-ale, #card-werner, #card-denis {
+    height: 400px;
+    width: 300px;
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    perspective: 600px;
+    margin-right: 20px;
+}
+
+#card #front, #card #back, #card-ale #front, #card-ale #back-ale, #card-werner #front, #card-werner #back-werner, #card-denis #front, #card-denis #back-denis {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#card #front, #card-ale #front, #card-werner #front, #card-denis #front {
+    transform: rotateY(0deg);
+    overflow: hidden;
+    z-index: 1;
+}
+
+#card #front #top-pic-kevin {
+    height: 50%;
+    width: 100%;
+    background-image: url("#{resource['images/banners/kev-bg.jpg']}");
+    background-size: cover;
+}
+
+#card #front #avatar-kevin {
+    width: 114px;
+    height: 114px;
+    top: 50%;
+    left: 50%;
+    margin: -77px 0 0 -57px;
+    border-radius: 100%;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 4px 5px rgba(107, 5, 0, 0.6), 0 0 50px 50px rgba(255, 255, 255, 0.25);
+    background-image: url("#{resource['images/team/kevin.jpg']}");
+    background-size: contain;
+    position: absolute;
+    z-index: 1;
+}
+
+#card #front #info-box, #card-ale #front #info-box, #card-werner #front #info-box, #card-denis #front #info-box {
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    bottom: 0;
+    background: #4C787E;
+    padding: 50px;
+}
+
+#card #front #social-bar, #card-ale #front #social-bar, #card-werner #front #social-bar, #card-denis #front #social-bar {
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    line-height: 50px;
+    font-size: 18px;
+    text-align: center;
+}
+
+#card #front #social-bar a, #card-ale #front #social-bar a, #card-werner #front #social-bar a, #card-denis #front #social-bar a {
+    display: inline-block;
+    color: #00FFFF;
+    text-decoration: none;
+    padding: 5px;
+    line-height: 18px;
+    border-radius: 5px;
+}
+
+#card #front #social-bar a:hover, #card-ale #front #social-bar a:hover, #card-werner #front #social-bar a:hover, #card-denis #front #social-bar a:hover {
+    color: #008080;
+    background: rgba(255, 255, 255, 0.3);
+    transition: .25s ease-in-out;
+}
+
+#card #back, #card-ale #back-ale, #card-werner #back-werner, #card-denis #back-denis {
+    transform: rotateY(180deg);
+    background-color: rgba(255, 255, 255, 0.6);
+    display: table;
+    z-index: 2;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 50px;
+}
+
+#card #back .back-info, #card-ale #back-ale .back-info, #card-werner #back-werner .back-info, #card-denis #back-denis .back-info {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#card #back #social-bar, #card-ale #back-ale #social-bar, #card-werner #back-werner #social-bar, #card-denis #back-denis #social-bar {
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    line-height: 50px;
+    font-size: 18px;
+    text-align: center;
+}
+
+#card #back #social-bar a, #card-ale #back-ale #social-bar a, #card-werner #back-werner #social-bar a, #card-denis #back-denis #social-bar a {
+    display: inline-block;
+    line-height: 18px;
+    color: #00FFFF;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#card #back #social-bar a:hover, #card-ale #back-ale #social-bar a:hover, #card-werner #back-werner #social-bar a:hover, #card-denis #back-denis #social-bar a:hover {
+    color: #008080;
+    background: rgba(255, 255, 255, 0.8);
+    transition: .25s ease-in-out;
+}
+
+#card .info, #card-ale .info, #card-werner .info, #card-denis .info {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#card.flip #front, #card-ale.flip #front, #card-werner.flip #front, #card-denis.flip #front {
+    transform: rotateY(180deg);
+}
+
+#card.flip #back, #card-ale.flip #back-ale, #card-werner.flip #back-werner, #card-denis.flip #back-denis {
+    transform: rotateY(360deg);
+}
+
+/* Card Alessandro */
+
+#card-ale #front #top-pic-ale {
+    height: 50%;
+    width: 100%;
+    background-image: url("#{resource['images/banners/ale-bg.jpg']}");
+    background-size: cover;
+}
+
+#card-ale #front #avatar-ale {
+    width: 114px;
+    height: 114px;
+    top: 50%;
+    left: 50%;
+    margin: -77px 0 0 -57px;
+    border-radius: 100%;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 4px 5px rgba(107, 5, 0, 0.6), 0 0 50px 50px rgba(255, 255, 255, 0.25);
+    background-image: url("#{resource['images/team/alessandro.jpg']}");
+    background-size: contain;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Card Werner */
+
+#card-werner #front #top-pic-werner {
+    height: 50%;
+    width: 100%;
+    background-image: url("#{resource['images/banners/jose-bg.jpg']}");
+    background-size: cover;
+}
+
+#card-werner #front #avatar-werner {
+    width: 114px;
+    height: 114px;
+    top: 50%;
+    left: 50%;
+    margin: -77px 0 0 -57px;
+    border-radius: 100%;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 4px 5px rgba(107, 5, 0, 0.6), 0 0 50px 50px rgba(255, 255, 255, 0.25);
+    background-image: url("#{resource['images/team/jose.jpg']}");
+    background-size: contain;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Card Denis */
+
+#card-denis #front #top-pic-denis {
+    height: 50%;
+    width: 100%;
+    background-image: url("#{resource['images/banners/denis-bg.jpg']}");
+    background-size: cover;
+}
+
+#card-denis #front #avatar-denis {
+    width: 114px;
+    height: 114px;
+    top: 50%;
+    left: 50%;
+    margin: -77px 0 0 -57px;
+    border-radius: 100%;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 4px 5px rgba(107, 5, 0, 0.6), 0 0 50px 50px rgba(255, 255, 255, 0.25);
+    background-image: url("#{resource['images/team/denis.jpg']}");
+    background-size: contain;
+    position: absolute;
+    z-index: 1;
+}
+
+.padding-m {
+    margin: 0;
+}

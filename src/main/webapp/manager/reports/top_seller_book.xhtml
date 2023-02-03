@@ -1,0 +1,83 @@
+<!-- @author: Denis -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:form>
+
+        <p:messages autoUpdate="true"/>
+        <p:wizard id="topSellerBookWiz" backLabel="#{msgs.back}" nextLabel="#{msgs.next}">
+
+            <p:tab title="#{msgs.search_req}">
+                <p:panel header="#{msgs.step1}">
+                    <p:messages />
+
+                    <p:outputLabel for="startdate" value="#{msgs.start_date}" />
+                    <p:calendar id="startdate" requiredMessage="#{msgs.required_date}" required="true" value="#{topSellerBook.startDate}" navigator="true" showOn="button" />
+
+                    <p:outputLabel for="enddate" value="#{msgs.end_date}" />
+                    <p:calendar id="enddate" requiredMessage="#{msgs.required_date}" required="true" value="#{topSellerBook.endDate}" navigator="true" showOn="button" />
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="display" title="#{msgs.display_info}">
+                <p:panel header="#{msgs.step2}">
+                    <p:messages />
+
+                    <p:dataTable id="data" var="b" value="#{topSellerBook.data}" style="margin-bottom:40px"
+                                 emptyMessage="#{msgs.no_record}" rows="10" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">
+                            #{msgs.display_data}
+                        </f:facet>
+
+                        <p:column style="width:25px">
+                            <p:rowToggler />
+                        </p:column>
+
+                        <p:column headerText="#{msgs.book_isbn}" filterBy="#{b.isbn}" filterMatchMode="contains">
+                            <h:outputText value="#{b.isbn}" />
+                        </p:column>
+                        <p:column headerText="#{msgs.book_title}" filterBy="#{b.title}" filterMatchMode="contains">
+                            <h:outputText value="#{b.title}" />
+                        </p:column>
+
+                        <p:rowExpansion>
+                            <p:panelGrid columns="2" columnClasses="label,value" style="width:300px">
+
+                                <f:facet name="header">
+                                    <p:graphicImage name="images/smallcovers/#{b.image}"/> 
+                                </f:facet>
+
+                                <h:outputText value="#{msgs.book_isbn}" />
+                                <h:outputText value="#{b.isbn}" />
+
+                                <h:outputText value="#{msgs.book_title}" />
+                                <h:outputText value="#{b.title}" />
+
+                                <h:outputText value="#{msgs.book_price}" />
+                                <h:outputText value="#{b.listPrice}" />
+
+                                <h:outputText value="#{msgs.book_sale}" />
+                                <h:outputText value="#{b.salePrice}" />
+
+                                <h:outputText value="#{msgs.book_wholeP}" />
+                                <h:outputText value="#{b.wholesalePrice}"/>
+
+                                <h:outputText value="#{msgs.book_totalS}" />
+                                <h:outputText value="#{b.totalSale}"/>
+
+                            </p:panelGrid>
+                        </p:rowExpansion>
+                    </p:dataTable>
+                </p:panel>
+            </p:tab>
+        </p:wizard>
+
+    </h:form> 
+</ui:composition>

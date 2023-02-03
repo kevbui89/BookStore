@@ -1,0 +1,161 @@
+
+/* 
+    Created on : Mar 6, 2018, 5:40:04 PM
+    Author     : Werner
+*/
+body {
+    background-size: cover;
+    background-image: url("#{resource['images/divbackgrounds/index-background-4.jpg']}");
+}
+
+.container {
+    margin-top: 25px;
+}
+.card {
+    /* Add shadows to create the "card" effect */
+    width: 100%;
+    padding: 25px;
+    background-color: white;
+    opacity: 0.95;
+    height: auto;   
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 25px 26px 0 rgba(0,0,0,0.2);
+}
+.img-bookcover {
+    height: 500px;
+}
+.inner-container-margin {
+    margin-left: 15px;
+}
+.custom-container-stock {
+    max-width: 99%;
+}
+.header-stock {
+    background-color: red;
+}
+.card-stock {
+    padding: 10px;
+    background-color: white;
+    opacity: 0.9;
+    height: auto;  
+}
+.card-stock:hover  {
+    box-shadow: 0 25px 26px 0 rgba(0,0,0,0.2);
+}
+.stock-book-cell {
+    border: solid;
+    border-width: thin;
+}
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+.inner-container {
+
+}
+.sub-header {
+    border-bottom: none;
+    border-width: 0;
+}
+
+element {
+
+}
+.ui-paginator.ui-paginator-top {
+
+    border-bottom: 0 none;
+
+}
+.ui-datatable .ui-paginator, .ui-datatable .ui-paginator {
+
+    padding: 2px;
+
+}
+.ui-paginator {
+
+    margin: 0;
+    text-align: center;
+    padding: 2px;
+
+}
+.ui-corner-top {
+
+    -moz-border-radius-topleft: 0;
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+
+}
+.ui-widget-header {
+    border: none;
+    border-bottom-width: 0;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    background: transparent;
+    background: transparent;
+    background: transparent;
+    background: #ececec;
+    color: black;
+    font-weight: bold;
+    text-shadow: transparent;
+
+}
+
+.ui-datatable table {
+    border-collapse: collapse;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.ui-widget {
+    font-family: Arial,sans-serif;
+    font-size: 1.1em;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: none;
+    background: none;
+    background: none;
+    background: none;
+    background: none;
+    font-weight: bold;
+    color: black;
+    text-shadow: none;
+}
+
+.btn-default {
+    text-shadow: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    filter:none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #dbdbdb;
+    border-color: #ccc;
+}
+.btn-default:hover {
+    background-color: #f5f7f8;
+}
+
+.padding-bot-xl {
+    padding-bottom: 25px;
+}
+.padding-right-s {
+    padding-right: 10px;
+}

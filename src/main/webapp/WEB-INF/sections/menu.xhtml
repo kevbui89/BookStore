@@ -1,0 +1,128 @@
+<!-- @author: Kevin, Alessandro -->
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{preRenderViewBean.checkCookies}"/>
+    </f:metadata>
+
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <div class="navbar-header pull-left">
+                <h:link class="navbar-brand" outcome="/client/index.xhtml">
+                    <h:graphicImage class="" name="images/logos/mankabooks_logoheader.png" style="opacity: 0.8;"/>
+                </h:link>
+            </div>
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle pull-right">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse pull-right" style="padding-right: 50px;" >
+            <ul class="nav navbar-nav margin-auto text-center" style="font-size: 14px;">
+                <li class="menu-links">
+                    <h:link id="searchLink" outcome="/client/advanced_search.xhtml">
+                        <span class="menu-icon fa fa-book"></span>
+                        #{msgs.search}
+                    </h:link>
+                </li>
+                <li class="menu-links">
+                    <h:link id="browseLink" outcome="/client/browse_genre.xhtml">
+                        <span class="menu-icon fa fa-eye"></span>
+                        #{msgs.browse}
+                    </h:link>
+                </li>
+                <li class="menu-links">
+                    <h:link id="faqLink" outcome="/client/faq.xhtml">
+                        <span class="menu-icon fa fa-question-circle"></span>
+                        #{msgs.faq}
+                    </h:link>
+                </li>
+                <li class="menu-links">
+                    <h:link outcome="/client/shopping_cart.xhtml" id="shop-cart">
+                        <span class="menu-icon fa fa-shopping-cart"></span>
+                        #{msgs.cart} (#{cartBean.totalItems()})
+                    </h:link>
+                </li>
+                <ui:fragment rendered="#{empty loginBean.client.email}">
+                    <li class="menu-links">
+                        <h:link id="loginhLink" outcome="/client/login.xhtml">
+                            <span class="menu-icon fa fa-key"></span>
+                            #{msgs.login}
+                        </h:link>
+                    </li>                     
+                    <li class="menu-links">
+                        <h:link id="registerLink" outcome="/client/registration.xhtml">
+                            <span class="menu-icon fa fa-user-plus"></span>
+                            #{msgs.register}
+                        </h:link>
+                    </li>
+                </ui:fragment>
+                <ui:fragment rendered="#{not empty loginBean.client.email}">
+                    <li>
+                        <h:form class="menu-form">
+                            <p:menubar>
+                                <p:submenu id="submenuLink" label="#{msgs.myaccount}" icon="fa fa-user" styleClass="nav-menu-form">                                        
+                                    <p:menuitem styleClass="nobg" value="#{msgs.myorders}" action="/client/myorders.xhtml" ajax="false"/>
+                                    <p:menuitem styleClass="nobg" value="#{msgs.myaccount}" action="/client/account_info.xhtml" ajax="false"/>
+                                    <p:menuitem styleClass="nobg" value="#{msgs.mylibrary}" action="/client/library.xhtml" ajax="false"/>
+                                    <p:separator />
+                                    <p:menuitem styleClass="nobg" value="#{msgs.logout}" action="#{loginBean.logOut()}" ajax="false"/>
+                                </p:submenu>
+                            </p:menubar>
+                        </h:form>
+                    </li>
+                </ui:fragment>
+                <ui:fragment rendered="#{not empty loginBean.client.email and loginBean.client.manager}">
+                    <li class="menu-links">
+                        <h:link outcome="/manager/manager.xhtml">
+                            <span class="menu-icon fa  fa-area-chart"></span>
+                            #{msgs.admin}
+                        </h:link>
+                    </li>                     
+                </ui:fragment>
+                <li class="language menu-links">
+                    <h:form class="menu-form">
+                        <h:commandLink  actionListener="#{localeChanger.changeLocale}" 
+                                        styleClass="nav-menu-form">    
+
+                            <f:param name="languageCode" value="#{msgs.code}" /> 
+                            <span class="menu-icon fa fa-globe" styleClass="nav-menu-form"></span>
+                            #{msgs.codeLang}
+                        </h:commandLink>
+                    </h:form>
+                </li>
+               <li class="search">
+                    <h:form class="navbar-form">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <h:inputText value="#{searchBackingBean.keyword}" class="form-control menu-search"></h:inputText>
+                                <div class="input-group-btn">
+                                    <h:commandButton image="#{resource['images/icons/search.png']}" actionListener='#{loginBean.setPreviousPage("/client/search.xhtml")}' 
+                                                     action="#{searchBackingBean.generalSearch()}" class="btn btn-custom">  
+                                    </h:commandButton>
+                                    <f:metadata>
+                                        <f:param name="id" value="#{searchBackingBean.keyword}" />
+                                    </f:metadata>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</ui:composition>

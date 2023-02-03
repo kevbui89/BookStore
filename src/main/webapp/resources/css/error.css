@@ -1,0 +1,48 @@
+/* 
+    Created on : Feb 16, 2018, 8:33:00 PM
+    Author     : Kevin
+*/
+
+body {
+    /*background-color: white;*/
+    background-image: url("#{resource['images/error/error_bg.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+} 
+
+.center {
+    margin-top: 50px;
+    text-align: center;
+}
+
+html {
+    height: 100%;
+}
+
+.link {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.error-btn {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: black;
+    background: white;
+    border-color: white;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid white;
+    color: black;
+    background-color: #E5E4E2;
+    opacity: 0.8;
+}

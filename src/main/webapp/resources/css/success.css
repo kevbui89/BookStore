@@ -1,0 +1,106 @@
+/* 
+    Created on : Mar 3, 2018, 4:10:16 PM
+    Author     : Kevin
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/backgrounds/mainbg.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+}
+
+.success-header {
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+}
+
+.redirect-text {
+    font-family: Raleway;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+}
+
+.success-container {
+    background-color: white;
+    padding-top: 0;
+    height: 100%;
+    width: 70%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.a-header {
+    color: black;
+}
+
+hr.bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF); 
+}
+
+.myorders-header {
+    font-family: Raleway;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.background {
+    min-height: 78%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -80px;
+}
+
+

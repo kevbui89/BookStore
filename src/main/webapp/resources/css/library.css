@@ -1,0 +1,183 @@
+/* 
+    Created on : Mar 12, 2018, 8:42:55 PM
+    Author     : Kevin
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.library-container {
+    background-color: white;
+    padding-top: 0;
+    margin-bottom: 30px;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/readbook.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+hr.bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF); 
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.background {
+    min-height: 60%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px;
+}
+
+.bg-black {
+    margin-top: 50px;
+}
+
+.btn-outlined.btn-primary.signup-button2 {
+    background: none;
+    border: 1px solid black;
+    color: black;
+    font-family: Raleway;
+    font-size: 20px;
+}
+
+.btn-outlined.btn-primary.signup-button2:hover,
+.btn-outlined.btn-primary.signup-button2:active {
+    color: white !important;
+    background: black;
+    border-color: black;
+}
+
+.item-id-container {
+    padding-right: 0;
+}
+
+.book-image-container {
+    margin-bottom: 20px;
+}
+
+.book-image {
+    width:64px; 
+    height:100px;
+}
+
+.book-image:hover {
+    transform: scale(1.03);
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+.book-info {
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.book-info-label {
+    font-family: Raleway;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.information {
+    font-family: Raleway;
+    font-size: 13px;
+    color: #43C6DB;
+}
+
+.download-btn {
+    height: 120px;
+    margin-bottom: 20px;
+    padding-right: 7%;
+}
+
+.downloadlink {
+    color: black;
+    font-size: 2em;
+    margin-left: 50px;
+}
+
+.downloadlink:hover {
+    color: #43C6DB;
+    transform: scale(1.1);
+}
+
+.lib-headers {
+    font-family: Raleway;
+    font-size: 26px;
+    font-weight: bold;
+    color: black;
+}
+
+.headers {
+    padding-bottom: 10px;
+}
+
+.error {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+}
+
+.no-orders-container {
+    background-color: white;
+    padding-top: 0;
+    height: 100%;
+    width: 70%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empty-orders-text {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.empty-orders-header {
+    font-family: Raleway;
+    font-size: 28px;
+    font-weight: bold;
+}

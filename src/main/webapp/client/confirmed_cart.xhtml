@@ -1,0 +1,160 @@
+<!-- Alessandro -->
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="confirmed_cart.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.shoppingcart}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener='#{loginBean.setPreviousPage("/client/confirmed_cart.xhtml")}' />
+            <f:event type="preRenderView" listener='#{checkoutBean.setBookList(cartBean.bookList)}' />
+
+        </f:metadata>
+        <ui:fragment rendered="#{cartBean.alreadyInCart}">
+            <div class="container margin-top-xl cart-container ">
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-1">
+                        <span class="menu-icon fa fa-times"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <a href="book.xhtml?bookid=#{BookBean.book.bookId}">
+                            <h:graphicImage class="book-image-list margin-top-book" style="width: 48px; height: 75px; opacity: 0.9;" name="images/smallcovers/#{BookBean.book.image}" />
+                        </a> 
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2 ">
+                        <span class="confirmedAlreadyAdded-header">#{msgs.alreadyadded}</span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3 ">
+                        <span class="confirmedAdded-subtotal">#{msgs.cartSubtotal} (#{cartBean.totalItems()} #{msgs.itemName}): </span>  
+                        <span class="subtotal-price">$#{cartBean.getPriceNoTax()}</span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3 ">
+                        <h:link id="cartBtnAlreadyInCart" outcome="/client/shopping_cart.xhtml">
+                            <span class="btn btn-outlined btn-primary cart-btn">
+                                #{msgs.cart}
+                            </span>
+                        </h:link>
+                        <h:link onclick="#{checkoutBean.setBookList(cartBean.bookList)}" outcome="/client/checkout.xhtml">
+                            <span class="btn btn-outlined btn-primary cart-btn">
+                                #{msgs.proceedBtn} (#{cartBean.totalItems()} #{msgs.itemName})
+                            </span>
+                        </h:link>   
+                    </div>
+                </div>
+            </div>
+        </ui:fragment>
+        <ui:fragment rendered="#{!cartBean.alreadyInCart}">
+            <div class="container margin-top-xl cart-container ">
+                <div class="row">
+                    <div class="shipping-container container">
+                        <div class="col-md-1 col-sm-1 col-xs-1 margin-middle">
+                            <span class="menu-icon fa fa-check"></span>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 ">
+                            <a href="book.xhtml?bookid=#{BookBean.book.bookId}">
+                                <h:graphicImage class="book-image-list margin-top-book" style="width: 48px; height: 75px; opacity: 0.9;" name="images/smallcovers/#{BookBean.book.image}" />
+                            </a> 
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-2 margin-middle">
+                            <span class="confirmedAdded-header">#{msgs.added}</span>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 margin-middle" >
+                            <span class="confirmedAdded-subtotal">#{msgs.cartSubtotal} (#{cartBean.totalItems()} #{msgs.itemName}): </span>  
+                            <span class="subtotal-price">$#{cartBean.getPriceNoTax()}</span>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 margin-middle">
+                            <h:link id="cartBtn" outcome="/client/shopping_cart.xhtml">
+                                <span class="btn btn-outlined btn-primary cart-btn">
+                                    #{msgs.cart}
+                                </span>
+                            </h:link>
+                            <h:link outcome="/client/checkout.xhtml">
+                                <span class="btn btn-outlined btn-primary cart-btn">
+                                    #{msgs.proceedBtn} (#{cartBean.totalItems()} #{msgs.itemName})
+                                </span>
+                            </h:link>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:fragment>
+
+        <div class="container book-container scroller">
+            <div class="row padding-m ">
+                <span class="confirmedAdded-genreHeader">#{msgs.booksonsale}</span>
+                <hr/>    
+                <ui:repeat value="#{BookBean.getBooksOnSale(4)}" var="book">
+                    <div class="col-md-3 col-sm-6 col-xs-6 first-row">
+                        <div class="book-row">
+                            <div class="">
+                                <a href="book.xhtml?bookid=#{book.bookId}">
+                                    <div class="similar-genre-books">
+                                        <h:graphicImage class="img img-responsive" style="width: auto; height: auto; opacity: 0.8;" name="images/smallcovers/#{book.image}" />
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </ui:repeat>
+                <span class="confirmedAdded-genreHeader">#{msgs.booksrecentlyadded}</span>
+                <hr/>    
+                <ui:repeat value="#{BookBean.getMostRecentBooks(4)}" var="book">
+                    <div class="col-md-3 col-sm-6 col-xs-6 first-row">
+                        <div class="book-row">
+                            <div class="">
+                                <a href="book.xhtml?bookid=#{book.bookId}">
+                                    <div class="similar-genre-books">
+                                        <h:graphicImage class="book-image-list-genres" style="width: auto; height: auto; opacity: 0.8;" name="images/smallcovers/#{book.image}" />
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </ui:repeat>
+                <span class="confirmedAdded-genreHeader">#{msgs.similarbooksbygenre}</span>
+                <hr/>    
+                <ui:repeat value="#{BookBean.similarBooksByGenre}" var="book">
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="book-row">
+                            <div class="">
+                                <a href="book.xhtml?bookid=#{book.bookId}">
+                                    <div class="similar-genre-books">
+                                        <h:graphicImage class="img img-responsive" style="width: auto; height: auto; opacity: 0.8;" name="images/smallcovers/#{book.image}" />
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </ui:repeat>
+                <ui:fragment rendered="#{!BookBean.checkIfSimilarAuthorIsZero(BookBean.book)}">
+                    <span class="confirmedAdded-genreHeader">#{msgs.booksbysimilarauthor}</span>
+                    <hr/>    
+                    <ui:repeat value="#{BookBean.similarBooksByAuthor}" var="book">
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="book-row">
+                                <div class=" ">
+                                    <a href="book.xhtml?bookid=#{book.bookId}">
+                                        <div class="similar-genre-books">
+                                            <h:graphicImage class="img img-responsive" style="width: auto; height: auto; opacity: 0.8;" name="images/smallcovers/#{book.image}" />
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </ui:fragment>
+            </div>
+        </div>
+    </ui:define> 
+</ui:composition>

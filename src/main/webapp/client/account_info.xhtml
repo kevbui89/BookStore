@@ -1,0 +1,122 @@
+<!-- @Author Kevin Bui -->
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="windowTitle">
+        #{msgs.accinfo}
+    </ui:define>
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="account_info.css" />
+    </ui:define> 
+
+    <!-- Header -->
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <div class="info-container">
+            <section class="card-settings margin-top-xl">
+                <div class="row padding-m">
+                    <h2 class="text-center a-header">#{msgs.yourinformation}</h2>
+                    <hr class="settings-bar"/>
+                    <div class="panel-body">
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.username}: </span> 
+                                <span class="information">#{loginBean.client.username}</span>
+                            </div>
+                        </div>
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.email}:</span>
+                                <span class="information">#{loginBean.client.email}</span>
+                            </div>
+                        </div>
+
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.password}: </span>
+                                <span class="information">********</span>
+                            </div>
+                        </div>
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.title}: </span>  
+                                <span class="information">#{loginBean.client.title}</span>
+                            </div>
+                        </div>
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.company}: </span> 
+                                <span class="information">#{loginBean.client.company}</span>
+                            </div>
+                        </div>
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.first_name}: </span>  
+                                <span class="information">#{loginBean.client.firstName}</span>
+                            </div>
+                            <div class="col-md-6 second-column">
+                                <span class="info-label">#{msgs.last_name}: </span>
+                                <span class="information">#{loginBean.client.lastName}</span>
+                            </div>
+                        </div>
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.address1}: </span>
+                                <span class="information"> #{loginBean.client.addressOne}</span>
+                            </div>
+                            <div class="col-md-6 second-column">
+                                <span class="info-label"> #{msgs.address2}:</span> 
+                                <span class="information"> #{loginBean.client.addressTwo}</span>
+                            </div>
+                        </div>
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.city}: </span>
+                                <span class="information">#{loginBean.client.city}</span>
+                            </div>
+                            <div class="col-md-6 second-column">
+                                <span class="info-label"> #{msgs.province}: </span>
+                                <span class="information"><h:outputText value="#{loginBean.client.provinceId}" converter="#{ProvinceConverter}"/></span>
+                            </div>
+                        </div>
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.country}: </span> 
+                                <span class="information"><h:outputText value="#{loginBean.client.countryId}" converter="#{CountryConverter}"/></span>
+                            </div>
+                            <div class="col-md-6 second-column">
+                                <span class="info-label">#{msgs.postal_code}: </span>  
+                                <span class="information">#{loginBean.client.postalCode}</span>
+                            </div>
+                        </div>
+                        <div class="row info-container">
+                            <div class="col-md-6 first-column">
+                                <span class="info-label">#{msgs.home_tel}: </span>
+                                <span class="information">#{loginBean.client.homeTel}</span>
+                            </div>
+                            <div class="col-md-6 second-column">
+                                <span class="info-label"> #{msgs.cell_tel}: </span>
+                                <span class="information">#{loginBean.client.cellTel}</span>
+                            </div>
+                        </div>
+                        <div class="row edit-btn">
+                            <div class="edit-btn-container">
+                                <h:link id="log-link" value="#{msgs.edit}" class="btn btn-outlined btn-primary signup-button2" outcome="/client/account_settings.xhtml"/>      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </ui:define>
+
+</ui:composition>

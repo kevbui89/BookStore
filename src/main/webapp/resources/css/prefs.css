@@ -1,0 +1,177 @@
+/* 
+    Created on : Mar 2, 2018, 1:38:54 PM
+    Author     : Kevin, Werner
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/backgrounds/mainbg.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.prefs-header {
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+}
+
+.prefs-header-container {
+    background-color: white;    
+    height: 125px;
+    padding-bottom: 0;
+}
+
+.submit-button {
+    font-family: Circular, Raleway;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.prefs-container {
+    background-color: white;
+    padding-top: 0;
+    margin-bottom: 30px;
+    height: 100%;
+}
+
+.a-header {
+    color: #43C6DB;
+}
+
+.choose-prefs {
+    font-family: Raleway;
+    font-size: 18px;
+}
+
+hr.bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF); 
+}
+
+.selection-header {
+    font-family: Raleway;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.book-row {
+    max-width: 900px;
+    margin: 50px auto 0;
+}
+
+.card-book {
+    float: left;
+    padding: 0 1.7rem;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.card-book .wrapper {
+    background-color: #fff;
+    height: 300px;
+    width: 200px;
+    position: relative;
+    overflow: hidden;
+    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-book:hover {
+    transform: scale(1.02);
+}
+
+.text-center {
+    color: black; 
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.col-md-12 {
+    margin-bottom: 50px;
+}
+
+.padding-m {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.selection-pref .ui-state-active {
+    border-style: solid;
+    border-color: red;
+    border-width: 5px;
+}
+
+.pref-image {
+    width: 100%; 
+    height: 100%; 
+    opacity: 0.5;
+}
+
+.active {
+    border-style: solid;
+    border-width: 4px;
+    border-color: #43C6DB;
+    opacity: 1;
+}
+
+.skip {
+    margin-bottom: 25px;
+    float: right;
+}
+
+.skip-button {
+    font-family: Circular, Raleway;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.error {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+}

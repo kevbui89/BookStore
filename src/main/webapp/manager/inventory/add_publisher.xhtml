@@ -1,0 +1,24 @@
+<!-- @author: Denis -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+        <h:form id="newPublisher">
+            <p:messages autoUpdate="true"/>
+            
+            <h:outputLabel for="publisher" value="#{msgs.new_publisher}"/>
+            <h:inputText id="publisher" 
+                         required="true"
+                         value="#{createPublisher.publisher.publisher}" 
+                         requiredMessage="#{msgs.required_pub}"
+                         validator="#{uniqueValidator.validatePublisherNameAndRange}">
+            </h:inputText>
+
+
+            <h:commandButton id="saveButton" value="#{msgs.submit}"
+                             action="#{createPublisher.createPublisher()}" />
+
+        </h:form>
+</ui:composition>

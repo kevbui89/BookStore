@@ -1,0 +1,93 @@
+<!-- @author Kevin Bui -->
+
+<ui:composition
+    template="/WEB-INF/templates/printTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="print_invoice.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.myorders}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn()}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <ui:fragment rendered="#{not empty loginBean.client.email}">
+            <div class="container">
+                <div class="row padding-m">
+                    <h1 class="a-header">MankabookS</h1>
+                    <hr class="bar"/>
+                    <h1 class="a-header">Invoice ID##{MyOrdersBean.masterInvoiceId}</h1>
+                    <hr class="bar"/>
+                    <h1 class="a-header date-header">Purchase Date: 
+                        <h:outputFormat value="{0, date, yyyy-MM-dd}">
+                            <f:param value="#{MyOrdersBean.masterInvoice.saleDate}" />
+                        </h:outputFormat>
+                    </h1>
+                    <hr class="bar"/>
+                    <ui:repeat value="#{MyOrdersBean.masterInvoice}" var="item">
+                        <ui:repeat value="#{MyOrdersBean.getDetailInvoiceForMasterInvoice(item.invoiceId)}" var="details">
+                            <!-- Details invoice for the current master invoice -->
+                            <div class="book-info">
+                                <span class="book-info-label">#{msgs.book_title}: </span>
+                                <span class="information">#{details.bookId.title}</span>
+                                <br/>
+                                <span class="book-info-label">#{msgs.book_author}: </span>
+                                <ui:repeat value="#{details.bookId.authorList}" var="author">
+                                    <span class="information">#{author.name}</span>
+                                </ui:repeat>
+                                <br/>
+                                <span class="book-info-label">#{msgs.publisher}: </span>
+                                <span class="total-values">#{details.bookId.publisherId.publisher}</span>
+                                <br/>
+                                <span class="book-info-label">#{msgs.book_genre}: </span>
+                                <ui:repeat value="#{details.bookId.genreList}" var="genre">
+                                    <span class="information">#{genre.genre}</span>
+                                </ui:repeat>
+                                <br/>
+                                <span class="book-info-label">#{msgs.isbn}: </span>
+                                <span class="information">#{details.bookId.isbn}</span>
+                                <br/>
+                                <span class="book-info-label">#{msgs.format}: </span>
+                                <span class="information">#{details.bookId.formatId.bookFormat}</span>
+                                <br/>
+                                <span class="book-info-label">#{msgs.book_price}: </span>
+                                <span class="total-values">$#{details.bookPrice}</span>
+                            </div>
+                            <hr class="bar"/>
+                        </ui:repeat>
+                        <!-- Gross and net value of each master invoices -->
+                        <div class="total-container">
+                            <span class="totals">#{msgs.netvalue}: </span>
+                            <span class="total-values">$#{item.netValue}</span>
+                            <br/>
+                            <span class="totals">GST: </span>
+                            <span class="total-values">%<h:outputText value="#{item.detailInvoiceList.get(0).gst}"></h:outputText></span>
+                            <br/>
+                            <span class="totals">PST: </span>
+                            <span class="total-values">%<h:outputText value="#{item.detailInvoiceList.get(0).pst}"></h:outputText></span>
+                            <br/>
+                            <span class="totals">HST: </span>
+                            <span class="total-values">%<h:outputText value="#{item.detailInvoiceList.get(0).hst}"></h:outputText></span>
+                            <br/>
+                            <span class="totals">#{msgs.total}: </span>
+                            <span class="thetotal">$#{item.grossValue}</span>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </ui:fragment>
+    </ui:define> 
+
+</ui:composition>
+
+

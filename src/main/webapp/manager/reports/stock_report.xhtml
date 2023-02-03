@@ -1,0 +1,41 @@
+<!-- @author: Werner -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <div class="row inner-container-margin">
+        <div class="row custom-container-stock">
+            <h:form id="form">
+                <p:dataGrid var="book" value="#{stockBacking.allBooks}" columns="3" layout="grid"
+                            rows="12" paginator="true" id="books"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="6,12,16">                           
+                    <div class="stock-book-cell">
+                        <p:panel  style="text-align:center">
+                            <h:panelGrid columns="2" style="width:100%">
+                                <h:graphicImage class="img img-bookcover card-stock" style=" height: 200px; " name="images/smallcovers/#{book.image}" />
+                                <p:outputPanel>
+                                    <h:panelGrid columns="2" cellpadding="5">                                          
+                                        <h:outputText value="#{msgs.wholesale}" />
+                                        <h:outputText value="#{book.wholesalePrice}" style="font-weight: bold"/>
+
+                                        <h:outputText value="#{msgs.list_price}" />
+                                        <h:outputText value="#{book.listPrice}" style="font-weight: bold"/>
+
+                                        <h:outputText value="#{msgs.sale_figures}" />
+                                        <h:outputText value="#{stockBacking.salesFiguers(book)}" />
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                            </h:panelGrid>
+                        </p:panel>
+                    </div>
+                </p:dataGrid>
+
+            </h:form>
+        </div>
+    </div><!--/row-->
+
+</ui:composition>

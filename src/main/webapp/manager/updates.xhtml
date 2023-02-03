@@ -1,0 +1,58 @@
+<ui:composition
+    template="/WEB-INF/templates/managerTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="manager.css" />.
+        <h:outputStylesheet library="css" name="sidebar.css" />
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:insert name="sidebar">
+            <ui:include src="/manager/sections/sidebar.xhtml" />
+        </ui:insert> 
+
+
+        <div class="container" id="main">
+
+            <div class="col-xs-12 col-sm-9 col-sm-push-0  card">
+                <h1 class="text-capitalize">#{msgs.updates}</h1>
+                <hr/>
+                <p:tabView scrollable="true">
+                    <p:tab title="Update Ads">
+                        <ui:insert name="Update_Ads">
+                            <ui:include src="/manager/reports/update_ads.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Update Publisher">
+                        <ui:insert name="Update_Publisher">
+                            <ui:include src="/manager/reports/update_publisher.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Update Genre">
+                        <ui:insert name="Update_Genre">
+                            <ui:include src="/manager/reports/update_genre.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Update Author">
+                        <ui:insert name="Update_Author">
+                            <ui:include src="/manager/reports/update_author.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                    <p:tab title="Update Book">
+                        <ui:insert name="Update_Book">
+                            <ui:include src="/manager/reports/update_book.xhtml" />
+                        </ui:insert> 
+                    </p:tab>
+                </p:tabView>
+            </div><!-- /card -->
+
+        </div>
+    </ui:define> 
+
+</ui:composition>

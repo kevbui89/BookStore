@@ -1,0 +1,176 @@
+/* 
+    Created on : 12-Mar-2018, 9:03:55 PM
+    Author     : Alessandro, Kevin Bui
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.orders-container {
+    margin-top: 100px;
+    background-color: white;
+    padding-top: 0;
+    margin-bottom: 30px !important;
+    height: 100%;
+    width: 1000px;
+}
+
+body {
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/readbook.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+}
+
+hr.bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF); 
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.background {
+    min-height: 70%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -100px;
+}
+
+.bg-black {
+    margin-top: 50px;
+}
+
+.book-image-container {
+    margin-bottom: 20px;
+}
+
+.information {
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+.item-id-label {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.item-id {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 26px;
+    color: #43C6DB;
+}
+
+.item-id-container {
+    padding-right: 0;
+}
+
+.totals {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.total-values {
+    float: right;
+    font-family: Raleway;
+    font-size: 14px;
+    color: #43C6DB;
+}
+
+.total-container {
+    padding-right: 7%;
+}
+
+.thetotal {
+    float: right;
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 20px;
+    color: #43C6DB;
+}
+
+.btn-outlined.btn-primary.signup-button2 {
+    background: none;
+    border: 1px solid black;
+    color: black;
+    font-family: Raleway;
+    font-size: 20px;
+}
+
+.btn-outlined.btn-primary.signup-button2:hover,
+.btn-outlined.btn-primary.signup-button2:active {
+    color: white !important;
+    background: black;
+    border-color: black;
+}
+
+.signup-button2 {
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.displayClientInfo{
+    font-size: 12px;
+}
+
+.error, .form-control {
+    color: black;
+    font-family: Raleway;
+
+}
+
+.showConfirmed{
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.confirmedLinks{
+    font-family: Raleway;
+    font-size: 16px;
+    margin-top: 10px;
+}

@@ -1,0 +1,126 @@
+<!-- @author: Denis -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form>
+
+        <p:messages autoUpdate="true"/>
+        <p:wizard id="saleClientWiz" backLabel="#{msgs.back}" nextLabel="#{msgs.next}" flowListener="#{saleByClient.onFlowProcess}">
+            <p:tab id="infoTab" title="#{msgs.search_req}">
+                <p:panel header="#{msgs.step1}">
+                    <p:messages />
+
+                    <p:outputLabel for="clientList" value="#{msgs.choose_client}" />
+                    <p:selectOneListbox id="clientList" value="#{saleByClient.client}" converter="clientConverter"
+                                        required="true" converterMessage="#{msgs.converter_msg}" requiredMessage="#{msgs.empty_selector}" 
+                                        filter="true" filterMatchMode="contains">
+                        <f:selectItems value="#{theClient.clients}" var="c" itemLabel="#{c.email}" itemValue="#{c}" />
+
+                    </p:selectOneListbox>
+
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                    <p:selectOneRadio id="displaySel" required="true" requiredMessage="#{msgs.required_selection}"
+                                      value="#{saleByClient.displayTotalSale}"  layout="grid" columns="1">
+                        <f:selectItem itemLabel="#{msgs.display_totalS}" itemValue="#{true}" />
+                        <f:selectItem itemLabel="#{msgs.display_bookS}" itemValue="#{false}" />
+                    </p:selectOneRadio>
+
+                    <p:outputLabel for="startdate" value="#{msgs.start_date}" />
+                    <p:calendar id="startdate" requiredMessage="#{msgs.required_date}" required="true" value="#{saleByClient.startDate}" navigator="true" showOn="button" />
+
+                    <p:outputLabel for="enddate" value="#{msgs.end_date}" />
+                    <p:calendar id="enddate" requiredMessage="#{msgs.required_date}" required="true" value="#{saleByClient.endDate}" navigator="true" showOn="button" />
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="display" title="#{msgs.display_info}">
+                <p:panel header="#{msgs.step2}">
+                    <p:messages />
+
+                    <p:panelGrid rendered="#{saleByClient.displayTotalSale == true}" style="margin-top:20px">
+                        <f:facet name="header">
+                            <p:row>
+                                <p:column colspan="2">
+                                    #{msgs.total_Sale}
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column colspan="1">
+                                    #{msgs.email}
+                                </p:column>
+                                <p:column colspan="1">
+                                    #{msgs.money_made}
+                                </p:column>
+                            </p:row>
+                        </f:facet>
+
+                        <p:row>
+                            <p:column rowspan="10">#{saleByClient.client.email}</p:column>                   
+                            <p:column rowspan="10">#{saleByClient.totalSale}</p:column>
+
+                        </p:row>
+
+                    </p:panelGrid>
+
+                    <p:dataTable id="data" var="b" value="#{saleByClient.data}" style="margin-bottom:40px"
+                                 rendered="#{saleByClient.displayTotalSale == false}"
+                                 emptyMessage="#{msgs.no_record}" rows="10" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">
+                            #{msgs.display_data}
+                        </f:facet>
+
+                        <p:column style="width:25px">
+                            <p:rowToggler />
+                        </p:column>
+
+                        <p:column headerText="#{msgs.book_isbn}" filterBy="#{b.isbn}" filterMatchMode="contains">
+                            <h:outputText value="#{b.isbn}" />
+                        </p:column>
+                        <p:column headerText="#{msgs.book_title}" filterBy="#{b.title}" filterMatchMode="contains">
+                            <h:outputText value="#{b.title}" />
+                        </p:column>
+                        <p:column headerText="#{msgs.book_totalS}">
+                            <h:outputText value="#{b.totalSale}" />
+                        </p:column>
+
+                        <p:rowExpansion>
+                            <p:panelGrid columns="2" columnClasses="label,value" style="width:300px">
+
+                                <f:facet name="#{msgs.header}">
+                                    <p:graphicImage name="images/smallcovers/#{b.image}"/> 
+                                </f:facet>
+
+                                <h:outputText value="#{msgs.book_isbn}" />
+                                <h:outputText value="#{b.isbn}" />
+
+                                <h:outputText value="#{msgs.book_title}" />
+                                <h:outputText value="#{b.title}" />
+
+                                <h:outputText value="#{msgs.book_price}" />
+                                <h:outputText value="#{b.listPrice}" />
+
+                                <h:outputText value="#{msgs.book_sale}" />
+                                <h:outputText value="#{b.salePrice}" />
+
+                                <h:outputText value="#{msgs.book_wholeP}" />
+                                <h:outputText value="#{b.wholesalePrice}"/>
+
+                                <h:outputText value="#{msgs.book_totalS}" />
+                                <h:outputText value="#{b.totalSale}"/>
+
+                            </p:panelGrid>
+                        </p:rowExpansion>
+
+                    </p:dataTable>
+                </p:panel>
+            </p:tab>
+        </p:wizard>
+    </h:form> 
+</ui:composition>

@@ -1,0 +1,221 @@
+<!-- @author: Kevin Werner -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="registration.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.registration}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata> 
+        <div class="container">
+            <div class="col-sm-8">
+                <section class="card-registration  margin-top-xl">
+                    <div class="row padding-m">
+                        <h2 class="text-center a-header">#{msgs.signup_to_mankabooks}</h2>
+                        <div class="panel-body">
+                            <h:form id="registerForm" class="form-horizontal">
+                                <div class="form-group">
+                                    <h:outputLabel  for="email" value="#{msgs.email}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText  id="email" value="#{Register.client.email}" required="true" 
+                                                      requiredMessage="#{msgs.empty_field}" class="form-control input-sm" validator="#{ClientValidators.validateEmail}">
+                                            <f:ajax event="blur" render="emailMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="emailMessage" for="email" class="error"/>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel  for="username" value="#{msgs.username}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText  id="username" value="#{Register.client.username}" requiredMessage="#{msgs.empty_field}"
+                                                      required="true" class="form-control input-sm" validator="#{ClientValidators.validateUsername}">
+                                            <f:ajax event="blur" render="usernameMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="usernameMessage" for="username" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="password" value="#{msgs.password}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputSecret id="password" value="#{Register.client.password}" required="true" 
+                                                       requiredMessage="#{msgs.empty_field}" class="form-control input-sm" validator="#{ClientValidators.validatePassword}">
+                                            <f:ajax event="blur" render="passwordMessage"/>
+                                        </h:inputSecret>
+                                    </div>
+                                    <h:message id="passwordMessage" for="password" class="error"/>
+                                </div>
+
+                                <!-- TODO VALIDATE PASSWORD -->
+
+                                <div class="form-group">
+                                    <h:outputLabel for="title" value="#{msgs.title}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="title" value="#{Register.client.title}" required="true" 
+                                                     requiredMessage="#{msgs.empty_field}" 
+                                                     class="form-control input-sm" validator="#{ClientValidators.validateTitle}">
+                                            <f:ajax event="blur" render="titleMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="titleMessage" for="title" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="fname" value="#{msgs.first_name}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="fname" value="#{Register.client.firstName}" required="true" 
+                                                     requiredMessage="#{msgs.empty_field}" class="form-control input-sm" validator="#{ClientValidators.validateName}">
+                                            <f:ajax event="blur" render="fnameMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="fnameMessage" for="fname" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="lname" value="#{msgs.last_name}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="lname" value="#{Register.client.lastName}" required="true" 
+                                                     requiredMessage="#{msgs.empty_field}" class="form-control input-sm" validator="#{ClientValidators.validateName}">
+                                            <f:ajax event="blur" render="lnameMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="lnameMessage" for="lname" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="company" value="#{msgs.company}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="company" value="#{Register.client.company}" required="true" 
+                                                     requiredMessage="#{msgs.empty_field}" class="form-control input-sm" validator="#{ClientValidators.validateName}">
+                                            <f:ajax event="blur" render="companyMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="companyMessage" for="company" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="addr1" value="#{msgs.address1}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="addr1" value="#{Register.client.addressOne}" required="true" 
+                                                     requiredMessage="#{msgs.empty_field}" class="form-control input-sm" validator="#{ClientValidators.validateAddress}">
+                                            <f:ajax event="blur" render="addr1Message"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="addr1Message" for="addr1" class="error"/>
+                                </div>
+                                <!-- Optional second address -->
+                                <div class="form-group">
+                                    <h:outputLabel for="addr2" value="#{msgs.address2}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="addr2" value="#{Register.client.addressTwo}" class="form-control input-sm" validator="#{ClientValidators.validateAddress2}">
+                                            <f:ajax event="blur" render="addr2Message"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="addr2Message" for="addr2" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="city" value="#{msgs.city}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="city" value="#{Register.client.city}" required="true" 
+                                                     requiredMessage="#{msgs.empty_field}"  class="form-control input-sm" validator="#{ClientValidators.validateName}">
+                                            <f:ajax event="blur" render="cityMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="cityMessage" for="city" class="error"/>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel for="province" value="#{msgs.province}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:selectOneMenu id="province" value="#{Register.client.provinceId}" required="true" requiredMessage="#{msgs.empty_field}" 
+                                                         class="form-control input-sm" converter="#{ProvinceConverter}">
+                                            <f:selectItems value="#{theProvince.provinceString}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:message id="provinceMessage" for="province" class="error"/>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <h:outputLabel for="country" value="#{msgs.country}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:selectOneMenu id="country" value="#{Register.client.countryId}" required="true" requiredMessage="#{msgs.empty_field}" 
+                                                         class="form-control input-sm" converter="#{CountryConverter}">
+                                            <f:selectItems value="#{theCountry.countriesString()}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:message id="countryMessage" for="country" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="postal" value="#{msgs.postal_code}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="postal" value="#{Register.client.postalCode}" required="true" validatorMessage="#{msgs.invalid_postal}"
+                                                     requiredMessage="#{msgs.empty_field}" class="form-control input-sm" validator="#{ClientValidators.validatePostalcode}">
+                                            <f:ajax event="blur" render="postalMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="postalMessage" for="postal" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="hometel" value="#{msgs.home_tel}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="hometel" value="#{Register.client.homeTel}" 
+                                                     class="form-control input-sm" validator="#{ClientValidators.validateNumber}">
+                                            <f:ajax event="blur" render="hometelMessage"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message id="hometelMessage" for="hometel" class="error"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="celltel" value="#{msgs.cell_tel}:" class="control-label col-sm-4"/>
+                                    <div class="col-sm-5">
+                                        <h:inputText id="celltel" value="#{Register.client.cellTel}" class="form-control input-sm" validator="#{ClientValidators.validateNumber}">
+                                            <f:ajax event="blur" render="celltelMessage"/>
+                                        </h:inputText>  
+                                    </div>
+                                    <h:message id="celltelMessage" for="celltel" class="error"/>
+                                </div>
+
+
+                                <div class="text-center">
+                                    <h:commandButton id="submitRegister" value="#{msgs.submit}" action="#{Register.register}" class="btn btn-outlined btn-primary signup-button">
+                                    </h:commandButton>
+                                    <h:commandButton id="clear" type="reset" immediate="true" value="#{msgs.clear}" class="btn btn-outlined btn-primary signup-button"/>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-sm-4">
+                <section class="margin-top-xl already-reg">
+                    <h1 class="text-center a-header with-us">#{msgs.oneofus}</h1>
+                    <div class="with-us-text">
+                        <p class="sign-in-text">#{msgs.already_registered}</p>
+                    </div>
+                    <div class="text-center">
+                        <h:link id="log-link" value="#{msgs.login}" outcome="login" class="btn btn-outlined btn-primary login-button2"/>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </ui:define> 
+
+</ui:composition>

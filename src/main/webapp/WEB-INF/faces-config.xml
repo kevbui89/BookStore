@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Required configuration file for JSF. The tools of the IDE fill in most
+     of this file. Here you can see a reference locale that will be used
+     to determine which message bundle to use.
+-->
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <application>
+        <resource-bundle>
+            <!-- package ending in the base name of the message bundle files -->
+            <base-name>/MessageBundle</base-name>
+            <!-- The name to use in EL when referring to text in the bundle -->
+            <var>msgs</var>
+        </resource-bundle>
+    </application>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>search_results</from-outcome>
+            <to-view-id>/client/search.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/WEB-INF/errors/404.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

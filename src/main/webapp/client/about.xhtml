@@ -1,0 +1,241 @@
+<!-- @author: Kevin -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="about.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.theteam}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener='#{loginBean.setPreviousPage("/client/about.xhtml")}' />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <div class="row padding-m">
+            <div class="panel-heading">
+            </div>
+            <div id="wrapper">
+                <div class="col-md-3 display-members">
+                    <div id="card">
+                        <div id="front">
+                            <div id="top-pic-kevin"></div>
+                            <div id="avatar-kevin"></div>
+                            <div id="info-box">
+                                <div class="info">
+                                    <h1>Kevin Bui</h1>
+                                    <h6>#{msgs.kevintitle}</h6>
+                                </div>
+                            </div>
+                            <div id="social-bar">
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook about-links"></i>
+                                </a>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter about-links"></i>
+                                </a>
+                                <a href="https://www.github.com/" target="_blank">
+                                    <i class="fa fa-github about-links"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa fa-linkedin about-links"></i>
+                                </a>
+                                <a href="javascript:void" class="more-info-kevin">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="back">
+                            <div class="back-info">
+                                <p class="member-desc">#{msgs.kevinabout}</p>
+                            </div>
+                            <div id="social-bar">
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook about-links"></i>
+                                </a>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter about-links"></i>
+                                </a>
+                                <a href="https://www.github.com/" target="_blank">
+                                    <i class="fa fa-github about-links"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa fa-linkedin about-links"></i>
+                                </a>
+                                <a href="javascript:void" class="more-info-kevin">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="card-ale">
+                        <div id="front">
+                            <div id="top-pic-ale"></div>
+                            <div id="avatar-ale"></div>
+                            <div id="info-box">
+                                <div class="info">
+                                    <h1>Alessandro Ciotola</h1>
+                                    <h6>#{msgs.aletitle}</h6>
+                                </div>
+                            </div>
+                            <div id="social-bar">
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook about-links"></i>
+                                </a>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter about-links"></i>
+                                </a>
+                                <a href="https://www.github.com/" target="_blank">
+                                    <i class="fa fa-github about-links"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa fa-linkedin about-links"></i>
+                                </a>
+                                <a href="javascript:void" class="more-info-ale">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="back-ale">
+                            <div class="back-info">
+                                <p class="member-desc">#{msgs.aleabout}</p>
+                            </div>
+                            <div id="social-bar">
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook about-links"></i>
+                                </a>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter about-links"></i>
+                                </a>
+                                <a href="https://www.github.com/" target="_blank">
+                                    <i class="fa fa-github about-links"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa fa-linkedin about-links"></i>
+                                </a>
+                                <a href="javascript:void" class="more-info-ale">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="card-werner">
+                        <div id="front">
+                            <div id="top-pic-werner"></div>
+                            <div id="avatar-werner"></div>
+                            <div id="info-box">
+                                <div class="info">
+                                    <h1>Werner Jose Castanaza Arrecis</h1>
+                                    <h6>#{msgs.josetitle}</h6>
+                                </div>
+                            </div>
+                            <div id="social-bar">
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook about-links"></i>
+                                </a>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter about-links"></i>
+                                </a>
+                                <a href="https://www.github.com/" target="_blank">
+                                    <i class="fa fa-github about-links"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa fa-linkedin about-links"></i>
+                                </a>
+                                <a href="javascript:void" class="more-info-werner">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="back-werner">
+                            <div class="back-info">
+                                <p class="member-desc">#{msgs.joseabout}</p>
+                            </div>
+                            <div id="social-bar">
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook about-links"></i>
+                                </a>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter about-links"></i>
+                                </a>
+                                <a href="https://www.github.com/" target="_blank">
+                                    <i class="fa fa-github about-links"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa fa-linkedin about-links"></i>
+                                </a>
+                                <a href="javascript:void" class="more-info-werner">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="card-denis">
+                        <div id="front">
+                            <div id="top-pic-denis"></div>
+                            <div id="avatar-denis"></div>
+                            <div id="info-box">
+                                <div class="info">
+                                    <h1>Denis Lebedev</h1>
+                                    <h6>#{msgs.denistitle}</h6>
+                                </div>
+                            </div>
+                            <div id="social-bar">
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook about-links"></i>
+                                </a>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter about-links"></i>
+                                </a>
+                                <a href="https://www.github.com/" target="_blank">
+                                    <i class="fa fa-github about-links"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa fa-linkedin about-links"></i>
+                                </a>
+                                <a href="javascript:void" class="more-info-denis">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="back-denis">
+                            <div class="back-info">
+                                <p class="member-desc">#{msgs.joseabout}</p>
+                            </div>
+                            <div id="social-bar">
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook about-links"></i>
+                                </a>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter about-links"></i>
+                                </a>
+                                <a href="https://www.github.com/" target="_blank">
+                                    <i class="fa fa-github about-links"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa fa-linkedin about-links"></i>
+                                </a>
+                                <a href="javascript:void" class="more-info-denis">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="background-img">
+                    <div id="background-image"></div>
+                </div>
+            </div>
+        </div>
+    </ui:define> 
+
+</ui:composition>

@@ -1,0 +1,38 @@
+<!-- @author Alessandro, Kevin Bui -->
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="confirmed_purchase.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.confirmedTitle}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn()}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <div class="container margin-top-xl orders-container">
+            <div class="row padding-m">
+                <div>
+                    #{cartBean.bookList.clear()}
+                    <span class="showConfirmed">#{msgs.confirmedThankYouMessage}</span><br/>
+                    <hr class="bar"/> 
+                    <span class="confirmedLinks">#{msgs.emailreceipt}</span>
+                    <br />
+                    <h:link value="#{msgs.myorders}" outcome="/client/myorders.xhtml" class="btn btn-outlined btn-primary signup-button2"/>                  
+                    <h:link value="#{msgs.confirmedDownloadMessage}" outcome="/client/library.xhtml" class="btn btn-outlined btn-primary signup-button2"/>
+                </div>
+            </div>
+        </div>
+    </ui:define> 
+
+</ui:composition>

@@ -1,0 +1,157 @@
+/* 
+    Created on : Mar 2, 2018, 5:59:17 PM
+    Author     : Kevin
+*/
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/readbook.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.orders-header {
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+}
+
+.orders-container {
+    background-color: white;
+    padding-top: 0;
+    margin-bottom: 30px;
+    height: 100%;
+}
+
+.a-header {
+    color: black;
+}
+
+hr.bar {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -moz-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -ms-linear-gradient(left, #FFFFFF, #000000, #FFFFFF);
+    background-image: -o-linear-gradient(left, #FFFFFF, #000000, #FFFFFF); 
+}
+
+.myorders-header {
+    font-family: Raleway;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: black;
+    border-color: black;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.background {
+    min-height: 60%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+}
+
+.book-image {
+    width:79px; 
+    height:120px;
+}
+
+.book-image:hover {
+    transform: scale(1.03);
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+.bg-black {
+    margin-top: 50px;
+}
+
+.order-text {
+    font-family: Raleway;
+    font-size: 14px;
+    color: black;
+}
+
+.order-title {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.order-table-header {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+th {
+    width: 300px;
+}
+
+.folderlink {
+    color: black;
+}
+
+.folderlink:hover {
+    color: #43C6DB;
+    transform: scale(1.5);
+}
+
+.no-orders-container {
+    background-color: white;
+    padding-top: 0;
+    height: 100%;
+    width: 70%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empty-orders-text {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.empty-orders-header {
+    font-family: Raleway;
+    font-size: 28px;
+    font-weight: bold;
+}

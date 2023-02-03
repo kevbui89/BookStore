@@ -1,0 +1,144 @@
+<!-- @author: Alessandro Ciotola -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="search_results.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.search_for}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{searchBackingBean.keyword}"/>
+            <f:event type="preRenderView" listener='#{loginBean.setPreviousPage("/client/search.xhtml")}' />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+
+        <section class="container card  margin-top-xl">
+            <div class="row padding-m">             
+
+                <div class="panel-body">
+                    <p:outputPanel class="container-fluid">
+                        <div class="row content">
+                            <div class="col-sm-2 sidebar-browse">
+                                <div class="browse-genre">                                    
+                                    <ul class="nav nav-pills nav-stacked nav-genre">
+                                    </ul>
+                                    <h:outputText value="&lt;br/&gt;" escape="false" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-10 browse-display">
+                                <div class="row">
+                                    <ui:fragment rendered="#{!searchBackingBean.checkGeneralSearch()}">
+                                        <h:outputText value="#{msgs.no_search_found} #{searchBackingBean.keyword}" class="search-header" rendered="#{empty searchBackingBean.searchResults}"/>
+                                        <h:outputText value="#{searchBackingBean.listSize} #{msgs.search_found} #{searchBackingBean.category}: #{searchBackingBean.keyword}" class="search-header" rendered="#{not empty searchBackingBean.searchResults}"/>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{searchBackingBean.checkGeneralSearch()}">
+                                        <h:outputText value="#{msgs.no_search_found} #{searchBackingBean.keyword}" class="search-header" rendered="#{empty searchBackingBean.generalSearchResults}"/>
+                                        <h:outputText value="#{searchBackingBean.listSize} #{msgs.search_found}: #{searchBackingBean.keyword}" class="search-header" rendered="#{not empty searchBackingBean.generalSearchResults}"/>
+                                    </ui:fragment>
+                                    <br />
+                                    <ui:fragment rendered="#{!searchBackingBean.checkGeneralSearch()}">
+                                        <ui:repeat value="#{searchBackingBean.searchResults}" var="value">
+                                            <a href="book.xhtml?bookid=#{value.bookId}">
+                                                <div class="row padding-m">
+                                                    <div class="col-sm-4">
+                                                        <div class="book-image">
+                                                            <h:graphicImage name="images/smallcovers/#{value.image}" />
+                                                        </div>
+                                                        <div class="row book-reviews ratings">
+                                                            <span class="stars">#{ReviewsBean.calculateAverage(value.bookId)}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8 book-data">
+                                                        <h4 class="no-margin">#{msgs.book_title}</h4>
+        ++                                                <span>#{value.title}</span>
+                                                        <h4>#{msgs.book_author}</h4>
+                                                        <ui:repeat value="#{value.authorList}" var="authorItem">
+                                                            <span>#{authorItem.name}</span>
+                                                        </ui:repeat>
+                                                        <h4>#{msgs.book_genre}</h4>
+                                                        <ui:repeat value="#{value.genreList}" var="genreItem">
+                                                            <span>#{genreItem.genre}</span>
+                                                        </ui:repeat>
+                                                        <h4>#{msgs.small_desc}</h4>
+                                                        <span>#{value.description.substring(0, 100)}...</span>
+                                                        <h4>#{msgs.isbn}</h4>
+                                                        <span>#{value.isbn}</span>
+                                                        <ui:fragment rendered="#{value.salePrice > 0}">
+                                                            <h4>#{msgs.book_price}</h4>
+                                                            <span class="slashed-price">$#{value.listPrice}</span>
+                                                            <h4>#{msgs.book_sale}</h4>
+                                                            <span class="special-price">$#{value.salePrice}</span>
+                                                        </ui:fragment>
+                                                        <ui:fragment rendered="#{value.salePrice.intValue() == 0}">
+                                                            <h4>#{msgs.book_price}</h4>
+                                                            <span>$#{value.listPrice}</span>
+                                                        </ui:fragment>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <hr class="search-bar"/> 
+                                        </ui:repeat>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{searchBackingBean.checkGeneralSearch()}">
+                                        <ui:repeat value="#{searchBackingBean.generalSearchResults}" var="value">
+                                            <a href="book.xhtml?bookid=#{value.bookId}">
+                                                <div class="row padding-m">
+                                                    <div class="col-sm-4">
+                                                        <div class="book-image">
+                                                            <h:graphicImage name="images/smallcovers/#{value.image}" />
+                                                        </div>
+                                                        <div class="row book-reviews ratings">
+                                                            <span class="stars">#{ReviewsBean.calculateAverage(value.bookId)}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8 book-data">
+                                                        <h4 class="no-margin">#{msgs.book_title}</h4>
+                                                        <span>#{value.title}</span>
+                                                        <h4>#{msgs.book_author}</h4>
+                                                        <ui:repeat value="#{value.authorList}" var="authorItem">
+                                                            <span>#{authorItem.name}</span>
+                                                        </ui:repeat>
+                                                        <h4>#{msgs.book_genre}</h4>
+                                                        <ui:repeat value="#{value.genreList}" var="genreItem">
+                                                            <span>#{genreItem.genre}</span>
+                                                        </ui:repeat>
+                                                        <h4>#{msgs.small_desc}</h4>
+                                                        <span>#{value.description.substring(0, 100)}...</span>
+                                                        <h4>#{msgs.isbn}</h4>
+                                                        <span>#{value.isbn}</span>
+                                                        <ui:fragment rendered="#{value.salePrice > 0}">
+                                                            <h4>#{msgs.book_price}</h4>
+                                                            <span class="slashed-price">$#{value.listPrice}</span>
+                                                            <h4>#{msgs.book_sale}</h4>
+                                                            <span class="special-price">$#{value.salePrice}</span>
+                                                        </ui:fragment>
+                                                        <ui:fragment rendered="#{value.salePrice.intValue() == 0}">
+                                                            <h4>#{msgs.book_price}</h4>
+                                                            <span>$#{value.listPrice}</span>
+                                                        </ui:fragment>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </ui:repeat>
+                                    </ui:fragment>
+                                </div> 
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </div>
+            </div>
+        </section>
+    </ui:define>     
+</ui:composition>

@@ -1,0 +1,147 @@
+/* 
+    Created on : Feb 10, 2018, 11:40:13 PM
+    Author     : Kevin
+*/
+
+.btn-custom{
+    background:#43C6DB;
+    color:#fff;
+}
+
+.btn-custom:hover{
+    background:#43C6DB;
+}
+
+.card {
+    margin-bottom: 300px !important;
+}
+
+.control-label {
+    color: black;
+}
+
+.form-control {
+    color: black;
+}
+
+.text-center {
+    color: black;
+}
+
+.card {
+    background-color: white;
+    opacity: 0.9;
+    height: 100%;
+    width: 50%;
+    margin-bottom: 108px; /* I HAVE NO IDEA WHY THE FOOTER DOESNT STAY DOWN */
+}
+
+.form-control {
+    background-color: transparent;
+    border-color: black;
+}
+
+.btn-outlined {
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: #000000;
+    border-color: #000000;
+}
+
+.menu-search {
+    background-color: white;
+}
+
+.panel-body{
+    height:250px;
+}
+
+.bg-black {
+    background-color:#000000;
+    color: white;
+    opacity: 0.98;
+    height: 275px;
+    /*position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;*/
+}
+
+.a-header {
+    font-family: Raleway;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+body {
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-image: url("#{resource['images/banners/readbook.jpg']}");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.tips-header {
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-left: 30px;
+    margin-top: 0 !important;
+}
+
+.as-header {
+    font-family: Montserrat;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.tips-text {
+    font-family: Raleway;
+    font-size: 14px;
+    color: black;
+    margin-top: 0;
+}
+
+.tips-link {
+    font-family: Montserrat;
+    font-size: 13px;
+    font-weight: bold;
+    color: #43C6DB;
+}
+
+.tips-link:hover {
+    color: #00FFFF;
+}
+
+.tips-link:active {
+    color: #43C6DB;
+}
+
+#accordion {
+    margin-top: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 80%;
+  }
+ 
+}

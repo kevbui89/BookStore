@@ -1,0 +1,71 @@
+<!-- @author: Kevin, Alessandro -->
+
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="advancedsearch.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.search}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener='#{loginBean.setPreviousPage("/client/advanced_search.xhtml")}' />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <div class="container card margin-top-xl">
+            <div class="row padding-m">
+                <h1 class="text-center a-header text-uppercase as-header">#{msgs.advancedsearch}</h1>
+                <h:form id="searchForm" class="form-horizontal">   
+                    <!-- Dropdown selection for the search -->
+                    <div class="form-group" id="searchgrid">
+                        <h:outputLabel for="choice" value="#{msgs.user_choice}" class="control-label col-sm-4"/>     
+                        <div class="col-sm-4">
+                            <h:selectOneMenu id="choice" value="#{searchBackingBean.choice}" required="true" class="form-control custom-select">
+                                <f:selectItem itemLabel="#{msgs.search_author}" itemValue="Author" />
+                                <f:selectItem itemLabel="#{msgs.search_publisher}" itemValue="Publisher" />
+                                <f:selectItem itemLabel="#{msgs.search_title}" itemValue="Title"/>
+                                <f:selectItem itemLabel="#{msgs.search_isbn}" itemValue="ISBN"/>
+                            </h:selectOneMenu>
+                        </div>       
+                        <h:message class="error" for="searchForm" id="searchFormMessage" />  
+                    </div>
+                    <!-- Textbox for specific keyword search -->
+                    <div class="form-group">
+                        <h:outputLabel  for="input" rendered="#{!searchBackingBean.choice}" value="#{msgs.keyword_search}" 
+                                        class="control-label col-sm-4"/>
+                        <div class="col-sm-4">
+                            <h:inputText  id="input"  rendered="#{!searchBackingBean.choice}" requiredMessage="#{msgs.empty_field}"
+                                          value="#{searchBackingBean.keyword}" required="true" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="text-center">
+                        <h:commandButton id="search" action="#{searchBackingBean.search()}" value="#{msgs.search}" class="btn btn-outlined btn-primary signup-button"/>
+                    </div>
+                </h:form>
+                <p:outputPanel styleClass="panel-group" id="accordion">
+                    <a class="accordion-toggle text-center tips-link text-uppercase" data-toggle="collapse" data-parent="#accordion" href="#collapse">#{msgs.tips}</a>
+                    <div id="collapse" class="panel-collapse collapse">
+                        <span class="tips-text text-center">#{msgs.tip1}</span>
+                        <span class="tips-text text-center">#{msgs.tip2}</span>
+                        <span class="tips-text text-center">#{msgs.tip3}</span>
+                        <span class="tips-text text-center">#{msgs.tip4}</span>
+                        <span class="tips-text text-center">#{msgs.tip5}</span>
+                        <span class="tips-text text-center">#{msgs.tip6}</span>
+                        <span class="tips-text text-center">#{msgs.tip7}</span>
+                    </div>
+                </p:outputPanel>
+            </div>
+        </div>
+    </ui:define> 
+</ui:composition>

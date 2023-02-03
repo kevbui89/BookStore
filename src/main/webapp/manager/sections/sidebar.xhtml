@@ -1,0 +1,78 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div class="nav-side-menu">
+        <div class="brand">
+            <h:link class="" outcome="/manager/manager.xhtml">
+                <h:graphicImage class="" name="images/logos/mankabooks_logoheader.png" style="opacity: 0.8;"/>
+            </h:link>
+        </div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <h:link class="" outcome="/client/index.xhtml">
+                        <i class="glyphicon glyphicon-home"></i> #{msgs.client_homepage}
+                    </h:link>
+                </li>
+                <li class="language menu-links">
+                    <h:form class="menu-form">
+                        <h:commandLink  actionListener="#{localeChanger.changeLocale}" 
+                                        styleClass="nav-menu-form">    
+
+                            <f:param name="languageCode" value="#{msgs.code}" /> 
+                            <span class="menu-icon fa fa-globe" styleClass="nav-menu-form"></span>
+                            #{msgs.codeLang}
+                        </h:commandLink>
+                    </h:form>
+                </li>
+                <li>
+                    <a href="reports.xhtml">
+                        <i class="fa fa-dashboard fa-lg"></i> #{msgs.stock_report}
+                    </a>
+                </li>
+                <li>
+                    <a href="updates.xhtml">
+                        <i class="glyphicon glyphicon-download-alt"></i> #{msgs.update}
+                    </a>
+                </li>
+                <li>
+                    <a href="news_feed.xhtml">
+                        <i class="glyphicon glyphicon-paperclip"></i> #{msgs.news}
+                    </a>
+                </li>
+                <li>
+                    <a href="order_management.xhtml">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> #{msgs.order_management}
+                    </a>
+                </li>
+                <li>
+                    <a href="review_management.xhtml">
+                        <i class="glyphicon glyphicon-pencil"></i> #{msgs.review_management}
+                    </a>
+                </li>
+                <li>
+                    <a href="client_management.xhtml">
+                        <i class="fa fa-user"></i> #{msgs.clients_management}
+                    </a>
+                </li>
+                <li>
+                    <a href="sale_management.xhtml">
+                        <i class="glyphicon glyphicon-tag"></i> #{msgs.sales_management}
+                    </a>
+                </li>               
+                <li>         
+                    <h:form>
+                        <h:commandLink actionListener="#{loginBean.logOut()}">
+                            <i class="glyphicon glyphicon-log-out"></i>   #{msgs.logout}
+                        </h:commandLink>   
+                    </h:form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</ui:composition>

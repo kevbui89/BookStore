@@ -1,0 +1,224 @@
+<!-- @author Alessandro Ciotola, Kevin Bui -->
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="checkout.css" />
+    </ui:define>
+
+    <ui:define name="windowTitle">
+        #{msgs.faqcheckout}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginBean.checkLoggedIn()}"/>
+            <f:event type="preRenderView" listener='#{acctSettings.setPreviousPage("/client/checkout.xhtml")}'/>
+            <f:event type="preRenderView" listener='#{checkoutBean.setBookList(cartBean.bookList)}' />
+        </f:metadata>        
+        <div class="checkout-top">
+            <span class="checkout-top-header text-uppercase"><span class="menu-icon fa fa-lock"></span> #{msgs.secure}</span>
+            <span class="checkout-top-header2 text-uppercase"><span class="menu-icon fa fa-certificate"></span> #{msgs.thankyoushop}</span>
+        </div>
+        <div class="row padding-m">
+            <div class="col-md-4">
+                <div class="shipping-container container">
+                    <br/>    --                  
+                    <span class="black">1</span><span class="shipping-address-header">#{msgs.shipAddressCheckout}</span>
+                    <h:link value="#{msgs.edit}" class="btn btn-outlined btn-primary cancel-button edit-link" outcome="/client/account_settings.xhtml"/>  
+                    <br/>
+                    <hr class="bar"/>
+                    <div class="col-md-5"> 
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-user"></span> #{msgs.first_name}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-user"></span> #{msgs.last_name}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-at"></span> #{msgs.email}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-home"></span> #{msgs.addressship}</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-map-marker"></span> #{msgs.city}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-map-marker"></span> #{msgs.province}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-map-marker"></span> #{msgs.postal_code}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-flag"></span> #{msgs.country}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-phone"></span> #{msgs.home_tel}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-phone"></span> #{msgs.cell_tel}:</span><br/>
+                    </div>
+                    <div class="col-md-7">
+                        <span class="shipping-address-text">#{loginBean.client.firstName}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.lastName}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.email}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.addressOne}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.city}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.provinceId.province}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.postalCode}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.countryId.country}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.homeTel}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.cellTel}</span><br/><br/>
+                    </div>
+                </div><br/><br/>
+
+                <div class="shipping-container container">
+                    <br/>
+                    <span class="black">2</span><span class="shipping-address-header">#{msgs.billAddressCheckout}</span>
+                    <h:link value="#{msgs.edit}" class="btn btn-outlined btn-primary cancel-button edit-link" outcome="/client/account_settings.xhtml"/>
+                    <br/>
+                    <hr class="bar"/>
+                    <div class="col-md-5"> 
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-user"></span> #{msgs.first_name}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-user"></span> #{msgs.last_name}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-at"></span> #{msgs.email}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-home"></span> #{msgs.addressship}</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-map-marker"></span> #{msgs.city}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-map-marker"></span> #{msgs.province}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-map-marker"></span> #{msgs.postal_code}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-flag"></span> #{msgs.country}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-phone"></span> #{msgs.home_tel}:</span><br/>
+                        <span class="shipping-address-label"><span class="menu-icon fa fa-phone"></span> #{msgs.cell_tel}:</span><br/>
+                    </div>
+                    <div class="col-md-7">
+                        <span class="shipping-address-text">#{loginBean.client.firstName}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.lastName}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.email}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.addressOne}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.city}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.provinceId.province}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.postalCode}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.countryId.country}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.homeTel}</span><br/>
+                        <span class="shipping-address-text">#{loginBean.client.cellTel}</span><br/><br/>
+                    </div>
+                </div>
+            </div>
+            <h:form id="checkoutForm">
+                <div class="col-md-3">
+                    <div class="form-container container">
+                        <br/>
+                        <span class="black">3</span><span class="shipping-address-header">#{msgs.cardinfo}</span><br/>
+                        <hr class="bar"/>
+
+                        <h:outputLabel for="cardHolder" value="#{msgs.cardHolderName}" class="card-label"/><span class="red-star">*</span>
+                        <h:inputText id="cardHolder" value="#{cardBean.cardHolderName}" required="true" requiredMessage="#{msgs.empty_field}"
+                                     class="user-input-box form-control input-sm">   
+                            <f:ajax event="blur" render="cardHolderMessage"/>
+                        </h:inputText>
+                        <h:message id="cardHolderMessage" for="cardHolder" class="error"/>
+
+                        <br />
+                        <h:outputLabel value="#{msgs.cardType}" class="card-label"/><span class="red-star">*</span>
+                        <h:panelGroup id="search-options" layout="block" styleClass="radioButtonSpace">
+                            <h:selectOneRadio value = "#{cardBean.cardType}" required="true"> 
+
+                                <f:selectItem id="visa" itemValue="Visa" itemLabel="" >
+                                    <h:graphicImage class="card-spacing" style="width: 55px; height: 55px; opacity: 0.8;" name="images/icons/Visa-icon.png" />
+                                </f:selectItem> 
+                                <f:selectItem id="mc" itemValue="MasterCard" itemLabel="" >
+                                    <h:graphicImage class="card-spacing" style="width: 55px; height: 55px; opacity: 0.8;" name="images/icons/MasterCard.png" />
+                                </f:selectItem>
+                                <f:selectItem id="ae" itemValue="American Express" itemLabel="">
+                                    <h:graphicImage class="card-spacing" style="width: 55px; height: 55px; opacity: 0.8;" name="images/icons/Paypal-icon.png" />
+
+                                </f:selectItem>
+                            </h:selectOneRadio> 
+                        </h:panelGroup>
+
+                        <h:outputLabel for="cardNumber" value="#{msgs.cardNumber}" class="card-label"/><span class="red-star">*</span>
+                        <h:inputText id="cardNumber" value="#{cardBean.cardNumber}" required="true" requiredMessage="#{msgs.empty_field}"
+                                     maxlength="16" validator="#{cardValidators.validateCreditCardNumber}"
+                                     class="user-input-box form-control input-sm">
+                            <f:ajax event="blur" render="cardNumberMessage"/>
+                        </h:inputText>
+                        <h:message id="cardNumberMessage" for="cardNumber" class="error"/>
+
+                        <br />                        
+                        <h:outputLabel value="#{msgs.expiredate}" class="card-label"/><span class="red-star">*</span><br/>
+                        <h:selectOneMenu id="expiryMonth" value="#{cardBean.cardMonth}"  class="card-dropdown-menu first-dropdown" required="true">
+                            <f:selectItems value="#{cardBean.cardMonths}"/>
+                        </h:selectOneMenu>
+                        <h:selectOneMenu id="expiryYear" value="#{cardBean.cardYear}" class="card-dropdown-menu" required="true">
+                            <f:selectItems value="#{cardBean.cardYears}"/>
+                        </h:selectOneMenu>        
+                        <br/>
+                        <br/>                        
+                        <h:outputLabel for="cardSecurity" value="#{msgs.cardSecurity}" class="card-label"/><span class="red-star">*</span>
+                        <h:inputText id="cardSecurity" value="#{cardBean.cardSecurity}" requiredMessage="#{msgs.empty_field}" 
+                                     required="true" maxlength="3" validator="#{cardValidators.validateCreditCardSecurityNumber}"
+                                     class="security-input-box form-control input-sm">   
+                            <f:ajax event="blur" render="cardSecurityMessage"/>
+                        </h:inputText>
+                        <h:message id="cardSecurityMessage" for="cardSecurity" class="error"/> 
+                        <p:outputPanel styleClass="panel-group" id="accordion">
+                            <a class="accordion-toggle what-is-this" data-toggle="collapse" data-parent="#accordion" href="#collapse">#{msgs.whatisthis}</a>
+                            <div id="collapse" class="panel-collapse collapse">
+                                <h:graphicImage class="book-image-list" style="width: 100%; height: 100%; opacity: 0.9;" name="images/icons/cvv.gif" />
+                            </div>
+                        </p:outputPanel>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="book-container container">
+                        <br/>
+                        <span class="black">4</span><span class="shipping-address-header">#{msgs.reviewyourorder}</span><br/>
+                        <hr class="bar"/>
+                        <ui:repeat value="#{cartBean.bookList}" var="item" rendered="#{not empty cartBean.bookList}">
+                            <div class="col-md-2">
+                                <div class="book-image">
+                                    <a href="book.xhtml?bookid=#{item.bookId}">
+                                        <h:graphicImage class="book-image-list" style="width: 77px; height: 120px; opacity: 0.9;" name="images/smallcovers/#{item.image}" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="book-info-label">#{msgs.book_title}: </span><br/>
+                                <span class="book-info-label">#{msgs.book_author}: </span><br/>
+                                <span class="book-info-label">#{msgs.book_genre}: </span><br/>
+                                <span class="book-info-label">#{msgs.isbn}: </span><br/>
+                                <span class="book-info-label">#{msgs.format}: </span><br/>
+                                <span class="book-info-label">#{msgs.book_price}: </span><br/>                                                    
+                            </div>
+                            <div class="col-md-8">
+                                <span class="information-title">#{item.title}</span>
+                                <ui:repeat value="#{item.authorList}" var="author">
+                                    <span class="information">#{author.name}</span>
+                                </ui:repeat><br/>
+                                <ui:repeat value="#{item.genreList}" var="genre">
+                                    <span class="information">#{genre.genre}</span>
+                                </ui:repeat><br/>
+                                <span class="information">#{item.isbn}</span><br/>
+                                <span class="information">#{item.formatId.bookFormat}</span><br/>
+                                <ui:fragment rendered="#{item.salePrice > 0}">
+                                    <span class="sale-price">$#{item.salePrice}</span>
+                                    <span class="slashed-price">$#{item.listPrice}</span><br/><br/>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{item.salePrice.intValue() == 0}">
+                                    <span class="price">$#{item.listPrice}</span><br/><br/>
+                                </ui:fragment>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                    <div class="margin-top-xl total-container container">
+                        <br/>
+                        <span class="black">5</span><span class="shipping-address-header">#{msgs.finalize}</span><br/>
+                        <hr class="bar"/>
+                        <div class="col-md-7"></div>
+                        <div class="col-md-2">
+                            <span class="totals">#{msgs.priceNoTax} </span>
+                            <span class="totals">#{msgs.tax}:</span>
+                            <span class="totals">#{msgs.total}: </span>
+                        </div>
+                        <div class="col-md-3 thetotal-container">
+                            <span class="thetotal">$#{checkoutBean.formatDouble(checkoutBean.priceNoTax)}</span><br/>
+                            <span class="thetotal">$#{checkoutBean.formatDouble(checkoutBean.tax)}</span><br/>
+                            <span class="thetotal">$#{checkoutBean.formatDouble(checkoutBean.total)}</span>
+                        </div>
+                        <h:commandButton type ="submit" id="log-link" value="#{msgs.confirm}" action="#{checkoutBean.checkout}" class="btn btn-outlined btn-primary signup-button2 submit-btn">  
+                        </h:commandButton>
+
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define> 
+
+</ui:composition>

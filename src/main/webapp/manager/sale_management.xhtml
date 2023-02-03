@@ -1,0 +1,69 @@
+<ui:composition
+    template="/WEB-INF/templates/managerTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="manager.css" />.
+        <h:outputStylesheet library="css" name="sidebar.css" />
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:insert name="sidebar">
+            <ui:include src="/manager/sections/sidebar.xhtml" />
+        </ui:insert> 
+        <div class="container" id="main">
+            <div class="col-xs-12 col-sm-9 col-sm-push-0 card">
+                <h2 class="text-capitalize">#{msgs.salse}</h2>
+                <hr/>
+                <h:form id="cleints">
+
+                    <p:dataTable id="booksSale" var="book" value="#{SalesManagement.books}" 
+                                 editable="true" 
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="20"
+                                 rowsPerPageTemplate="10,20,30">
+
+                        <p:ajax event="rowEdit" listener="#{SalesManagement.onRowEdit}" update="booksSale" />
+                        <p:ajax event="rowEditCancel" listener="#{SalesManagement.onRowCancel}" update="booksSale" />
+                        <p:column width="75" headerText="Book Cover">
+
+                            <h:graphicImage class="img img-bookcover card-stock" style=" height: 50px; " name="images/smallcovers/#{book.image}" />
+
+                        </p:column>
+                        <p:column  filterBy="#{book.title}" headerText="Book Title" filterMatchMode="contains">
+                            <h:outputText value="#{book.title}" />
+                        </p:column>
+                        <p:column headerText="List Price">
+                            <h:outputText value="#{book.listPrice}" />
+                        </p:column>
+
+                        <p:column headerText="Sale Price">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{book.salePrice}" /></f:facet>
+                                <f:facet name="input">
+
+                                    <h:inputText  id="sale" value="#{book.salePrice}" requiredMessage="#{msgs.empty_field}"
+                                                  required="true" class="form-control input-sm" validator="#{SalePriceValidator.validateCurrency}">
+                                        <f:ajax event="blur" render="saleMessage"/>
+                                    </h:inputText>
+                                    <h:message id="saleMessage" for="sale" class="error"/>
+
+                                </f:facet>
+                            </p:cellEditor> 
+                        </p:column>
+                        <p:column style="width:32px">
+                            <p:rowEditor />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+
+            </div><!--/.col-xs-12.col-sm-9-->
+        </div>
+    </ui:define>    
+
+</ui:composition>

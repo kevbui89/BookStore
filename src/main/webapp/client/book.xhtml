@@ -1,0 +1,250 @@
+<ui:composition
+    template="/WEB-INF/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="windowTitle">
+        #{BookBean.book.title}
+    </ui:define>
+    <ui:define name="placeholder-css">
+        <h:outputStylesheet library="css" name="book.css" />
+    </ui:define> 
+
+    <!-- Header -->
+    <ui:define name="content">
+
+        <f:metadata>
+            <f:viewParam name="bookid" /> 
+            <f:event type="preRenderView" listener="#{BookBean.init()}" />
+            <f:event type="preRenderView" listener='#{cartBean.setAlreadyInCart(false)}' />
+        </f:metadata>
+        <p:outputPanel styleClass="jumbotron book-jumbotron">
+            <div class="container">
+                <div class="row book-information-outer">
+                    <div class="">
+                        <div class="book-information-inner fadeIn animation-element slide-bottom">
+                            <h1 class="title-media">#{BookBean.book.title}</h1>
+                            <hr class="title-bar"/>
+                            <div class="row author-names">
+                                <span class="authors">#{msgs.by}</span>
+                                <ui:repeat value="#{BookBean.book.authorList}" var="item" varStatus="ui">
+                                    <span class="authors"> #{item.name}#{ui.last?'':', '}</span>
+                                </ui:repeat>
+                                <!-- For selenium testing that the genre is here... -->
+                                <ui:repeat value="#{BookBean.book.genreList}" var="item">
+                                    <span class="genre-book">#{item.genre}</span>
+                                </ui:repeat>
+                                <!-- Genre would be null unless put here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p:outputPanel>
+
+        <div class="info fadeIn animation-element slide-bottom">
+            <div class="quote-container">
+                <span class="back-text">#{msgs.quote1}</span><br/>
+                <span class="quote-text-small">-Dr. Seuss</span>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Book Information -->
+            <div class="parallax2 para2">
+                <section class="container animation-element slide-bottom">
+                    <div class="row padding-m">
+                        <div class="panel-body">
+                            <section class="container card">
+
+                                <div class="col-md-4 col-sm-12 col-xs-12 padding-top-m">
+                                    <div class="book-info ">                                        
+                                        <p:graphicImage class="img img-responsive " style="width: 75%; height: 75%; margin:0 auto;" name="images/bigcovers/#{BookBean.book.image}"/>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <div class="row book-reviews ratings">
+                                            <span class="stars">#{ReviewsBean.calculateAverage(BookBean.book.bookId)}</span>
+                                        </div>
+                                        <ui:fragment rendered="#{cartBean.checkIfPurchased(BookBean.book, loginBean.client.clientId)}">
+                                            <h:form>
+                                                <h:link value="" outcome="library.xhtml">
+                                                    <span class="btn btn-outlined btn-primary banner-buttons add-to-cart-btn">
+                                                        <i class="menu-icon fa fa-download"></i> #{msgs.download}
+                                                    </span>
+                                                </h:link>  
+                                            </h:form>
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{!cartBean.checkIfPurchased(BookBean.book, loginBean.client.clientId)}">
+
+                                            <h:form id="track-to-cart">
+                                                <p:commandButton type="submit" id="addtocart" value="&#160;#{msgs.addtocart}" 
+                                                                 styleClass="btn btn-outlined btn-primary banner-buttons add-to-cart-btn" 
+                                                                 icon="menu-icon fa fa-shopping-cart"  
+                                                                 action="#{cartBean.addBookToCart(BookBean.book, loginBean.client.clientId)}" update="shop-cart">
+                                                </p:commandButton>
+                                            </h:form>
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{not empty loginBean.client.email}">
+                                            <h:form id="write-review">
+                                                <h:link id="write-review-btn" value="" onclick="#{ReviewsBean.getBookIdForReview(BookBean.book.bookId)}" outcome="write_review.xhtml">
+                                                    <span class="btn btn-outlined btn-primary banner-buttons add-to-cart-btn">
+                                                        <i class="menu-icon fa fa-comment"></i> #{msgs.writereview}
+                                                    </span>
+                                                </h:link>   
+                                            </h:form>
+                                        </ui:fragment>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-sm-12 col-xs-12 book-data padding-top-m ">
+                                    <ul class="book-details">
+                                        <li>
+                                            <h4>#{msgs.book_desc}</h4>
+                                            <hr/>
+                                            <span>#{BookBean.book.description}</span>
+                                        </li>
+                                        <li>
+                                            <h4>#{msgs.book_genre}</h4>
+                                            <hr/>
+                                            <ui:repeat value="#{BookBean.book.genreList}" var="item">
+                                                <span>#{item.genre}</span>
+                                            </ui:repeat>
+                                        </li>
+                                    </ul>
+                                    <ul class="book-details">
+                                        <li>
+                                            <h4>#{msgs.book_isbn}</h4>
+                                            <hr/>
+                                            <span>#{BookBean.book.isbn}</span>
+                                        </li>
+                                        <li>
+                                            <h4>#{msgs.book_pubdate}</h4>
+                                            <hr/>
+                                            <h:outputFormat value="{0, date, yyyy-MM-dd}" class="book-data-date">
+                                                <f:param value="#{BookBean.book.pubDate}" />
+                                            </h:outputFormat>
+                                        </li>
+                                        <li>
+                                            <h4>#{msgs.book_page}</h4>
+                                            <hr/>
+                                            <span>#{BookBean.book.page}</span>
+                                        </li>
+                                    </ul>
+                                    <ui:fragment rendered="#{BookBean.checkBookOnSale()}">
+                                        <ul class="book-details-special">
+                                            <li>
+                                                <h4>#{msgs.book_price}</h4>
+                                                <hr/>
+                                                <span class="slashed-price">#{BookBean.book.listPrice}$</span>
+                                            </li>
+                                            <li>
+                                                <h4>#{msgs.book_sale}</h4>
+                                                <hr/>
+                                                <span class="special-price">#{BookBean.book.salePrice}$</span>
+                                            </li>
+                                        </ul>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{!BookBean.checkBookOnSale()}">
+                                        <ul class="book-details">
+                                            <li>
+                                                <h4>#{msgs.book_price}</h4>
+                                                <hr/>
+                                                <span>#{BookBean.book.listPrice}$</span>
+                                            </li>
+                                        </ul>
+                                    </ui:fragment>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recommended books by genre -->
+                <div class="animation-element slide-bottom similar-section">
+                    <div class="container">
+                        <div class="header-container">
+                            <span class="similar-header text-uppercase">#{msgs.similarbookgenre}</span>
+                            <hr/>
+                        </div>
+                        <div class="similar-book-div">
+                            <ui:repeat value="#{BookBean.similarBooksByGenre}" var="book">
+                                <div class="col-md-3 col-sm-6 col-xs-6 row-genre">
+                                    <a href="book.xhtml?bookid=#{book.bookId}">
+                                        <div class="similar-genre-books">
+                                            <h:graphicImage class="img img-responsive" style="margin:0 auto; width: auto; height: auto; opacity: 0.8;" name="images/smallcovers/#{book.image}" />
+                                        </div>
+                                    </a>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommended books by author -->
+                <ui:fragment rendered="#{!BookBean.checkIfSimilarAuthorIsZero(BookBean.book)}">
+                    <div class="animation-element slide-bottom similar-section">
+                        <div class="container">
+                            <div class="header-container">
+                                <span class="similar-header text-uppercase">#{msgs.similarauthor}</span>
+                                <hr/>
+                            </div>
+                            <div class="similar-book-div">
+                                <ui:repeat value="#{BookBean.similarBooksByAuthor}" var="book">
+                                    <div class="col-md-3 col-sm-6 col-xs-6 row-author">
+                                        <a href="book.xhtml?bookid=#{book.bookId}">
+                                            <div class="similar-genre-books">
+                                                <h:graphicImage class="img img-responsive" style="margin:0 auto; width: auto; height: auto; opacity: 0.8;" name="images/smallcovers/#{book.image}" />
+                                            </div>
+                                        </a>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </div>
+                    </div>
+                </ui:fragment>
+            </div>
+        </div>
+
+        <div class="text-center margin-auto">
+            <span class="back-text">#{msgs.notthbook}</span><br/>
+            <span class="back-text-small">#{msgs.click}</span>                            
+            <h:link outcome="/client/browse_genre.xhtml">
+                <span class="here-link">#{msgs.here}</span>
+            </h:link>
+            <span class="back-text-small">#{msgs.backbrowse}</span>
+        </div>
+
+        <!-- Reviews -->
+        <div class="animation-element slide-bottom reviews">
+            <div class="container">
+                <div class="section-header">
+                    <h4>#{msgs.reviews}</h4>
+                </div>
+                <div class="row review-container">
+                    <h:outputText value="#{msgs.noreviews}" styleClass="no-reviews" rendered="#{empty ReviewsBean.validReviewsForBook}"/>
+                    <ui:repeat value="#{ReviewsBean.validReviewsForBook}" var="item">
+                        <div class="row book-reviews">
+                            <span class="stars">#{item.rating}</span><span class="gray"> - #{item.clientId.firstName} #{item.clientId.lastName} - </span>
+                            <span class="review-data-date">#{msgs.postedon}</span>
+                            <h:outputFormat value="{0, date, yyyy-MM-dd}" class="review-data-date">
+                                <f:param value="#{item.reviewDate}" />
+                            </h:outputFormat>
+                            <h:outputText value="&lt;br/&gt;" escape="false" />
+                            <span class="comment-title">#{item.commentTitle}</span>
+                            <h:outputText value="&lt;br/&gt;" escape="false" />
+                            <div class="comment-spacing">
+                                <span class="comment">#{item.comment}</span>
+                            </div>
+                        </div>
+                        <span class="seperation">
+                            <hr/>
+                        </span>
+                    </ui:repeat>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+
+</ui:composition>

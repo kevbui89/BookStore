@@ -1,0 +1,23 @@
+<!-- @author: Denis -->
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+        <h:form id="newAuthor" class="margin-auto text-center">
+            <p:messages autoUpdate="true"/>
+            
+            <h:outputLabel class="font-xl" for="name" value="#{msgs.new_author}"/>
+            <h:inputText class="input-style" id="name" 
+                         required="true"
+                         value="#{createAuthor.author.name}" 
+                         requiredMessage="#{msgs.required_author}"
+                         validator="#{uniqueValidator.validateAuthorNameAndRange}">
+            </h:inputText>
+
+
+            <h:commandButton class="btn btn-outlined btn-primary custom-button" id="saveButton" value="#{msgs.submit}"
+                             action="#{createAuthor.createAuthor()}" />
+
+        </h:form>
+</ui:composition>
